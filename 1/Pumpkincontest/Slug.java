@@ -1,4 +1,6 @@
-public abstract class Slug {
+package Pumpkincontest;
+
+abstract class Slug {
 
 	/**
 	 * @param args

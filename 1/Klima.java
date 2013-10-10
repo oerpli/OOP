@@ -33,10 +33,12 @@ public class Klima {
 		for (int i = n; i < Time.Day; i++) {
 			x += this.Water(i);
 		}
-		return x / (Math.min(Time.Day, N0));// +1 hinzugefügt, oerpli
+		return x / (Math.min(Time.Day, N0));
 	}
 
-	public boolean setKlima(double light, double water) {
+	public boolean setKlima(double light, double water) throws PumpkinException {
+		if (light + water > 1)
+			throw new PumpkinException();
 		if (light + water > 1 || light < 0 || water < 0)
 			return false;
 		Light[Time.Day] = light;

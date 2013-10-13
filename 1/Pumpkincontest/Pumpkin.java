@@ -27,6 +27,7 @@ class Pumpkin {
 
 	public String toString() {
 		return "Kürbis " + N + ", " + this.age() + " Tage alt, " + Size
-				+ "KE groß, es gab"+" "+K.getLightDay()+" Sonnentage"+" und "+K.getWaterDay()+" Regentage.";
+				+ "KE groß, es gab" + " " + K.getLightDay() + " Sonnentage"
+				+ " und " + K.getWaterDay() + " Regentage.";
 	}
 }

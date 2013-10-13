@@ -9,6 +9,5 @@ abstract class Slug {
 			return 0.99;
 		else
 			return 1;
-
 	}
 }

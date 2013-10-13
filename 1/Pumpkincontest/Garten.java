@@ -6,11 +6,10 @@ public abstract class Garten {
 	static int N = 0; // Teilnehmer
 	static final ArrayList<Pumpkin> G = new ArrayList<Pumpkin>();
 
-	public static void pflanzen() {
+	private static void pflanzen() {
 		Pumpkin p = new Pumpkin();
 		G.add(p);
 	}
-
 
 	public static void pflanzen(int n) {
 		for (int i = 0; i < n; i++)
@@ -18,7 +17,7 @@ public abstract class Garten {
 	}
 
 	public static void Tag(double l, double w) throws PumpkinException {
-		for (Pumpkin k : G) {			
+		for (Pumpkin k : G) {
 			k.K.setKlima(l, w);
 			k.wachsen();
 			Slug.eat(k);

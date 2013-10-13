@@ -8,7 +8,7 @@ class Pumpkin {
 	private static int n = 1;
 
 	protected Pumpkin() {
-		born = Time.day();
+		born = Garten.day();
 		N = n++;
 		K = new Klima();
 	}
@@ -26,7 +26,7 @@ class Pumpkin {
 	}
 
 	public int age() {
-		return Time.day() - born;
+		return Garten.day() - born;
 	}
 
 	public String toString() {

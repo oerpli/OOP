@@ -2,42 +2,47 @@ package Pumpkincontest;
 
 import java.util.ArrayList;
 
-public abstract class Garten {
-	private static final ArrayList<Pumpkin> G = new ArrayList<Pumpkin>();
-	private static final ArrayList<Pumpkin> F = new ArrayList<Pumpkin>();
+public class Garten {
+	private final ArrayList<Pumpkin> G = new ArrayList<Pumpkin>();
+	private final ArrayList<Pumpkin> F = new ArrayList<Pumpkin>();
+	private static int Day = 0;
 
-	private static void pflanzen() {
+	public static int day() {
+		return Day;
+	}
+
+	private static void nextDay() {
+		Day++;
+	}
+
+	private void pflanzen() {
 		Pumpkin p = new Pumpkin();
 		G.add(p);
 	}
 
-	public static void pflanzen(int n) {
+	public void pflanzen(int n) {
 		for (int i = 0; i < n; i++)
 			pflanzen();
 	}
 
-	public static void petPumpkinNr(int N, double l, double w)
-			throws PumpkinException {
+	public void petPumpkinNr(int N, double l, double w) throws Exception {
 		if (N < G.size())
 			G.get(N).K().setKlima(l, w);
 		else
-			throw new PumpkinException("Kürbis nicht vorhanden/schon geerntet");
+			throw new Exception("Kürbis nicht vorhanden/schon geerntet");
 	}
 
-	public static void closeDay() {
+	public void closeDay() {
 		for (Pumpkin k : G) {
-			try {
-				k.K().setKlima(0, 0);
-			} catch (PumpkinException e) {
-			}
 			k.wachsen();
 			Slug.eat(k);
 		}
-		Time.nextDay();
 		harvest();
+		nextDay();
 	}
 
-	private static void harvest() {
+	private void harvest() {// wäre auch mit HarvestException oder so möglich
+							// statt alle durchprobieren
 		ArrayList<Pumpkin> f = new ArrayList<Pumpkin>();
 		for (Pumpkin k : G)
 			if (k.age() == 100)
@@ -48,10 +53,17 @@ public abstract class Garten {
 		}
 	}
 
-	public static String String() {
+	public String toString() {
 		String s = "";
-		for (Pumpkin k : F) {
-			s += k.toString() + '\n';
+		if (G.size() > 0) {
+			s += "Am Reifen (wie Turner):\n";
+			for (Pumpkin k : G)
+				s += k.toString() + '\n';
+		}
+		if (F.size() > 0) {
+			s += "Fertig:\n";
+			for (Pumpkin k : F)
+				s += k.toString() + '\n';
 		}
 		return s;
 	}

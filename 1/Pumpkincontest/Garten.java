@@ -7,7 +7,7 @@ public class Garten {
 	private final ArrayList<Pumpkin> F = new ArrayList<Pumpkin>();
 	private static int Day = 0;
 
-	public static int day() {
+	protected static int day() {
 		return Day;
 	}
 

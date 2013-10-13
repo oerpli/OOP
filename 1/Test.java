@@ -1,21 +1,26 @@
 import Pumpkincontest.*;
 
 public class Test {
-	private static double[][] testdata = new double[100][2];
-
 	public static void main(String[] args) {
-		for (int i = 0; i < 100; i++) {
-			testdata[i][1] = Math.random() * 0.51;
-			testdata[i][0] = Math.random() * 0.51;
-		}
-
-		Garten.pflanzen(1);
-		for (int i = 0; i < 100; i++) {
-			try {
-				Garten.Tag((testdata[i][0]), testdata[i][1]);
-			} catch (PumpkinException e) {
-				System.out.println(e.getMessage());
+		int n = 100; // Anzahl Kürbisse
+		double[][][] data = new double[n][100][2];
+		for (int i = 0; i < n; i++)
+			// Zufällige Testdaten
+			for (int d = 0; d < 100; d++) {
+				data[i][d][0] = Math.random() * 0.81;// 81+21 =102 => betrüger
+				data[i][d][1] = Math.random() * 0.21;
 			}
+
+		Garten.pflanzen(n);
+		for (int d = 0; d < 100; d++) {
+			for (int i = 0; i < n; i++) {
+				try {
+					Garten.petPumpkinNr(i, data[i][d][0], data[i][d][1]);
+				} catch (PumpkinException e) {
+					System.out.println(e.getMessage());
+				}
+			}
+			Garten.closeDay();
 		}
 		System.out.println(Garten.String());
 	}

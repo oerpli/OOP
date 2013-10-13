@@ -3,8 +3,7 @@ package Pumpkincontest;
 import java.util.ArrayList;
 
 public abstract class Garten {
-	static int N = 0; // Teilnehmer
-	static final ArrayList<Pumpkin> G = new ArrayList<Pumpkin>();
+	private static final ArrayList<Pumpkin> G = new ArrayList<Pumpkin>();
 
 	private static void pflanzen() {
 		Pumpkin p = new Pumpkin();
@@ -16,13 +15,18 @@ public abstract class Garten {
 			pflanzen();
 	}
 
-	public static void Tag(double l, double w) throws PumpkinException {
+	public static void petPumpkinNr(int N, double l, double w)
+			throws PumpkinException {
+		G.get(N).K().setKlima(l, w);
+	}
+
+	public static void closeDay() {
 		for (Pumpkin k : G) {
-			k.K.setKlima(l, w);
 			k.wachsen();
 			Slug.eat(k);
 		}
 		Time.nextDay();
+
 	}
 
 	public static String String() {

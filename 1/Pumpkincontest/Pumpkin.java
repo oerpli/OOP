@@ -1,16 +1,20 @@
 package Pumpkincontest;
 
 class Pumpkin {
+	public final int N; // Kürbisnummer
 	private double Size = 1; // Größe
-	public final Klima K;
+	private final Klima K;
 	private final int born;
-	final int N;
 	private static int n = 1;
 
 	protected Pumpkin() {
 		born = Time.day();
 		N = n++;
 		K = new Klima();
+	}
+
+	protected Klima K() {
+		return K;
 	}
 
 	protected void wachsen() {

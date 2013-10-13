@@ -2,25 +2,30 @@ package Pumpkincontest;
 
 class Klima {
 	private double[] Water = new double[100];
-	private double[] Light = new double[100];
+	
+	private double CurrLight;
+	
+	private int lightDay=0;
+	private int waterDay=0;
 
-	double Light(int Day) {
-		return Light[Day];
+	protected double Light()
+	{
+		return CurrLight;
 	}
-
-	double Water(int Day) {
+	protected double Water(int Day) {
 		return Water[Day];
 	}
 
-	protected double meanLight(int n) {
-		double x = 0;
-		n = Math.max(Time.day(), n);
-		for (int i = Time.day() - n; i < Time.day(); i++) {
-			x += this.Light(i);
-		}
-		return x / n;
+	protected int getLightDay()
+	{
+		return lightDay;
 	}
-
+	
+	protected int getWaterDay()
+	{
+		return waterDay;
+	}
+	
 	protected double meanWater(int N) {
 		double x = 0;
 		for (int i = Time.day() - N; i < Time.day(); i++) {
@@ -28,30 +33,21 @@ class Klima {
 				x += this.Water(i);
 		}
 		return x / N;
-
-		// int n = 0; // First Day
-		// int m = Time.Day; // Last Day
-		// if ((Time.day() - N0) >= 0) {
-		// n = (Time.day() - N0);
-		// // m = Day; // unnötig
-		// } else {
-		// n = 0;
-		// // m = (Math.min(Day, N0)); // sinnlos - kommt nur wenn Day < N0 ist
-		// }
-		// for (int i = n; i < Time.day(); i++) {
-		// x += this.Water(i);
-		// }
-		// return x / (Math.min(Time.day(), N0));
 	}
 
-	protected boolean setKlima(double light, double water)
-			throws PumpkinException {
+	protected boolean setKlima(double light, double water) throws PumpkinException {
+		System.out.println(light+" "+water);
+		if(light==1) lightDay+=1;
+		
+		if(water==1) waterDay+=1;
+		
 		if (light + water > 1)
 			throw new PumpkinException("Someone tried cheating");
 		if (light + water > 1 || light < 0 || water < 0)
 			return false;
-		Light[Time.day()] = light;
+		CurrLight=light;
 		Water[Time.day()] = water;
+	
 		return true;
 	}
 }

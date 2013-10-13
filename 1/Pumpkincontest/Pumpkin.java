@@ -14,7 +14,7 @@ class Pumpkin {
 	}
 
 	protected void wachsen() {
-		double g = K.meanLight(1) * 0.05;
+		double g = K.Light() * 0.05;
 		if (K.meanWater(10) > 0.1) {
 			g *= (K.meanWater(5) < 0.1) ? 1 : 0.5;
 			Size *= 1 + g;
@@ -27,6 +27,6 @@ class Pumpkin {
 
 	public String toString() {
 		return "Kürbis " + N + ", " + this.age() + " Tage alt, " + Size
-				+ "KE groß.";
+				+ "KE groß, es gab"+" "+K.getLightDay()+" Sonnentage"+" und "+K.getWaterDay()+" Regentage.";
 	}
 }

@@ -9,11 +9,12 @@ class Klima {
 	private int sunDay = 0, rainDay = 0;
 	private HashSet<Integer> sunny = new HashSet<Integer>();
 	private Random r = new Random();
+	private int last = 0;
 
 	protected Klima() {
 		Random r = new Random();
 		while (sunny.size() < 20)
-			sunny.add(r.nextInt(100));
+			sunny.add(r.nextInt(99));
 	}
 
 	protected double meanWater(int N) {
@@ -26,8 +27,10 @@ class Klima {
 	}
 
 	protected void setKlima(double light, double water) throws PumpkinException {
-		if (light + water > 1 || light < 0 || water < 0)
+		if (light + water > 1 || light < 0 || water < 0) {
+			this.setKlima(0, 0);
 			throw new PumpkinException("Someone tried cheating");
+		}
 		if (sunny.remove(Time.day())) {
 			light = rainDay > 9 || r.nextFloat() < (10F - sunDay) / 20F ? 1 : 0;
 			water = 1 - light;
@@ -39,6 +42,7 @@ class Klima {
 
 		CurrLight = light;
 		Water[Time.day()] = water;
+		last = Time.day();
 	}
 
 	protected double Light() {

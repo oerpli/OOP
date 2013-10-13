@@ -25,7 +25,7 @@ class Pumpkin {
 		}
 	}
 
-	private int age() {
+	public int age() {
 		return Time.day() - born;
 	}
 

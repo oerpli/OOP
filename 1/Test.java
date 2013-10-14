@@ -37,14 +37,14 @@ public class Test {
 		}
 		if (!false) {
 			Nursery G = new Nursery();
-			int n = 10; // Anzahl Kürbisse
+			int n = 100; // Anzahl Kürbisse
 			double[][][] data = new double[n][100][2];
 			for (int i = 0; i < n; i++)
 				// Zufällige Testdaten
 				for (int d = 0; d < 100; d++) {
-					data[i][d][0] = Math.random() * 0.81;// 81+21 =102 =>
+					data[i][d][0] = Math.random() * 0.89;// 81+21 =102 =>
 															// betrüger
-					data[i][d][1] = Math.random() * 0.20;
+					data[i][d][1] = Math.random() * 0.11;
 				}
 
 			G.plant(n);

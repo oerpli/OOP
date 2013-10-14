@@ -1,6 +1,7 @@
 package Pumpkincontest;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Nursery {
 	private final ArrayList<Pumpkin> G = new ArrayList<Pumpkin>();
@@ -54,6 +55,7 @@ public class Nursery {
 	}
 
 	public String toString() {
+		Collections.sort(G);
 		String s = "";
 		if (G.size() > 0) {
 			s += "Am Reifen (wie Turner):\n";

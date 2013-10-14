@@ -2,7 +2,7 @@ package Pumpkincontest;
 
 import java.util.ArrayList;
 
-public class Garten {
+public class Nursery {
 	private final ArrayList<Pumpkin> G = new ArrayList<Pumpkin>();
 	private final ArrayList<Pumpkin> F = new ArrayList<Pumpkin>();
 	private static int Day = 0;
@@ -11,31 +11,17 @@ public class Garten {
 		return Day;
 	}
 
-	private static void nextDay() {
-		Day++;
-	}
-
-	private void pflanzen() {
-		Pumpkin p = new Pumpkin();
-		G.add(p);
-	}
-
-	public void pflanzen(int n) {
-		for (int i = 0; i < n; i++)
-			pflanzen();
-	}
-
 	public void petPumpkinNr(int N, double l, double w) throws Exception {
 		if (N < G.size())
-			G.get(N).K().setKlima(l, w);
+			G.get(N).setKlima(l, w);
 		else
 			throw new Exception("Kürbis nicht vorhanden/schon geerntet");
 	}
 
 	public void closeDay() {
 		for (Pumpkin k : G) {
-			k.wachsen();
-			Slug.eat(k);
+			k.grow();
+			k.slug();
 		}
 		harvest();
 		nextDay();
@@ -51,6 +37,20 @@ public class Garten {
 			G.remove(k);
 			F.add(k);
 		}
+	}
+
+	public void plant(int n) {
+		for (int i = 0; i < n; i++)
+			plant();
+	}
+
+	private void plant() {
+		Pumpkin p = new Pumpkin();
+		G.add(p);
+	}
+
+	private static void nextDay() {
+		Day++;
 	}
 
 	public String toString() {

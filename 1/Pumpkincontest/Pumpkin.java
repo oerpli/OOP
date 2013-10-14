@@ -1,37 +1,47 @@
 package Pumpkincontest;
 
 class Pumpkin {
-	public final int N; // Kürbisnummer
+	protected final int N; // Kürbisnummer
 	private double Size = 1; // Größe
-	private final Klima K;
+	private final Clime K;
 	private final int born;
 	private static int n = 1;
 
 	protected Pumpkin() {
-		born = Garten.day();
+		born = Nursery.day();
 		N = n++;
-		K = new Klima();
+		K = new Clime();
 	}
 
-	protected Klima K() {
-		return K;
-	}
-
-	protected void wachsen() {
-		double g = K.Light() * 0.05;
+	protected void grow() {
+		double g = K.light() * 0.05;
 		if (K.meanWater(10) > 0.1) {
 			g *= (K.meanWater(5) < 0.1) ? 1 : 0.5;
 			Size *= 1 + g;
 		}
 	}
 
-	public int age() {
-		return Garten.day() - born;
+	protected void slug() {
+		if (K.meanWater(1) >= 0.5 || K.meanWater(2) >= 0.3
+				|| K.meanWater(4) >= 0.1)
+			Size *= 0.99;
+	}
+
+	protected int age() {
+		return Nursery.day() - born;
 	}
 
 	public String toString() {
 		return "Kürbis " + N + ", " + this.age() + " Tage alt, " + Size
-				+ "KE groß, es gab" + " " + K.getLightDay() + " Sonnentage"
-				+ " und " + K.getWaterDay() + " Regentage.";
+				+ "KE groß, es gab" + " " + K.getSunny() + " Sonnentage"
+				+ " und " + K.getRainy() + " Regentage.";
+	}
+
+	public void setKlima(double light, double water) throws Exception {
+		try {
+			this.K.setKlima(light, water);
+		} catch (Exception e) {
+			throw new Exception("Pumpkin Nr." + N + " tried cheating.");
+		}
 	}
 }

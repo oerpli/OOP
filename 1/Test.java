@@ -1,11 +1,11 @@
-import Pumpkincontest.*;
+import Pumpkincontest.Nursery;
 
 public class Test {
-	public static Garten garten = new Garten();
+	public static Nursery garten = new Nursery();
 
 	public static void main(String[] args) {
 		if (!true) {
-			garten.pflanzen(1);
+			garten.plant(1);
 			try {
 				feedKuerbis(100.0, 0.0);
 				System.out.println(garten.toString());
@@ -36,8 +36,8 @@ public class Test {
 			}
 		}
 		if (!false) {
-			Garten G = new Garten();
-			int n = 1000; // Anzahl Kürbisse
+			Nursery G = new Nursery();
+			int n = 10; // Anzahl Kürbisse
 			double[][][] data = new double[n][100][2];
 			for (int i = 0; i < n; i++)
 				// Zufällige Testdaten
@@ -47,13 +47,11 @@ public class Test {
 					data[i][d][1] = Math.random() * 0.20;
 				}
 
-			G.pflanzen(n);
+			G.plant(n);
 			for (int d = 0; d < 100; d++) {
 				for (int i = 0; i < n; i++) {
 					try {
-						boolean lazy = Math.random() < 0.1;
-						if (!lazy)
-							G.petPumpkinNr(i, data[i][d][0], data[i][d][1]);
+						G.petPumpkinNr(i, data[i][d][0], data[i][d][1]);
 					} catch (Exception e) {
 						System.out.println(e.getMessage());
 					}

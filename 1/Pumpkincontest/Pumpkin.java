@@ -1,6 +1,6 @@
 package Pumpkincontest;
 
-class Pumpkin implements Comparable {
+class Pumpkin {
 	protected final int N; // Kürbisnummer
 	private double Size = 1; // Größe
 	private final Clime K;
@@ -43,16 +43,5 @@ class Pumpkin implements Comparable {
 		} catch (Exception e) {
 			throw new Exception("Pumpkin Nr." + N + " tried cheating.");
 		}
-	}
-
-	@Override
-	public int compareTo(Object X) {
-		Pumpkin Y = (Pumpkin) X;
-		if (this.Size > Y.Size)
-			return 1;
-		else if (this.Size == Y.Size)
-			return 0;
-		else
-			return -1;
 	}
 }

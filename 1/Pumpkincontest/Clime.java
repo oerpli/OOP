@@ -3,7 +3,7 @@ package Pumpkincontest;
 import java.util.HashSet;
 import java.util.Random;
 
-class Climate {
+class Clime {
 	private static final Random r = new Random();
 	private double[] Water = new double[100];
 	private double CurrLight = 0;

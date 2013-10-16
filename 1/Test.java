@@ -1,4 +1,4 @@
-package Pumpkincontest;
+import Pumpkincontest.*;
 
 public class Test {
 	public static Nursery garten = new Nursery();

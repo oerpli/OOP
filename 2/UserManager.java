@@ -16,4 +16,9 @@ class UserManager // Verwaltet alle Teilnehmer
 	
 		return userName;
 	}
+	
+	public static PumpManager getUser(String name)
+	{
+		return user.get(name);
+	}
 }

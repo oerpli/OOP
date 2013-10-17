@@ -6,4 +6,9 @@ class PumpManager // Verwaltet alle Kürbisse EINER Person
 	{
 		pumps = new ArrayList<Pumpkin>();
 	}
+	
+	public void plant() // erstellt neuen Kürbis
+	{
+		
+	}
 }

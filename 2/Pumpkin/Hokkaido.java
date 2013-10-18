@@ -2,7 +2,7 @@ package Pumpkin;
 
 import Soil.Soil;
 
-class Hokkaido extends Pumpkin
+public class Hokkaido extends Pumpkin
 {
 	public Hokkaido(Soil soil)
 	{

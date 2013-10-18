@@ -17,7 +17,6 @@ class User
 	public User()
 	{
 		pumps = new ArrayList<Pumpkin>();
-		dailyLimit = false;
 	}
 	
 	/**

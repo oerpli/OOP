@@ -1,6 +1,6 @@
 package Soil;
 
-class SandSoil extends Soil
+public class SandSoil extends Soil
 {
 	
 }

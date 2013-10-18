@@ -1,4 +1,0 @@
-class SandSoil extends Ground
-{
-	
-}

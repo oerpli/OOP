@@ -11,7 +11,6 @@ class User
 	private ArrayList<Pumpkin> pumps;
 	
 	private int lastDay; // Tag der letzten Aktion (damit die zeitliche Abfolge stimmt.)
-	private boolean dailyLimit; // Pflegemaßnahme nur einmal pro Tag
 
 	public User()
 	{
@@ -47,9 +46,7 @@ class User
 	 */
 	public void fertilize(int index)
 	{
-		if (!dailyLimit) { }
-		
-		dailyLimit = true;
+		// Kürbis wird einen Tag älter (nur eine Pflege pro Tag)
 	}
 	
 	/**
@@ -57,9 +54,7 @@ class User
 	 */
 	public void weed(int index)
 	{
-		if (!dailyLimit) { }
-		
-		dailyLimit = true;
+		// Kürbis wird einen Tag älter (nur eine Pflege pro Tag)
 	}
 	
 	/**
@@ -67,8 +62,14 @@ class User
 	 */
 	public void water(int index)
 	{
-		if (!dailyLimit) { }
-		
-		dailyLimit = true;
+		// Kürbis wird einen Tag älter (nur eine Pflege pro Tag)
+	}
+	
+	/**
+	 * Den Kürbis mit dem gewählten Index altern lassen.
+	 */
+	public void skipDays(int index, int days)
+	{
+		// Kürbis wird älter ohne Pflege
 	}
 }

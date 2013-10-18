@@ -13,5 +13,7 @@ public class Test
 		me.fertilize(1); // Braucht die Nummer des eigenen Kürbisses.
 		me.weed(0); // Braucht die Nummer des eigenen Kürbisses.
 		me.water(1); // Braucht die Nummer des eigenen Kürbisses.
+		
+		me.skipDays(0, 5); // Kürbis 0 wird um fünf Tage älter ohne Pflege.
 	}
 }

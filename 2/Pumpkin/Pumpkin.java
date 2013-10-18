@@ -1,6 +1,6 @@
 package Pumpkin;
-
-abstract class Pumpkin
+import Soil.*;
+private abstract class Pumpkin
 {
 	private double weight;
 	private int age; // Das Alter in Tagen.

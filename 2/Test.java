@@ -1,5 +1,5 @@
-import Pumpkin.*
-import Soil.*
+import Pumpkin.*;
+import Soil.*;
 
 public class Test
 {

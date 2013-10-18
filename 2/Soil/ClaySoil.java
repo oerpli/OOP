@@ -1,12 +1,12 @@
 package Soil;
 
-public class SandSoil extends Soil {
-	public SandSoil() {
+public class ClaySoil extends Soil {
+	public ClaySoil() {
 		super();
 	}
 
 	@Override
 	double percolationLevel() {
-		return 0.4;
+		return 0.9;
 	}
 }

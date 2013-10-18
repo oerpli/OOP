@@ -1,24 +1,25 @@
-class UserManager // Verwaltet alle Teilnehmer
-{
-	private HashMap<String,PumpManager> user;
+import java.util.HashMap;
 
-	public UserManager()
+/**
+ * Verwaltet alle Teilnehmer.
+ */
+class UserManager
+{
+	private static HashMap<String,User> userList;
+
+	static
 	{
-		user = new HashMap<String,PumpManager>();
+		userList = new HashMap<String,User>();
 	}
 	
-	public static String register()
+	public static void register(String name)
 	{
-		PumpManager pm = new PumpManager();
-		String userName = "Benutzername";
-		
-		pm.put(userName, pm);
-	
-		return userName;
+		User u = new User();
+		userList.put(name, u);
 	}
 	
-	public static PumpManager getUser(String name)
+	public static User getUser(String name)
 	{
-		return user.get(name);
+		return userList.get(name);
 	}
 }

@@ -1,0 +1,4 @@
+class SandSoil extends Soil
+{
+	
+}

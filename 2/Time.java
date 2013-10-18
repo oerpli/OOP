@@ -1,6 +1,8 @@
 import java.util.HashMap;
 import java.util.Map.Entry;
 
+// Vorschlag: Zeitdauer sind ~258 Tage, jeden Tag gibt es EIN Wetter.
+
 public class Time {
 
 	private static HashMap<String, Integer> time;

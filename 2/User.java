@@ -12,7 +12,7 @@ class User
 {
 	private ArrayList<Pumpkin> pumps;
 	
-	private int lastDay; // Tag der letzten Aktion (damit die zeitliche Abfolge stimmt.)
+	private int lastAction; // Tag der letzten Aktion (damit die zeitliche Abfolge stimmt.)
 
 	public User()
 	{
@@ -22,9 +22,13 @@ class User
 	/**
 	 * Ein neuer Kürbis wird erzeugt und zur Liste hinzugefügt.
 	 * Die Klasse des Attributs spezifiziert die Kürbissorte und den Bodentyp.
+	 * Bei Auftritt eines Fehlers wird -1 zurückgegeben.
 	 */
-	public int plant(Pumpkin p)
+	public int plant(Pumpkin p, int day)
 	{
+		if (day < lastAction)
+			return -1;
+		
 		try
 		{
 			Soil s = p.getSoil();
@@ -38,7 +42,10 @@ class User
 			
 			pumps.add(q);
 		}
-		catch (Exception e) { }
+		catch (Exception e)
+		{
+			return -1;
+		}
 		
 		return pumps.size()-1;
 	}
@@ -48,8 +55,13 @@ class User
 	 */
 	public void fertilize(int index)
 	{
-		Pumpkin p = pumps.get(index);
-		applyWeather(p);
+		if (index >= 0 && index < pumps.size())
+		{
+			Pumpkin p = pumps.get(index);
+			applyWeather(p);
+			
+			p.getSoil().absorbFertilizer(20.0);
+		}
 	}
 	
 	/**
@@ -57,8 +69,11 @@ class User
 	 */
 	public void weed(int index)
 	{
-		Pumpkin p = pumps.get(index);
-		applyWeather(p);
+		if (index >= 0 && index < pumps.size())
+		{
+			Pumpkin p = pumps.get(index);
+			applyWeather(p);
+		}
 	}
 	
 	/**
@@ -66,8 +81,13 @@ class User
 	 */
 	public void water(int index)
 	{
-		Pumpkin p = pumps.get(index);
-		applyWeather(p);
+		if (index >= 0 && index < pumps.size())
+		{
+			Pumpkin p = pumps.get(index);
+			applyWeather(p);
+			
+			p.getSoil().absorbWater(50.0);
+		}
 	}
 	
 	/**
@@ -75,11 +95,14 @@ class User
 	 */
 	public void skipDays(int index, int days)
 	{
-		Pumpkin p = pumps.get(index);
-	
-		for (int i = 0; i < days; i++)
+		if (index >= 0 && index < pumps.size())
 		{
-			applyWeather(p);
+			Pumpkin p = pumps.get(index);
+			
+			for (int i = 0; i < days; i++)
+			{
+				applyWeather(p);
+			}
 		}
 	}
 	

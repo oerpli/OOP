@@ -4,7 +4,7 @@ import Soil.*;
 public abstract class Pumpkin
 {
 	private double weight;
-	private int age; // Das Alter in Tagen.
+	private int age;
 	private Soil soil; // Das zum Kürbis gehörende Boden-Objekt
 
 	public Pumpkin(Soil soil)
@@ -19,6 +19,11 @@ public abstract class Pumpkin
 		return age;
 	}
 	
+	public void increaseAge()
+	{
+		age++;
+	}
+	
 	public double getWeight()
 	{
 		return weight;
@@ -29,11 +34,19 @@ public abstract class Pumpkin
 		return soil;
 	}
 	
+	/**
+	 * Verfügbare Menge Licht wird aufgenommen.
+	 * Der User stellt das Licht bereit.
+	 */
 	private void absorbLight(double light)
 	{
 	
 	}
 	
+	/**
+	 * Verfügbare Menge Wasser wird aufgenommen.
+	 * Der Boden stellt das Wasser bereit.
+	 */
 	private void absorbWater(double water)
 	{
 	

@@ -21,6 +21,7 @@ class User
 	
 	/**
 	 * Ein neuer Kürbis wird erzeugt und zur Liste hinzugefügt.
+	 * Die Klasse des Attributs spezifiziert die Kürbissorte und den Bodentyp.
 	 */
 	public int plant(Pumpkin p)
 	{
@@ -47,7 +48,8 @@ class User
 	 */
 	public void fertilize(int index)
 	{
-		// Kürbis wird einen Tag älter (nur eine Pflege pro Tag)
+		Pumpkin p = pumps.get(index);
+		applyWeather(p);
 	}
 	
 	/**
@@ -55,7 +57,8 @@ class User
 	 */
 	public void weed(int index)
 	{
-		// Kürbis wird einen Tag älter (nur eine Pflege pro Tag)
+		Pumpkin p = pumps.get(index);
+		applyWeather(p);
 	}
 	
 	/**
@@ -63,7 +66,8 @@ class User
 	 */
 	public void water(int index)
 	{
-		// Kürbis wird einen Tag älter (nur eine Pflege pro Tag)
+		Pumpkin p = pumps.get(index);
+		applyWeather(p);
 	}
 	
 	/**
@@ -71,6 +75,21 @@ class User
 	 */
 	public void skipDays(int index, int days)
 	{
-		// Kürbis wird älter ohne Pflege
+		Pumpkin p = pumps.get(index);
+	
+		for (int i = 0; i < days; i++)
+		{
+			applyWeather(p);
+		}
+	}
+	
+	/**
+	 * Wendet die täglichen Klimaverhältnisse auf Kürbis und Boden an.
+	 * Wird von Pflegemethoden aufgerufen.
+	 * Kürbis altert um ein Jahr.
+	 */
+	private void applyWeather(Pumpkin p)
+	{
+		p.increaseAge();
 	}
 }

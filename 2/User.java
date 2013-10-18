@@ -1,4 +1,6 @@
 import java.util.ArrayList;
+import Pumpkin.*
+import Soil.*
 
 /**
  * Verwaltet die Daten eines Teilnehmers.

@@ -1,3 +1,5 @@
+package Soil;
+
 abstract class Soil
 {
 	private double fertilizer; // aktuelles Düngerlevel des Bodens

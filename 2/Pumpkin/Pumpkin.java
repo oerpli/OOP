@@ -1,3 +1,5 @@
+package Pumpkin;
+
 abstract class Pumpkin
 {
 	private double weight;

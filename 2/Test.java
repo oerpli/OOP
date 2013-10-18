@@ -1,3 +1,6 @@
+import Pumpkin.*
+import Soil.*
+
 public class Test
 {
 	public static void main(String [] args)
@@ -5,7 +8,7 @@ public class Test
 		String name = "Max";
 	
 		UserManager.register(name);
-
+		Time.register(name);
 		User me = UserManager.getUser(name);
 		me.plant(new Hokkaido(new SandSoil()));
 		me.plant(new Patisson(new SandSoil()));

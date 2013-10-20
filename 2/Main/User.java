@@ -17,8 +17,12 @@ public class User {
 		this.ID = ID;
 	}
 
-	public void plant(String pType, String sType) throws PlantingException,
-			CheatingException, BusyException, TaskException {
+	public void plant(String task, String pType, String sType)
+			throws PlantingException, CheatingException, BusyException,
+			TaskException {
+		if (!"plant".equals(task.toLowerCase()))
+			return;
+
 		pType = pType.toLowerCase();
 		sType = sType.toLowerCase();
 		Pot p = new Pot(Pumpkin.create(pType), Soil.create(sType));
@@ -29,6 +33,19 @@ public class User {
 			BusyException, TaskException {
 		this.task(task, UserManager.getPots(this).get(p));
 	}
+
+	// public void taskWrapper() {
+	/**
+	 * TODO Alle aufgaben sollten über 1 funktion laufen in der vernünftig
+	 * geloggt werden kann. syntax etwa so:
+	 * 
+	 * user.task("plant custom aladdin hokkaido sand");
+	 * 
+	 * user.task("water 0");
+	 * 
+	 * user.task("harvest 0");
+	 */
+	// }
 
 	private void task(String task, Pot p) throws CheatingException,
 			BusyException, TaskException {

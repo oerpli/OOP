@@ -16,6 +16,7 @@ public abstract class Task {
 		Tasks.put("water", new Water());
 		Tasks.put("fertilize", new Fertilize());
 		Tasks.put("weed", new Weed());
+		Tasks.put("harvest", new Harvest());
 	}
 
 	/**

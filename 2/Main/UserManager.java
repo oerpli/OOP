@@ -30,10 +30,6 @@ public class UserManager {
 		return userList.get(i);
 	}
 
-	public static boolean UserIsBusy(User user) {
-		return busyUntil.get(user) > Time.getTime();
-	}
-
 	public static void setUserBusy(User user, int hours) {
 		busyUntil.put(user, Time.getTime() + hours);
 	}
@@ -52,5 +48,9 @@ public class UserManager {
 
 	public static int UserHasTimeIn(User u) {
 		return busyUntil.get(u) - Time.getTime();
+	}
+
+	public static boolean UserIsBusy(User u) {
+		return busyUntil.get(u) > Time.getTime();
 	}
 }

@@ -17,8 +17,8 @@ public abstract class Pumpkin implements Comparable<Pumpkin> {
 	}
 	private double weight;
 	private final int planted;
-	private double minSun; // Sonne die zum Wachsen benötigt wird , individuell pro
-						// Sorte
+	private double minSun; // Sonne die zum Wachsen benötigt wird , individuell
+							// pro Sorte
 	private double minWater;
 	private int lifetime; // Wachstumszeit
 	private boolean rot; // verfault ja/nein
@@ -81,13 +81,15 @@ public abstract class Pumpkin implements Comparable<Pumpkin> {
 		if (((getAge() / 24) > lifetime * 0.8)) {
 			growth = 0;
 		} else {
-			growth = ((sunFactor + waterFactor + fertiFactor) / 3)-weedFactor;
-			}
-		if(growth<1) growth=1;
-		
+			growth = ((sunFactor + waterFactor + fertiFactor) / 3) - weedFactor;
+		}
+		if (growth < 1)
+			growth = 1;
+
 		weight = weight * growth;
-		
-		if(Log.debug==true)System.out.println("growth: "+growth+" new weight: "+weight);   //DEBUG!
+
+		if (Log.debug == true)
+			System.out.println("growth: " + growth + " new weight: " + weight); // DEBUG!
 	}
 
 	public boolean harvest() {

@@ -4,8 +4,8 @@ package Main;
  * Stellt Wetterdaten pro Tag bereit.
  */
 class Weather {
-	static double flux = 0;
-	static double fluxTime = -1;
+	static double light = 0;
+	static double lightTime = -1;
 
 	public int getSunHours(int day) {
 		return day;
@@ -31,11 +31,10 @@ class Weather {
 
 	public static double getLight() {
 		int x = Time.getTime();
-		if (x > fluxTime) {
-			flux = getLight(Time.getTime());
+		if (x > lightTime) {
+			light = getLight(Time.getTime());
 		}
-		return flux;
-
+		return light;
 	}
 
 	public static int getSunHours() {

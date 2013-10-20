@@ -15,14 +15,14 @@ public abstract class Soil implements Soils {
 	}
 
 	// Grundsätzliche Eigenschaften des Drecktyps
-	private final double percolationSpeed, evaporationSpeed,vulnerability;
+	private final double percolationSpeed, evaporationSpeed, vulnerability;
 	// Eigenschaften von Instanz von Dreck
 	private double fertiLevel = 0, waterLevel = 0, weed = 0;
 
-	public Soil(double pSpeed, double eSpeed,double vulnerability) {
+	public Soil(double pSpeed, double eSpeed, double vulnerability) {
 		this.percolationSpeed = pSpeed;
 		this.evaporationSpeed = eSpeed;
-		this.vulnerability=vulnerability;
+		this.vulnerability = vulnerability;
 	}
 
 	public double getFertilizer() {

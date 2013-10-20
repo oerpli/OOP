@@ -26,10 +26,6 @@ public class UserManager {
 		N++;
 	}
 
-	public void plant(User u, Pot p) {
-		userPots.get(u).add(p);
-	}
-
 	public static User getUser(int i) {
 		return userList.get(i);
 	}

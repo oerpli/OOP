@@ -9,7 +9,7 @@ public abstract class Log {
 	private static ArrayList<LogEntry> log = new ArrayList<LogEntry>();
 	private static LogEntry last;
 	public static boolean chatty = false;
-	public static boolean debug = false;
+	public static int debug=3; //debug level : 3= Wetter 4=Wetter+growth
 
 	public static void addEntry(User u, String task, Pot p) {
 		if (last == null) {

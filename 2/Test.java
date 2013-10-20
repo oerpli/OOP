@@ -18,6 +18,7 @@ public class Test {
 			me.plant("Hokkaido", "sand"); // Pflanzen braucht 1h
 			// me.plant("Hokkaido", "sand"); // Pflanzen braucht 1h
 			Time.nextDay();
+			Time.nextDay();
 
 			me.task("water", 0);
 

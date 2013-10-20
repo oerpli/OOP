@@ -11,6 +11,7 @@ public abstract class Time {
 		if (h % 24 == 0) {
 			Pot.Harvest();// check pumpkins once a day for age
 		}
+		Weather.debug();
 	}
 
 	public static void nextDay() {

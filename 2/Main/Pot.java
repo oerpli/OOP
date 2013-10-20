@@ -20,9 +20,8 @@ public class Pot {
 
 	public static void Harvest() {
 		for (Pot p : Pots) {
-			if (p.p.harvest() == true) {
-				Pots.remove(p);
-				finishedPots.add(p);
+			if (p.p.harvest() == true) {// TODO das scheint mir blödsinn zu sein
+				p.harvest();
 			}
 		}
 	}
@@ -45,7 +44,7 @@ public class Pot {
 	private static void Grow() {
 		for (Pot p : Pots) {
 			p.p.grow(p.s.getWater(), p.s.getFertilizer(), p.s.getWeed());
-			p.s.grow();
+			p.s.growWeed();
 		}
 	}
 
@@ -77,5 +76,10 @@ public class Pot {
 
 	public void weed() {
 		this.s.weed();
+	}
+
+	public void harvest() {
+		Pots.remove(this);
+		Pot.finishedPots.add(this);
 	}
 }

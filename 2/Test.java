@@ -1,20 +1,47 @@
-import Pumpkin.*;
-import Soil.*;
+import Exceptions.BusyException;
+import Exceptions.CheatingException;
+import Exceptions.PlantingException;
+import Exceptions.TaskException;
+import Log.Log;
+import Main.Time;
+import Main.UserManager;
+import Main.User;
 
 public class Test {
 	public static void main(String[] args) {
-		String name = "Max";
+		UserManager.registerUser();
+		User me = UserManager.getUser(0);
 
-		UserManager.register(name);
-		Time.register(name);
-		User me = UserManager.getUser(name);
-		me.plant(new Hokkaido(new SandSoil()), 0);
-		me.plant(new Patisson(new SandSoil()), 0);
+		Log.chatty = true; // feedback nach jedem task
 
-		me.fertilize(1); // Braucht die Nummer des eigenen Kürbisses.
-		me.weed(0); // Braucht die Nummer des eigenen Kürbisses.
-		me.water(1); // Braucht die Nummer des eigenen Kürbisses.
+		try {
+			me.plant("Hokkaido", "sand"); // Pflanzen braucht 1h
+			// me.plant("Hokkaido", "sand"); // Pflanzen braucht 1h
+			Time.nextDay();
 
-		me.skipDays(0, 5); // Kürbis 0 wird um fünf Tage älter ohne Pflege.
+			me.task("wsater", 0);
+
+			// me.task("water", 0);// Funktioniert
+			// Time.nextDay();
+			// Time.nextDay();
+			// Time.nextDay();
+			// Time.nextDay();
+			// Time.nextDay();
+			// me.task("fertilize", 0);
+			// System.out.println("OK");
+			// Time.nextHour();
+			// me.task("weed", 0);// Funktioniert nicht weil weed 2 stunden
+			// braucht
+		} catch (PlantingException e) {
+			e.printStackTrace();
+		} catch (CheatingException e) {
+			e.printStackTrace();
+		} catch (BusyException e) {
+			e.printStackTrace();
+		} catch (TaskException e) {
+			e.printStackTrace();
+		} catch (IndexOutOfBoundsException e) { // dirty
+			System.out.println("Pumpkin not available");
+		}
 	}
 }

@@ -62,7 +62,7 @@ public class Pot {
 
 	private static void Rot() {
 		for (Pot p : Pots) {
-			p.p.Rot(p.s.getFertilizer());
+			p.p.rot(p.s.getFertilizer());
 		}
 	}
 

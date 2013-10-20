@@ -89,7 +89,6 @@ public abstract class Pumpkin implements Comparable<Pumpkin> {
 	public boolean harvest() {
 		if ((getAge() / 24) >= lifetime)
 			return true;
-
 		return false;
 	}
 
@@ -103,7 +102,7 @@ public abstract class Pumpkin implements Comparable<Pumpkin> {
 			return -1;
 	}
 
-	public void Rot(double fertiLevel) {
+	public void rot(double fertiLevel) {
 		if (((getAge() / 24) > lifetime * 0.8)
 				&& (fertiLevel * ((getAge() / 24) / lifetime) > 7)) {
 			this.rot = true;

@@ -19,7 +19,7 @@ public class Test {
 			// me.plant("Hokkaido", "sand"); // Pflanzen braucht 1h
 			Time.nextDay();
 
-			me.task("wsater", 0);
+			me.task("water", 0);
 
 			// me.task("water", 0);// Funktioniert
 			// Time.nextDay();

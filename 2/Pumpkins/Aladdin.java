@@ -5,7 +5,7 @@ import Main.Pumpkin;
 public class Aladdin extends Pumpkin {
 
 	public Aladdin() {
-		super(400, 3, 120);
+		super(0.4, 0.4, 120);
 	}
 
 	public Pumpkin returnNew() {

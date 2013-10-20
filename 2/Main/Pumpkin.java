@@ -3,6 +3,7 @@ package Main;
 import java.util.HashMap;
 
 import Exceptions.PlantingException;
+import Log.Log;
 import Pumpkins.*;
 
 public abstract class Pumpkin implements Comparable<Pumpkin> {
@@ -16,7 +17,7 @@ public abstract class Pumpkin implements Comparable<Pumpkin> {
 	}
 	private double weight;
 	private final int planted;
-	private int minSun; // Sonne die zum Wachsen benötigt wird , individuell pro
+	private double minSun; // Sonne die zum Wachsen benötigt wird , individuell pro
 						// Sorte
 	private double minWater;
 	private int lifetime; // Wachstumszeit
@@ -24,11 +25,11 @@ public abstract class Pumpkin implements Comparable<Pumpkin> {
 
 	// private Soil soil; // Das zum KÃ¼rbis gehÃ¶rende Boden-Objekt
 
-	protected Pumpkin(int minSun, double minWater, int lifetime) {
+	protected Pumpkin(double d, double minWater, int lifetime) {
 		// pumpkins.add(this);
 		this.planted = Time.getTime();
 		this.weight = 1.0;
-		this.minSun = minSun;
+		this.minSun = d;
 		this.minWater = minWater;
 		this.lifetime = lifetime;
 		this.rot = false;
@@ -53,13 +54,12 @@ public abstract class Pumpkin implements Comparable<Pumpkin> {
 		return weight;
 	}
 
-	public void grow(double water, double ferti, double weed) {
+	public void grow(double water, double ferti, double weedFactor) {
 		double sun = Weather.getLight();
 		double sunFactor = 1;
 		double waterFactor = 1;
 		double fertiFactor = 0;
 		double growth = 0;
-		int weedFactor = 0;
 
 		if ((minSun - sun) < 0)
 			sunFactor = 0;
@@ -81,9 +81,13 @@ public abstract class Pumpkin implements Comparable<Pumpkin> {
 		if (((getAge() / 24) > lifetime * 0.8)) {
 			growth = 0;
 		} else {
-			growth = (sunFactor + waterFactor + fertiFactor + weedFactor) / 3;
-		}
+			growth = ((sunFactor + waterFactor + fertiFactor) / 3)-weedFactor;
+			}
+		if(growth<1) growth=1;
+		
 		weight = weight * growth;
+		
+		if(Log.debug==true)System.out.println("growth: "+growth+" new weight: "+weight);   //DEBUG!
 	}
 
 	public boolean harvest() {

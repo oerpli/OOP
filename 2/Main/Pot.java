@@ -45,6 +45,7 @@ public class Pot {
 	private static void Grow() {
 		for (Pot p : Pots) {
 			p.p.grow(p.s.getWater(), p.s.getFertilizer(), p.s.getWeed());
+			p.s.grow();
 		}
 	}
 

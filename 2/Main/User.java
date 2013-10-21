@@ -4,6 +4,7 @@ import Exceptions.BusyException;
 import Exceptions.CheatingException;
 import Exceptions.PlantingException;
 import Exceptions.TaskException;
+import Log.Log;
 
 /**
  * Verwaltet die Daten eines Teilnehmers. Stellt Methoden zur Aufzucht bereit.
@@ -25,7 +26,7 @@ public class User {
 	
 	public void task(String task, String pType, String sType) throws PlantingException, CheatingException, BusyException,
 			TaskException {
-		Pot p;
+		Pot p = null;  //man darf keine Variablen in catch verwenden die in try initialisiert wurden
 		
 		try {
 			p = new Pot(Pumpkin.create(pType), Soil.create(sType));

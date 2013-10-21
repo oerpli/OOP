@@ -6,21 +6,22 @@ import Log.Log;
 import Main.Time;
 import Main.UserManager;
 import Main.User;
+import Plague.*;
 
 public class Test {
 	public static void main(String[] args) {
 		UserManager.registerUser();
 		User me = UserManager.getUser(0);
 
-		Log.chatty = true; // feedback nach jedem task
+		Log.chatty = false; // feedback nach jedem task
 
 		try {
 			me.task("plant", "hokkaido", "sand"); // Pflanzen braucht 1h
-			
 			me.nextDay();
 			me.nextDay();
-
+			Plague.getPlague();
 			me.task("water", 0);
+			
 
 			// me.task("water", 0);// Funktioniert
 			// me.nextDay();

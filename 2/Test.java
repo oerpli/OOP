@@ -15,15 +15,15 @@ public class Test {
 		Log.chatty = true; // feedback nach jedem task
 
 		try {
-			me.plant("Hokkaido", "sand"); // Pflanzen braucht 1h
-			// me.plant("Hokkaido", "sand"); // Pflanzen braucht 1h
-			Time.nextDay();
-			Time.nextDay();
+			me.task("plant", "hokkaido", "sand"); // Pflanzen braucht 1h
+			
+			me.nextDay();
+			me.nextDay();
 
 			me.task("water", 0);
 
 			// me.task("water", 0);// Funktioniert
-			// Time.nextDay();
+			// me.nextDay();
 			// Time.nextDay();
 			// Time.nextDay();
 			// Time.nextDay();

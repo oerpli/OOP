@@ -17,7 +17,40 @@ public class User {
 		this.ID = ID;
 	}
 
-	public void plant(String task, String pType, String sType)
+	public void task(String task, int p) throws CheatingException,
+			BusyException, TaskException {	
+		
+		this.task(task, UserManager.getPots(this).get(p));
+	}
+	
+	public void task(String task, String pType, String sType) throws PlantingException, CheatingException, BusyException,
+			TaskException {
+		Pot p;
+		
+		try {
+			p = new Pot(Pumpkin.create(pType), Soil.create(sType));
+		} catch (PlantingException e) {
+			Log.addEntry(this, task, p);
+			throw e;
+		}
+		
+		this.task("plant", p);
+	}
+
+	private void task(String task, Pot p) throws CheatingException,
+			BusyException, TaskException {
+		Task.execute(this, task, p);
+	}
+	
+	public void nextDay() {
+		Time.nextDay();
+	}
+
+	public String toString() {
+		return "User" + ID;
+	}
+	
+	/*public void plant(String task, String pType, String sType)
 			throws PlantingException, CheatingException, BusyException,
 			TaskException {
 		if (!"plant".equals(task.toLowerCase()))
@@ -27,32 +60,5 @@ public class User {
 		sType = sType.toLowerCase();
 		Pot p = new Pot(Pumpkin.create(pType), Soil.create(sType));
 		this.task("plant", p);
-	}
-
-	public void task(String task, int p) throws CheatingException,
-			BusyException, TaskException {
-		this.task(task, UserManager.getPots(this).get(p));
-	}
-
-	// public void taskWrapper() {
-	/**
-	 * TODO Alle aufgaben sollten über 1 funktion laufen in der vernünftig
-	 * geloggt werden kann. syntax etwa so:
-	 * 
-	 * user.task("plant custom aladdin hokkaido sand");
-	 * 
-	 * user.task("water 0");
-	 * 
-	 * user.task("harvest 0");
-	 */
-	// }
-
-	private void task(String task, Pot p) throws CheatingException,
-			BusyException, TaskException {
-		Task.execute(this, task, p);
-	}
-
-	public String toString() {
-		return "User" + ID;
-	}
+	}*/
 }

@@ -52,8 +52,8 @@ public abstract class Soil implements Soils {
 		waterLevel = Math.min(1, waterLevel + water);
 	}
 
-	public void absorbFertilizer(double fertilizer) {
-		fertiLevel = Math.min(1, fertiLevel + fertilizer);
+	public void absorbFertilizer(double amount) {
+		fertiLevel = Math.min(1, fertiLevel + amount);
 	}
 
 	public double percolationSpeed() {
@@ -76,15 +76,15 @@ public abstract class Soil implements Soils {
 
 	void evaporate() {
 		this.waterLevel *= this.evaporationSpeed() - 0.01 * Weather.getLight();
-		this.fertiLevel *= 0.95;
+		this.fertiLevel *= 0.98;
 	}
 
 	void percolate() {
 		this.waterLevel *= 0.5 + 0.5 * this.percolationSpeed();
 	}
 
-	void weed() {
-		weed -= 0.4;
+	void weed(double amount) {
+		weed -= amount;
 		weed = Math.max(0, Math.min(1, weed));
 	}
 

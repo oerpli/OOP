@@ -13,7 +13,7 @@ public class Weed implements Tasks {
 
 	@Override
 	public boolean execute(User u, Pot p) {
-		p.weed();
+		p.weed(0.4);
 		return true;
 	}
 }

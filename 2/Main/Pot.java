@@ -71,16 +71,16 @@ public class Pot implements Comparable<Pot> {
 		}
 	}
 
-	public void waterize() {
-		this.s.absorbWater(0.4);
+	public void waterize(double amount) {
+		this.s.absorbWater(amount);
 	}
 
-	public void fertilize() {
-		this.s.absorbFertilizer(0.4);
+	public void fertilize(double amount) {
+		this.s.absorbFertilizer(amount);
 	}
 
-	public void weed() {
-		this.s.weed();
+	public void weed(double amount) {
+		this.s.weed(amount);
 	}
 
 	public boolean harvest() {

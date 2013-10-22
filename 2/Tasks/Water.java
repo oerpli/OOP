@@ -13,7 +13,7 @@ public class Water implements Tasks {
 
 	@Override
 	public boolean execute(User u, Pot p) {
-		p.waterize();
+		p.waterize(0.4);
 		return true;
 	}
 }

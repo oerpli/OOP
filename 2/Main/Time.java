@@ -4,7 +4,8 @@ package Main;
 
 public abstract class Time {
 	private static int h = 0;
-	private static int maxTime = 24 * (16 + 30 + 31 + 30 + 31 + 31 + 30 + 31);
+	public static final int Dauer = (16 + 30 + 31 + 30 + 31 + 31 + 30 + 31);
+	public static final int maxTime = 24 * Dauer;
 
 	public static void nextHour() {
 		h++;

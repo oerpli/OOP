@@ -4,7 +4,7 @@ package Main;
  * Stellt Wetterdaten pro Tag bereit.
  */
 abstract class Weather {
-	static private double[][] w = new double[185][3];
+	static private double[][] w = new double[Time.Dauer][3];
 	static double light = 0;
 	static double lightTime = -1;
 	static double rain = 0;
@@ -13,7 +13,7 @@ abstract class Weather {
 	static double cloudsTime = -1;
 
 	static {
-		for (int i = 0; i < 185; i++) {
+		for (int i = 0; i < Time.Dauer; i++) {
 			for (int j = 0; j < 3; j++) {
 				w[i][j] = Math.random() * 0.5 + 0.5;
 			}

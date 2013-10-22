@@ -7,22 +7,26 @@ import java.util.Random;
  * Stellt Wetterdaten pro Tag bereit.
  */
 abstract class Weather {
-	static private double[][] w = new double[Time.Tage][3];
-	static double light = 0;
-	static double lightTime = -1;
-	static double rain = 0;
-	static double rainTime = -1;
-	static double clouds = 0;
-	static double cloudsTime = -1;
-	static Random random = new Random();
-	static ArrayList<Integer> tempestDays = new ArrayList<Integer>();
+	private static double[][] w = new double[Time.Tage][3];
+	private static double light = 0;
+	private static double lightTime = -1;
+	private static double rain = 0;
+	private static double rainTime = -1;
+	private static double clouds = 0;
+	private static double cloudsTime = -1;
+	private static Random random = new Random();
+	private static ArrayList<Integer> tempestDays = new ArrayList<Integer>();
 
+	// Könnte sonst der Benutzer konfigurieren - ist in dem fall aber einfach
+	// random.
 	static {
 		int hailDays = random.nextInt(10);
 		for (int i = 0; i < hailDays; i++)
 			tempestDays.add(random.nextInt(Time.Tage));
+
 		for (int i = 0; i < Time.Tage; i++) {
 			for (int j = 0; j < 3; j++) {
+				// faktoren für wolken/sonne und regen
 				w[i][j] = random.nextDouble() * 0.5 + 0.5;
 			}
 		}

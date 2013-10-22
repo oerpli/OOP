@@ -1,6 +1,7 @@
 package Main;
 
 import java.util.HashMap;
+import java.util.Random;
 
 import Exceptions.PlantingException;
 import Pumpkins.*;
@@ -21,6 +22,8 @@ public abstract class Pumpkin implements Comparable<Pumpkin> {
 	private int lifetime; // Wachstumszeit
 	private double growSpeed;
 	private boolean rot; // verfault ja/nein
+	
+	
 
 	protected Pumpkin(double d, double minWater, int lifetime, double growSpeed) {
 		// pumpkins.add(this);
@@ -35,12 +38,33 @@ public abstract class Pumpkin implements Comparable<Pumpkin> {
 
 	public static Pumpkin create(String Type) throws PlantingException {
 		try {
+			if(Type.equals("Magic")) {return MagicCreation();}
 			return types.get(Type.toLowerCase()).returnNew();
 		} catch (NullPointerException e) {
 			throw new PlantingException(Type);
 		}
 	}
-
+	private static Pumpkin MagicCreation()
+	{
+		Random random=new Random();
+		double [][] values=new double[5][5];
+		values[0][1]=0.1;
+		values[0][2]=0.4;
+		values[0][3]=120;
+		values[0][4]=0.02;
+		
+		values[1][1]=0.1;
+		values[1][2]=0.5;
+		values[1][3]=100;
+		values[1][4]=0.025;
+		
+		values[2][1]=0.05;
+		values[2][2]=0.4;
+		values[2][3]=100;
+		values[2][4]=0.016;
+		
+		return new Magic(values[random.nextInt(2)][1], values[random.nextInt(2)][2], (int)values[random.nextInt(2)][3], values[random.nextInt(2)][4]);
+	}
 	public abstract Pumpkin returnNew();
 
 	public int getAge() {

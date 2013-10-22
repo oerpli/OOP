@@ -1,28 +1,29 @@
 package Main;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 /**
  * Stellt Wetterdaten pro Tag bereit.
  */
 abstract class Weather {
-	static private double[][] w = new double[Time.Dauer][3];
+	static private double[][] w = new double[Time.Tage][3];
 	static double light = 0;
 	static double lightTime = -1;
 	static double rain = 0;
 	static double rainTime = -1;
 	static double clouds = 0;
 	static double cloudsTime = -1;
-	static Random random=new Random();
-	static int[] dates=new int[random.nextInt(1)];
-	
-	
+	static Random random = new Random();
+	static ArrayList<Integer> tempestDays = new ArrayList<Integer>();
 
 	static {
-		calcCapriole();
-		for (int i = 0; i < Time.Dauer; i++) {
+		int hailDays = random.nextInt(10);
+		for (int i = 0; i < hailDays; i++)
+			tempestDays.add(random.nextInt(Time.Tage));
+		for (int i = 0; i < Time.Tage; i++) {
 			for (int j = 0; j < 3; j++) {
-				w[i][j] = Math.random() * 0.5 + 0.5;
+				w[i][j] = random.nextDouble() * 0.5 + 0.5;
 			}
 		}
 	}
@@ -66,22 +67,8 @@ abstract class Weather {
 		}
 		return rain;
 	}
-	
-	public static void calcCapriole()
-	{
-		for(int i=0;i<dates.length;i++)
-		{
-			dates[i]=random.nextInt(230);
-		}
-		
-	}
-	
-	public static boolean isCapriole()
-	{
-		for(int i=0;i<dates.length;i++)
-		{
-			if(Time.getDay()==dates[i]) return true;
-		}
-		return false;
+
+	public static boolean isTempest() {
+		return tempestDays.contains(Time.getDay());
 	}
 }

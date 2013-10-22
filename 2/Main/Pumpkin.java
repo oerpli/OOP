@@ -56,7 +56,8 @@ public abstract class Pumpkin implements Comparable<Pumpkin> {
 		growth *= Math.max(0, Weather.getLight() - minSun);
 		growth *= Math.max(0, water - minWater);
 		growth *= 1 - weedFactor * 0.5;
-		if(Weather.isCapriole()==true) weight*=0.5;
+		if (Weather.isTempest())
+			weight *= 0.99;
 		weight *= 1 + growth;
 	}
 

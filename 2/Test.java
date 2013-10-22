@@ -11,7 +11,7 @@ public class Test {
 		// me.task("plant", "hokkaido", "sand"); // Pflanzen braucht 1h
 		you.task("plant", "patisson", "humus"); // Pflanzen braucht 1h
 		for (int i = 0; i < 5520; i++) {
-			you.task("fertilize", 0);
+			you.task("water", 0);
 			Time.nextHour();
 			if (i > 230 * 24)
 				break;

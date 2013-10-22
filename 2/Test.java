@@ -16,20 +16,30 @@ public class Test {
 		for (int i = 0; i < user.length; i++)
 			user[i] = User.register();
 
-		Log.chatty = false; // feedback nach jedem task
+		Log.chatty = true; // feedback nach jedem task
 
 		for (int i = 0; i < user.length; i++)
-			user[i].task("plant", sorts[r.nextInt(2)], soils[r.nextInt(2)]);
+			user[i].task("plant", sorts[r.nextInt(3)], soils[r.nextInt(3)]);
 		Time.nextHour();
 		for (int i = 0; i < user.length; i++)
-			user[i].task("plant", sorts[r.nextInt(2)], soils[r.nextInt(2)]);
+			user[i].task("plant", sorts[r.nextInt(3)], soils[r.nextInt(3)]);
 
-		for (int t = 0; t < 5520; t++) {
+		for (int t = 0; t < 5300; t++) {
 			for (int i = 0; i < user.length; i++) {
-				user[i].task(tasks[r.nextInt(2)], r.nextInt(2));
+				if (t < 1500)
+					user[i].task(tasks[r.nextInt(3)], r.nextInt(2));
+				else
+					user[i].task(tasks[r.nextInt(2)], r.nextInt(2));
 			}
 			Time.nextHour();
 		}
+		Time.nextDay();
+		user[1].task("fertilize", 0);
+		while (Time.getDay() < Time.Tage) {
+			user[24].task("fertilize", 0);
+			Time.nextDay();
+		}
+
 		System.out.println(ContestManager.getRanking());
 	}
 }

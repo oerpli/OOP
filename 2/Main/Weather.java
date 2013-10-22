@@ -14,7 +14,7 @@ abstract class Weather {
 	static double clouds = 0;
 	static double cloudsTime = -1;
 	static Random random=new Random();
-	static int[] dates=new int[random.nextInt(3)];
+	static int[] dates=new int[random.nextInt(1)];
 	
 	
 

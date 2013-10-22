@@ -40,9 +40,9 @@ public abstract class Soil implements Soils {
 	// create(type) wäre vom code her logischer
 	// buy("Sand") o.Ä. von der benutzung her.
 	public static Soil create(String Type) throws PlantingException {
-		String t = Type.toLowerCase();
 		try {
-			return types.get(t).getClass().getConstructor().newInstance();
+			return types.get(Type.toLowerCase()).getClass().getConstructor()
+					.newInstance();
 		} catch (Exception e) {
 			throw new PlantingException(Type);
 		}

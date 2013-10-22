@@ -32,9 +32,6 @@ public abstract class Log {
 		}
 	}
 
-	public static void add(LogEntry logEntry) {
-	}
-
 	public static void print() {
 		for (LogEntry entry : log)
 			System.out.println(entry);

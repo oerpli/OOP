@@ -1,8 +1,11 @@
 package Main;
 
+import java.util.ArrayList;
+
 import Exceptions.BusyException;
 import Exceptions.CheatingException;
 import Exceptions.PlantingException;
+import Exceptions.SubmittedException;
 import Exceptions.TaskException;
 import Log.Log;
 
@@ -13,7 +16,7 @@ import Log.Log;
  */
 public class User {
 	public final int ID;
-	private int pots = 0;
+	private ArrayList<Pot> pots = new ArrayList<Pot>();
 
 	public User(int ID) {
 		this.ID = ID;
@@ -22,11 +25,9 @@ public class User {
 	public boolean task(String task, int p) {
 		Log.addEntry(this, task, new Pot(p));
 		try {
-			Task.execute(this, task.toLowerCase(), UserManager.getPots(this)
-					.get(p));
+			this.task(task, pots.get(p));
 		} catch (IndexOutOfBoundsException e) {
 			Log.finishEntry("but he has not that many pots.", false);
-		} catch (CheatingException | BusyException | TaskException e) {
 			return false;
 		}
 		return true;
@@ -34,22 +35,24 @@ public class User {
 
 	public boolean task(String task, String pType, String sType) {
 		Log.addEntry(this, "plant a " + pType + " in " + sType, null);
+		Pot p;
 		try {
-			Pot p = new Pot(Pumpkin.create(pType.toLowerCase()),
-					Soil.create(sType.toLowerCase()), pots);
-			Task.execute(this, task.toLowerCase(), p);
-		} catch (PlantingException | CheatingException | BusyException
-				| TaskException e) {
+			p = new Pot(Pumpkin.create(pType), Soil.create(sType), pots.size());
+		} catch (PlantingException e) {
 			return false;
 		}
-		pots++;
+		this.task(task.toLowerCase(), p);
 		return true;
 	}
 
-	private void task(String task, Pot p) throws CheatingException,
-			BusyException, TaskException {
-		Log.addEntry(this, task, p);
-		Task.execute(this, task.toLowerCase(), p);
+	private boolean task(String task, Pot p) {
+		try {
+			Task.execute(this, task.toLowerCase(), p);
+		} catch (CheatingException | BusyException | TaskException
+				| SubmittedException e) {
+			return false;
+		}
+		return true;
 	}
 
 	public void nextDay() {
@@ -58,6 +61,10 @@ public class User {
 
 	public String toString() {
 		return "User" + ID;
+	}
+
+	public void addPot(Pot p) {
+		pots.add(p);
 	}
 
 	/*

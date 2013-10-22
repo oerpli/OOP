@@ -3,7 +3,7 @@ package Tasks;
 import Interfaces.Tasks;
 import Main.Pot;
 import Main.User;
-import Main.UserManager;
+import Main.ContestManager;
 
 public class Harvest implements Tasks {
 

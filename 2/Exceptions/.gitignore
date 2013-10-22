@@ -2,3 +2,4 @@
 /BusyException.class
 /PlantingException.class
 /TaskException.class
+/SubmittedException.class

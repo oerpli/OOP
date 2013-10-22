@@ -4,14 +4,14 @@ package Main;
 
 public abstract class Time {
 	private static int h = 0;
+	private static int maxTime = 24 * (31 + 30 + 31 + 30 + 31 + 31 + 30 + 31);
 
 	public static void nextHour() {
 		h++;
 		Pot.Time();// invoke time related static functions
-		if (h % 24 == 0) {
-			Pot.Harvest();// check pumpkins once a day for age
+		if (h == maxTime) {
+			Pot.Harvest(); // am ende des bewerbes werden alle kürbisse geerntet.
 		}
-		Weather.debug();
 	}
 
 	public static void nextDay() {
@@ -21,5 +21,9 @@ public abstract class Time {
 
 	public static int getTime() {
 		return h;
+	}
+
+	public static int getHour() {
+		return h % 24;
 	}
 }

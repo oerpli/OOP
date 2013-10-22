@@ -1,14 +1,16 @@
 package Main;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-public class Pot {
+public class Pot implements Comparable<Pot> {
 	private static CopyOnWriteArrayList<Pot> Pots = new CopyOnWriteArrayList<Pot>();
 	private static ArrayList<Pot> finishedPots = new ArrayList<Pot>();
 	public final Pumpkin p;
 	public final Soil s;
 	private int nr;
+	private boolean finished = false;
 
 	Pot(Pumpkin p, Soil s, int nr) {
 		this.p = p;
@@ -87,11 +89,26 @@ public class Pot {
 	}
 
 	public void harvest() {
+		finished = true;
 		Pots.remove(this);
 		Pot.finishedPots.add(this);
 	}
 
 	public String toString() {
 		return "Pot Nr. " + nr;
+	}
+
+	public boolean isFinished() {
+		return finished;
+	}
+
+	public static ArrayList<Pot> getFinishedPots() {
+		Collections.sort(finishedPots);
+		return finishedPots;
+	}
+
+	@Override
+	public int compareTo(Pot o) {
+		return p.compareTo(o.p);
 	}
 }

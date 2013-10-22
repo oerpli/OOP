@@ -37,9 +37,8 @@ public abstract class Pumpkin implements Comparable<Pumpkin> {
 	}
 
 	public static Pumpkin create(String Type) throws PlantingException {
-		String t = Type.toLowerCase();
 		try {
-			return types.get(t).returnNew();
+			return types.get(Type.toLowerCase()).returnNew();
 		} catch (NullPointerException e) {
 			throw new PlantingException(Type);
 		}

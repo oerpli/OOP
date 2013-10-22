@@ -20,11 +20,12 @@ public abstract class ContestManager {
 		userPots = new HashMap<Pot, User>();
 	}
 
-	public static void registerUser() {
+	public static User registerUser() {
 		User u = new User(N);
 		userList.put(N, u);
 		busyUntil.put(u, -1);
 		N++;
+		return u;
 	}
 
 	public static User getUser(int i) {

@@ -55,10 +55,6 @@ public class User {
 		return true;
 	}
 
-	public void nextDay() {
-		Time.nextDay();
-	}
-
 	public String toString() {
 		return "User" + ID;
 	}
@@ -67,8 +63,7 @@ public class User {
 		pots.add(p);
 	}
 
-	public void nextHour() {
-		Time.nextHour();
-		
+	public static User register() {
+		return ContestManager.registerUser();
 	}
 }

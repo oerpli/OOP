@@ -13,36 +13,45 @@ import Log.Log;
  */
 public class User {
 	public final int ID;
+	private int pots = 0;
 
 	public User(int ID) {
 		this.ID = ID;
 	}
 
-	public void task(String task, int p) throws CheatingException,
-			BusyException, TaskException {	
-		
-		this.task(task, UserManager.getPots(this).get(p));
-	}
-	
-	public void task(String task, String pType, String sType) throws PlantingException, CheatingException, BusyException,
-			TaskException {
-		Pot p = null;  //man darf keine Variablen in catch verwenden die in try initialisiert wurden
-		
+	public boolean task(String task, int p) {
+		Log.addEntry(this, task, new Pot(p));
 		try {
-			p = new Pot(Pumpkin.create(pType), Soil.create(sType));
-		} catch (PlantingException e) {
-			Log.addEntry(this, task, p);
-			throw e;
+			Task.execute(this, task.toLowerCase(), UserManager.getPots(this)
+					.get(p));
+		} catch (IndexOutOfBoundsException e) {
+			Log.finishEntry("but he has not that many pots.", false);
+		} catch (CheatingException | BusyException | TaskException e) {
+			return false;
 		}
-		
-		this.task("plant", p);
+		return true;
+	}
+
+	public boolean task(String task, String pType, String sType) {
+		Log.addEntry(this, "plant a " + pType + " in " + sType, null);
+		try {
+			Pot p = new Pot(Pumpkin.create(pType.toLowerCase()),
+					Soil.create(sType.toLowerCase()), pots);
+			Task.execute(this, task.toLowerCase(), p);
+		} catch (PlantingException | CheatingException | BusyException
+				| TaskException e) {
+			return false;
+		}
+		pots++;
+		return true;
 	}
 
 	private void task(String task, Pot p) throws CheatingException,
 			BusyException, TaskException {
-		Task.execute(this, task, p);
+		Log.addEntry(this, task, p);
+		Task.execute(this, task.toLowerCase(), p);
 	}
-	
+
 	public void nextDay() {
 		Time.nextDay();
 	}
@@ -50,16 +59,13 @@ public class User {
 	public String toString() {
 		return "User" + ID;
 	}
-	
-	/*public void plant(String task, String pType, String sType)
-			throws PlantingException, CheatingException, BusyException,
-			TaskException {
-		if (!"plant".equals(task.toLowerCase()))
-			return;
 
-		pType = pType.toLowerCase();
-		sType = sType.toLowerCase();
-		Pot p = new Pot(Pumpkin.create(pType), Soil.create(sType));
-		this.task("plant", p);
-	}*/
+	/*
+	 * public void plant(String task, String pType, String sType) throws
+	 * PlantingException, CheatingException, BusyException, TaskException { if
+	 * (!"plant".equals(task.toLowerCase())) return;
+	 * 
+	 * pType = pType.toLowerCase(); sType = sType.toLowerCase(); Pot p = new
+	 * Pot(Pumpkin.create(pType), Soil.create(sType)); this.task("plant", p); }
+	 */
 }

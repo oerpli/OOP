@@ -8,10 +8,18 @@ public class Pot {
 	private static ArrayList<Pot> finishedPots = new ArrayList<Pot>();
 	public final Pumpkin p;
 	public final Soil s;
+	private int nr;
 
-	Pot(Pumpkin p, Soil s) {
+	Pot(Pumpkin p, Soil s, int nr) {
 		this.p = p;
 		this.s = s;
+		this.nr = nr;
+	}
+
+	Pot(int p) {
+		this.p = null;
+		this.s = null;
+		this.nr = p;
 	}
 
 	public static void plant(Pot p) {
@@ -81,5 +89,9 @@ public class Pot {
 	public void harvest() {
 		Pots.remove(this);
 		Pot.finishedPots.add(this);
+	}
+
+	public String toString() {
+		return "Pot Nr. " + nr;
 	}
 }

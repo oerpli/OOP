@@ -27,7 +27,6 @@ public abstract class Task {
 	public static void execute(User u, String Task, Pot p)
 			throws CheatingException, BusyException, TaskException {
 		String t = Task.toLowerCase();
-		Log.addEntry(u, Task, p);
 
 		// Checks if user has time
 		if (UserManager.UserIsBusy(u)) {

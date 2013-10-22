@@ -21,7 +21,8 @@ class LogEntry {
 
 	public String toString() {
 		return "Day " + time / 24 + ", " + time % 24 + ":00: " + u
-				+ " tried to " + task + " " + p + " " + finish;
+				+ " tried to " + task + (p != null ? " " + p : "") + " "
+				+ finish;
 	}
 
 	public void finish(String f, boolean s) {

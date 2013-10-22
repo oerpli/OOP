@@ -88,6 +88,7 @@ public abstract class Soil implements Soils {
 
 	void growWeed() {
 		weed += 0.05 * this.getWeedFactor();
+		weed = Math.min(1, weed);
 	}
 
 	private double getWeedFactor() {

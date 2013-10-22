@@ -56,7 +56,7 @@ public abstract class Pumpkin implements Comparable<Pumpkin> {
 
 	public void grow(double water, double ferti, double weedFactor) {
 		double sun = Weather.getLight();
-		//System.out.println("sun: "+sun+"minsun: "+minSun);
+		// System.out.println("sun: "+sun+"minsun: "+minSun);
 		double sunFactor = 1;
 		double waterFactor = 1;
 		double fertiFactor = 0;
@@ -66,17 +66,18 @@ public abstract class Pumpkin implements Comparable<Pumpkin> {
 
 		if (sunFactor > 2)
 			sunFactor = 2;
-		
+
 		waterFactor = water / minWater;
 
 		if (waterFactor > 2)
 			waterFactor = 2;
 
-			growth = ((sunFactor + waterFactor + fertiFactor)) - Math.max(-0.5,Math.min(2,weedFactor));
-		
-			growth=Math.min(1.4,Math.max(1,growth));
-			weight = weight * growth;
-			//System.out.println(sunFactor+" "+waterFactor+" "+fertiFactor+" "+weedFactor);
+		growth = ((sunFactor + waterFactor + fertiFactor))
+				- Math.max(-0.5, Math.min(2, weedFactor));
+
+		growth = Math.min(1.4, Math.max(1, growth));
+		weight = weight * growth;
+		// System.out.println(sunFactor+" "+waterFactor+" "+fertiFactor+" "+weedFactor);
 		if (Log.debug > 3)
 			System.out.println("growth: " + growth + " new weight: " + weight); // DEBUG!
 	}

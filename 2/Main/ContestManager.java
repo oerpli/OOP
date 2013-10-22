@@ -67,6 +67,7 @@ public abstract class ContestManager {
 	}
 
 	public static boolean addFinishedPot(Pot p) {
+		// vergammelte kürbisse eventuell weglassen
 		return finishedPots.add(p);
 	}
 }

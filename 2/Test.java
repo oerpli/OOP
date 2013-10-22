@@ -1,5 +1,6 @@
 import Log.Log;
 import Main.ContestManager;
+import Main.Time;
 import Main.User;
 
 public class Test {
@@ -10,6 +11,7 @@ public class Test {
 
 		me.task("plant", "hokkaido", "sand"); // Pflanzen braucht 1h
 		you.task("plant", "Aladdin", "humus"); // Pflanzen braucht 1h
+		Time.nextHour();
 		me.task("plant", "hokkaido", "clay"); // Pflanzen braucht 1h
 		// Plague.getPlague();
 		// me.task("water", 1);
@@ -20,14 +22,15 @@ public class Test {
 		// me.task("harvest", 0);
 		// you.task("harvest", 0);
 		// System.out.println(ContestManager.getRanking());
-		for (int i = 0; i < 1000; i++) {
+		for (int i = 0; i < 10; i++) {
 			me.task("water", 1);
 			me.task("water", 0);
 			you.task("water", 0);
+			Time.nextDay();
 		}
-		me.task("harvest", 1);
-		me.task("harvest", 0);
-		you.task("harvest", 0);
+		// me.task("harvest", 1);
+		// me.task("harvest", 0);
+		// you.task("harvest", 0);
 		System.out.println(ContestManager.getRanking());
 	}
 }

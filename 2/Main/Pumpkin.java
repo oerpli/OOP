@@ -82,12 +82,6 @@ public abstract class Pumpkin implements Comparable<Pumpkin> {
 			System.out.println("growth: " + growth + " new weight: " + weight); // DEBUG!
 	}
 
-	public boolean harvest() {
-		if ((getAge() / 24) >= lifetime)
-			return true;
-		return false;
-	}
-
 	@Override
 	public int compareTo(Pumpkin X) {
 		if (this.weight > X.weight)

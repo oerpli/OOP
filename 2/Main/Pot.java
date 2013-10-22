@@ -27,9 +27,7 @@ public class Pot implements Comparable<Pot> {
 
 	public static void Harvest() {
 		for (Pot p : Pots) {
-			if (p.p.harvest() == true) {// TODO das scheint mir blödsinn zu sein
-				p.harvest();
-			}
+			p.harvest();
 		}
 	}
 
@@ -42,10 +40,9 @@ public class Pot implements Comparable<Pot> {
 	}
 
 	private static void Rain() {
-		if (Weather.isRaining())
-			for (Pot p : Pots) {
-				p.s.absorbWater(0.1);
-			}
+		for (Pot p : Pots) {
+			p.s.absorbWater(Weather.getRain());
+		}
 	}
 
 	private static void Grow() {

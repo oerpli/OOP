@@ -75,11 +75,11 @@ public abstract class Soil implements Soils {
 	// }
 
 	void evaporate() {
-		this.waterLevel *= this.evaporationSpeed() * Weather.getLight();
+		this.waterLevel *= this.evaporationSpeed() - 0.01 * Weather.getLight();
 	}
 
 	void percolate() {
-		this.waterLevel *= this.percolationSpeed();
+		this.waterLevel *= 0.5 + 0.5 * this.percolationSpeed();
 	}
 
 	void weed() {

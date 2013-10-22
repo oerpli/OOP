@@ -3,7 +3,6 @@ package Main;
 import java.util.HashMap;
 
 import Exceptions.PlantingException;
-import Log.Log;
 import Pumpkins.*;
 
 public abstract class Pumpkin implements Comparable<Pumpkin> {
@@ -32,7 +31,7 @@ public abstract class Pumpkin implements Comparable<Pumpkin> {
 		this.weight = 1.0;
 		this.minSun = d;
 		this.minWater = minWater;
-		this.lifetime = lifetime;
+		this.lifetime = lifetime * 24;
 		this.rot = false;
 	}
 
@@ -55,31 +54,11 @@ public abstract class Pumpkin implements Comparable<Pumpkin> {
 	}
 
 	public void grow(double water, double ferti, double weedFactor) {
-		double sun = Weather.getLight();
-		// System.out.println("sun: "+sun+"minsun: "+minSun);
-		double sunFactor = 1;
-		double waterFactor = 1;
-		double fertiFactor = 0;
-		double growth = 0;
-
-		sunFactor = sun / minSun;
-
-		if (sunFactor > 2)
-			sunFactor = 2;
-
-		waterFactor = water / minWater;
-
-		if (waterFactor > 2)
-			waterFactor = 2;
-
-		growth = ((sunFactor + waterFactor + fertiFactor))
-				- Math.max(-0.5, Math.min(2, weedFactor));
-
-		growth = Math.min(1.4, Math.max(1, growth));
-		weight = weight * growth;
-		// System.out.println(sunFactor+" "+waterFactor+" "+fertiFactor+" "+weedFactor);
-		if (Log.debug > 3)
-			System.out.println("growth: " + growth + " new weight: " + weight); // DEBUG!
+		double growth = 1 * (1 + 0.5 * ferti);
+		growth *= Math.max(0, Weather.getLight() - minSun);
+		growth *= Math.max(0, water - minWater);
+		growth *= 1 - weedFactor * 0.5;
+		weight *= 1 + growth;
 	}
 
 	@Override
@@ -93,10 +72,9 @@ public abstract class Pumpkin implements Comparable<Pumpkin> {
 	}
 
 	public void rot(double fertiLevel) {
-		if (((getAge() / 24) > lifetime * 0.8)
-				&& (fertiLevel * ((getAge() / 24) / lifetime) > 7)) {
+		if ((getAge() > lifetime * 0.8)
+				&& (fertiLevel * getAge() / lifetime) > 7) {
 			this.rot = true;
 		}
 	}
-
 }

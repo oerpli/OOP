@@ -10,27 +10,15 @@ public class Test {
 		Log.chatty = true; // feedback nach jedem task
 
 		me.task("plant", "hokkaido", "sand"); // Pflanzen braucht 1h
-		you.task("plant", "Aladdin", "humus"); // Pflanzen braucht 1h
-		Time.nextHour();
-		me.task("plant", "hokkaido", "clay"); // Pflanzen braucht 1h
-		// Plague.getPlague();
-		// me.task("water", 1);
-		// me.task("water", 0);
-		// me.nextDay();
-		// me.nextDay();
-		// me.task("harvest", 1);
-		// me.task("harvest", 0);
-		// you.task("harvest", 0);
-		// System.out.println(ContestManager.getRanking());
+		you.task("plant", "hokkaido", "sand"); // Pflanzen braucht 1h
+
 		for (int i = 0; i < 10; i++) {
 			me.task("water", 1);
-			me.task("water", 0);
 			you.task("water", 0);
-			Time.nextDay();
+			Time.nextHour();
 		}
-		// me.task("harvest", 1);
-		// me.task("harvest", 0);
-		// you.task("harvest", 0);
+		System.out.println(you.task("harvest", 0));
+		System.out.println(me.task("harvest", 0));
 		System.out.println(ContestManager.getRanking());
 	}
 }

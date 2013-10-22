@@ -4,13 +4,14 @@ package Main;
 
 public abstract class Time {
 	private static int h = 0;
-	private static int maxTime = 24 * (31 + 30 + 31 + 30 + 31 + 31 + 30 + 31);
+	private static int maxTime = 24 * (16 + 30 + 31 + 30 + 31 + 31 + 30 + 31);
 
 	public static void nextHour() {
 		h++;
 		Pot.Time();// invoke time related static functions
 		if (h == maxTime) {
-			Pot.Harvest(); // am ende des bewerbes werden alle kürbisse geerntet.
+			Pot.Harvest(); // am ende des bewerbes werden alle kürbisse
+							// geerntet.
 		}
 	}
 

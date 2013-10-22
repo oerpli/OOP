@@ -59,7 +59,7 @@ public abstract class ContestManager {
 		int s = pots.size();
 		for (Pot p : pots) {
 			out += (s--) + ".: " + p.toString() + " from " + userPots.get(p)
-					+ '\n';
+					+ " (" + p.p.getWeight() + "kg)" + '\n';
 		}
 		return out;
 	}

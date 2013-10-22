@@ -66,13 +66,4 @@ public class User {
 	public void addPot(Pot p) {
 		pots.add(p);
 	}
-
-	/*
-	 * public void plant(String task, String pType, String sType) throws
-	 * PlantingException, CheatingException, BusyException, TaskException { if
-	 * (!"plant".equals(task.toLowerCase())) return;
-	 * 
-	 * pType = pType.toLowerCase(); sType = sType.toLowerCase(); Pot p = new
-	 * Pot(Pumpkin.create(pType), Soil.create(sType)); this.task("plant", p); }
-	 */
 }

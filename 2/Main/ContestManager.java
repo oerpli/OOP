@@ -3,6 +3,7 @@ package Main;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
+import Log.Log;
 
 /**
  * Verwaltet alle Teilnehmer.
@@ -71,7 +72,10 @@ public abstract class ContestManager {
 		// vergammelte kürbisse eventuell weglassen
 		if (!p.p.isRotten())
 			return finishedPots.add(p);
-		else
+		else {
+			Log.addEntry("The pumpkin submitted by " + userPots.get(p)
+					+ " was rejected because it was rotten.");
 			return false;
+		}
 	}
 }

@@ -25,12 +25,11 @@ public class User {
 	public boolean task(String task, int p) {
 		Log.addEntry(this, task, new Pot(p));
 		try {
-			this.task(task, pots.get(p));
+			return this.task(task, pots.get(p));
 		} catch (IndexOutOfBoundsException e) {
 			Log.finishEntry("but he has not that many pots.", false);
 			return false;
 		}
-		return true;
 	}
 
 	public boolean task(String task, String pType, String sType) {

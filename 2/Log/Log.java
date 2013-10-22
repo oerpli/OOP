@@ -6,8 +6,9 @@ import Main.Pot;
 import Main.User;
 
 public abstract class Log {
-	private static ArrayList<LogEntry> log = new ArrayList<LogEntry>();
+	private static ArrayList<Entry> log = new ArrayList<Entry>();
 	private static LogEntry last = null;
+	private static Entry Last = null;
 	public static boolean chatty = false;
 	public static int debug = 0; // debug level : 3= Wetter 4=Wetter+growth
 
@@ -33,8 +34,15 @@ public abstract class Log {
 	}
 
 	public static void print() {
-		for (LogEntry entry : log)
+		for (Entry entry : log)
 			System.out.println(entry);
 	}
 
+	public static void addEntry(String msg) {
+		Last = new Entry(msg);
+		log.add(Last);
+		if (chatty)
+			System.out.println(Last);
+		Last = null;
+	}
 }

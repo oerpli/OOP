@@ -70,7 +70,7 @@ public abstract class Pumpkin implements Comparable<Pumpkin> {
 	}
 
 	public void rot(double ferti) {
-		if ((getAge() > lifetime * 0.8) && (ferti * getAge() / lifetime) > 0.5) {
+		if ((getAge() > 0.8 * lifetime) && ferti > 0) {
 			this.rot = true;
 		}
 	}

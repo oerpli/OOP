@@ -66,4 +66,9 @@ public class User {
 	public void addPot(Pot p) {
 		pots.add(p);
 	}
+
+	public void nextHour() {
+		Time.nextHour();
+		
+	}
 }

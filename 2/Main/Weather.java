@@ -25,7 +25,7 @@ class Weather {
 		double rotation = Math.max(0, Math.sin(Math.PI * x / 12));
 		double ecliptic = Math.sin(x / 24 / 365 * 2 * Math.PI);
 		double result = Math.cos(Math.PI / 4 + 0.4 * ecliptic) * rotation;
-		return result * calcClouds(x);
+		return result *2 * calcClouds(x);
 	}
 
 	public static double getLight() {// wird oft gebraucht - nur 1x/h berechnet
@@ -40,7 +40,7 @@ class Weather {
 
 	public static double calcClouds(int x) {
 		double result = Math.max(0, Math.sin(2 * x * Math.PI / 24 / 5 * 20));
-		return Math.max(1, result * 2);
+		return Math.max(1, result);
 	}
 
 }

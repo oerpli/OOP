@@ -14,21 +14,40 @@ public class Test {
 		Time.nextHour();
 		you.task("plant", "aladdin", "sand"); // Pflanzen braucht 1h
 
-		for (int i = 0; i < 150; i++) {
-			me.task("water", 0);
-			you.task("water", 0);
+		for (int i = 0; i < 300; i++) {
 			you.task("fertilize", 0);
 			Time.nextHour();
 			Time.nextHour();
 			you.task("fertilize", 0);
-
-			you.task("water", 1);
-			Time.nextDay();
+			Time.nextHour();
+			Time.nextHour();
+			you.task("fertilize", 0);
+			Time.nextHour();
+			Time.nextHour();
+			you.task("fertilize", 0);
+			Time.nextHour();
+			Time.nextHour();
+			you.task("fertilize", 0);
+			Time.nextHour();
+			Time.nextHour();
+			you.task("fertilize", 0);
+			Time.nextHour();
+			Time.nextHour();
+			you.task("fertilize", 0);
+			Time.nextHour();
+			Time.nextHour();
+			you.task("fertilize", 0);
+			Time.nextHour();
+			Time.nextHour();
+			you.task("fertilize", 0);
+			Time.nextHour();
+			Time.nextHour();
+			you.task("fertilize", 0);
+			Time.nextHour();
+			Time.nextHour();
+			you.task("fertilize", 0);
+			Time.nextHour();
 		}
-		you.task("harvest", 1);
-		Time.nextHour();
-		you.task("harvest", 0);
-		me.task("harvest", 0);
 		System.out.println(ContestManager.getRanking());
 	}
 }

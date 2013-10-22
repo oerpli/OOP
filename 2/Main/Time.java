@@ -6,13 +6,17 @@ public abstract class Time {
 	private static int h = 0;
 	public static final int Dauer = (16 + 30 + 31 + 30 + 31 + 31 + 30 + 31);
 	public static final int maxTime = 24 * Dauer;
+	private static boolean lock = false;
 
 	public static void nextHour() {
-		h++;
-		Pot.Time();// invoke time related static functions
-		if (h == maxTime) {
-			Pot.Harvest(); // am ende des bewerbes werden alle kürbisse
-							// geerntet.
+		if (!lock) {
+			Pot.Time();// invoke time related static functions
+			h++;
+			if (h == maxTime) {
+				Pot.Harvest(); // am ende des bewerbes werden alle kürbisse
+								// geerntet.
+				lock = true;
+			}
 		}
 	}
 

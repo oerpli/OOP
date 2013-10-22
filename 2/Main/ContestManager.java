@@ -70,9 +70,11 @@ public abstract class ContestManager {
 
 	public static boolean addFinishedPot(Pot p) {
 		// vergammelte kürbisse eventuell weglassen
-		if (!p.p.isRotten())
+		if (!p.p.isRotten()) {
+			Log.addEntry("The pumpkin submitted by " + userPots.get(p)
+					+ " was accepted.");
 			return finishedPots.add(p);
-		else {
+		} else {
 			Log.addEntry("The pumpkin submitted by " + userPots.get(p)
 					+ " was rejected because it was rotten.");
 			return false;

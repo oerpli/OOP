@@ -37,7 +37,6 @@ public class Pot implements Comparable<Pot> {
 		Rain();
 		Grow();
 		Rot();
-		test();
 	}
 
 	private static void Rain() {
@@ -100,12 +99,5 @@ public class Pot implements Comparable<Pot> {
 	@Override
 	public int compareTo(Pot o) {
 		return p.compareTo(o.p);
-	}
-	
-	public static void test()
-	{
-		for (Pot p : Pots) {
-			System.out.println(p.p.isRotten());
-		}
 	}
 }

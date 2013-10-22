@@ -10,7 +10,6 @@ public abstract class Log {
 	private static LogEntry last = null;
 	private static Entry Last = null;
 	public static boolean chatty = false;
-	public static int debug = 0; // debug level : 3= Wetter 4=Wetter+growth
 
 	public static void addEntry(User u, String task, Pot p) {
 		if (last == null) {

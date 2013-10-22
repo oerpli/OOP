@@ -1,9 +1,10 @@
 import java.util.Random;
 
-import Log.Log;
-import Main.ContestManager;
-import Main.Time;
-import Main.User;
+//gebraucht wird eigentlich nur Main.User
+import Log.Log;//um Log- verhalten zu steuern.
+import Main.ContestManager;//Um ergebnisse am ende auszugeben
+import Main.Time; // Um Zeit für Test zu manipulieren
+import Main.User; // < Benutzerinteraktion läuft darüber
 
 public class Test {
 	public static void main(String[] args) {
@@ -16,7 +17,7 @@ public class Test {
 		for (int i = 0; i < user.length; i++)
 			user[i] = User.register();
 
-		Log.chatty = true; // feedback nach jedem task
+		Log.chatty = false; // feedback nach jedem task on/off
 
 		for (int i = 0; i < user.length; i++)
 			user[i].task("plant", sorts[r.nextInt(3)], soils[r.nextInt(3)]);
@@ -36,7 +37,7 @@ public class Test {
 		Time.nextDay();
 		user[1].task("fertilize", 0);
 		while (Time.getDay() < Time.Tage) {
-			user[24].task("fertilize", 0);
+			user[24].task("fertilize", 0); // Pumpkin will be rotten
 			Time.nextDay();
 		}
 

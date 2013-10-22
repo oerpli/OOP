@@ -1,6 +1,7 @@
 package Main;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 
 /**
@@ -11,6 +12,7 @@ public abstract class ContestManager {
 	private static HashMap<Integer, User> userList;
 	private static HashMap<User, Integer> busyUntil;
 	private static HashMap<Pot, User> userPots;
+	private static ArrayList<Pot> finishedPots = new ArrayList<Pot>();
 
 	static {
 		userList = new HashMap<Integer, User>();
@@ -41,7 +43,7 @@ public abstract class ContestManager {
 	// return userPots.get(user);
 	// }
 
-	public static void plantPot(User u, Pot p) {
+	public static void addPotToUser(User u, Pot p) {
 		userPots.put(p, u);
 	}
 
@@ -55,12 +57,16 @@ public abstract class ContestManager {
 
 	public static String getRanking() {
 		String out = "";
-		ArrayList<Pot> pots = Pot.getFinishedPots();
-		int s = pots.size();
-		for (Pot p : pots) {
+		Collections.sort(finishedPots);
+		int s = finishedPots.size();
+		for (Pot p : finishedPots) {
 			out += (s--) + ".: " + p.toString() + " from " + userPots.get(p)
 					+ " (" + p.p.getWeight() + "kg)" + '\n';
 		}
 		return out;
+	}
+
+	public static boolean addFinishedPot(Pot p) {
+		return finishedPots.add(p);
 	}
 }

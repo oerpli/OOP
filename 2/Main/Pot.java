@@ -6,7 +6,6 @@ import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Pot implements Comparable<Pot> {
 	private static CopyOnWriteArrayList<Pot> Pots = new CopyOnWriteArrayList<Pot>();
-	private static ArrayList<Pot> finishedPots = new ArrayList<Pot>();
 	public final Pumpkin p;
 	public final Soil s;
 	private int nr;
@@ -91,7 +90,7 @@ public class Pot implements Comparable<Pot> {
 	public void harvest() {
 		finished = true;
 		Pots.remove(this);
-		Pot.finishedPots.add(this);
+		ContestManager.addFinishedPot(this);
 	}
 
 	public String toString() {
@@ -100,11 +99,6 @@ public class Pot implements Comparable<Pot> {
 
 	public boolean isFinished() {
 		return finished;
-	}
-
-	public static ArrayList<Pot> getFinishedPots() {
-		Collections.sort(finishedPots);
-		return finishedPots;
 	}
 
 	@Override

@@ -85,6 +85,7 @@ public abstract class Soil implements Soils {
 
 	void weed() {
 		weed -= 0.4;
+		weed = Math.max(0, Math.min(1, weed));
 	}
 
 	void growWeed() {

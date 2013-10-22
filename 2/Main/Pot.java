@@ -82,10 +82,10 @@ public class Pot implements Comparable<Pot> {
 		this.s.weed();
 	}
 
-	public void harvest() {
+	public boolean harvest() {
 		finished = true;
 		Pots.remove(this);
-		ContestManager.addFinishedPot(this);
+		return ContestManager.addFinishedPot(this);
 	}
 
 	public String toString() {

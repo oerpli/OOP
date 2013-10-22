@@ -13,8 +13,8 @@ public class Harvest implements Tasks {
 	}
 
 	@Override
-	public void execute(User u, Pot p) {
-		p.harvest();
+	public boolean execute(User u, Pot p) {
+		return p.harvest();
 		// Im UserManager auch noch entfernen oder so.
 		// keine Ahnung wie genau.
 	}

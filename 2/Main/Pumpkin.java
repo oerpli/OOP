@@ -69,10 +69,13 @@ public abstract class Pumpkin implements Comparable<Pumpkin> {
 			return -1;
 	}
 
-	public void rot(double fertiLevel) {
-		if ((getAge() > lifetime * 0.8)
-				&& (fertiLevel * getAge() / lifetime) > 7) {
+	public void rot(double ferti) {
+		if ((getAge() > lifetime * 0.8) && (ferti * getAge() / lifetime) > 0.5) {
 			this.rot = true;
 		}
+	}
+
+	public boolean isRotten() {
+		return rot;
 	}
 }

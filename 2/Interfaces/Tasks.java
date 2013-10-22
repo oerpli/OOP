@@ -6,5 +6,5 @@ import Main.User;
 public interface Tasks {
 	int expenditure();
 
-	void execute(User u, Pot p);
+	boolean execute(User u, Pot p);
 }

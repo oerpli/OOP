@@ -27,7 +27,7 @@ public abstract class Task {
 	 * 
 	 * @throws SubmittedException
 	 */
-	public static void execute(User u, String Task, Pot p)
+	public static boolean execute(User u, String Task, Pot p)
 			throws CheatingException, BusyException, TaskException,
 			SubmittedException {
 		String t = Task.toLowerCase();
@@ -49,15 +49,15 @@ public abstract class Task {
 		}
 
 		// execute task on pumpkin
+		boolean success = false;
 		try {
-			Tasks.get(t).execute(u, p);
+			success = Tasks.get(t).execute(u, p);
 		} catch (NullPointerException e) {
 			throw new TaskException(Task);
 		}
 		// set user busy until the task is finished
 		ContestManager.setUserBusy(u, Tasks.get(t).expenditure());
-
 		Log.finishEntry("successfully.", true);
+		return success;
 	}
-
 }

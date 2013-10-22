@@ -47,12 +47,11 @@ public class User {
 
 	private boolean task(String task, Pot p) {
 		try {
-			Task.execute(this, task.toLowerCase(), p);
+			return Task.execute(this, task.toLowerCase(), p);
 		} catch (CheatingException | BusyException | TaskException
 				| SubmittedException e) {
 			return false;
 		}
-		return true;
 	}
 
 	public String toString() {

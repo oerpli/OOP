@@ -13,9 +13,10 @@ public class Plant implements Tasks {
 	}
 
 	@Override
-	public void execute(User u, Pot p) {
+	public boolean execute(User u, Pot p) {
 		u.addPot(p);
 		ContestManager.addPotToUser(u, p);
 		Pot.plant(p);
+		return true;
 	}
 }

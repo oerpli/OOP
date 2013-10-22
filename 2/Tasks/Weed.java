@@ -12,7 +12,8 @@ public class Weed implements Tasks {
 	}
 
 	@Override
-	public void execute(User u, Pot p) {
+	public boolean execute(User u, Pot p) {
 		p.weed();
+		return true;
 	}
 }

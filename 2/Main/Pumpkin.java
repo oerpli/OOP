@@ -54,7 +54,7 @@ public abstract class Pumpkin implements Comparable<Pumpkin> {
 	}
 
 	public void grow(double water, double ferti, double weedFactor) {
-		double growth = 1 * (1 + 0.5 * ferti);
+		double growth = 0.2  * (1 + 0.5 * ferti);
 		growth *= Math.max(0, Weather.getLight() - minSun);
 		growth *= Math.max(0, water - minWater);
 		growth *= 1 - weedFactor * 0.5;

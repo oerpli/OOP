@@ -13,10 +13,11 @@ public class Test {
 		you.task("plant", "hokkaido", "sand"); // Pflanzen braucht 1h
 
 		for (int i = 0; i < 10; i++) {
-			me.task("water", 1);
+			me.task("water", 0);
 			you.task("water", 0);
-			Time.nextHour();
+			Time.nextDay();
 		}
+		Time.nextHour();
 		System.out.println(you.task("harvest", 0));
 		System.out.println(me.task("harvest", 0));
 		System.out.println(ContestManager.getRanking());

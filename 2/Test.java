@@ -10,13 +10,17 @@ public class Test {
 		Log.chatty = true; // feedback nach jedem task
 
 		me.task("plant", "hokkaido", "sand"); // Pflanzen braucht 1h
-		you.task("plant", "hokkaido", "sand"); // Pflanzen braucht 1h
+		you.task("plant", "patisson", "sand"); // Pflanzen braucht 1h
+		Time.nextHour();
+		you.task("plant", "aladdin", "sand"); // Pflanzen braucht 1h
 
-		for (int i = 0; i < 10; i++) {
+		for (int i = 0; i < 100; i++) {
 			me.task("water", 0);
 			you.task("water", 0);
+			you.task("water", 1);
 			Time.nextDay();
 		}
+		System.out.println(you.task("harvest", 1));
 		Time.nextHour();
 		System.out.println(you.task("harvest", 0));
 		System.out.println(me.task("harvest", 0));

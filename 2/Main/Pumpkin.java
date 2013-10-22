@@ -16,19 +16,17 @@ public abstract class Pumpkin implements Comparable<Pumpkin> {
 	}
 	private double weight;
 	private final int planted;
-	private double minSun; // Sonne die zum Wachsen benötigt wird , individuell
-							// pro
-							// Sorte
+	private double minSun; // Sonne die zum Wachsen benötigt wird
 	private double minWater;
 	private int lifetime; // Wachstumszeit
+	private double growSpeed;
 	private boolean rot; // verfault ja/nein
 
-	// private Soil soil; // Das zum KÃ¼rbis gehÃ¶rende Boden-Objekt
-
-	protected Pumpkin(double d, double minWater, int lifetime) {
+	protected Pumpkin(double d, double minWater, int lifetime, double growSpeed) {
 		// pumpkins.add(this);
 		this.planted = Time.getTime();
 		this.weight = 1.0;
+		this.growSpeed = growSpeed;
 		this.minSun = d;
 		this.minWater = minWater;
 		this.lifetime = lifetime * 24;
@@ -54,7 +52,7 @@ public abstract class Pumpkin implements Comparable<Pumpkin> {
 	}
 
 	public void grow(double water, double ferti, double weedFactor) {
-		double growth = 0.2  * (1 + 0.5 * ferti);
+		double growth = growSpeed * (1 + 0.5 * ferti);
 		growth *= Math.max(0, Weather.getLight() - minSun);
 		growth *= Math.max(0, water - minWater);
 		growth *= 1 - weedFactor * 0.5;

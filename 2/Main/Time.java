@@ -27,4 +27,8 @@ public abstract class Time {
 	public static int getHour() {
 		return h % 24;
 	}
+
+	public static int getDay() {
+		return h / 24;
+	}
 }

@@ -9,16 +9,14 @@ import Exceptions.SubmittedException;
 import Exceptions.TaskException;
 import Log.Log;
 
-/**
- * Verwaltet die Daten eines Teilnehmers. Stellt Methoden zur Aufzucht bereit.
- * Ermöglicht nur erlaubte Pflegemaßnahmen. Ist die einzige Möglichkeit des
- * Zugriffs auf Kürbisse  (indirekt).
- */
 public class User {
 
 	public final int ID;
-	private ArrayList<Pot> pots;
+	private ArrayList<Pot> pots; // Jeder Topf darf nur einmal vorkommen // Invariante, blöd, nur zur Demonstration
 
+	/**
+	 * Die übergebene ID ist einzigartig // Vorbedingung
+	 */
 	public User(int ID) {
 	
 		pots = new ArrayList<Pot>();
@@ -26,14 +24,17 @@ public class User {
 	}
 	
 	/**
-	 * Ein neuer Nutzer registriert sich.
+	 * Ein Nutzer wird zur Liste hinzugefügt. // Nachbedingung
+	 * Das neue Nutzerobjekt wird zurückgegeben. // Nachbedingung
 	 */
 	public static User register() {
 		return ContestManager.registerUser();
 	}
 
 	/**
-	 * Erledigt Pflegemaßnahmen.
+	 * Führt die gewählte Aufgabe am Topf durch. // Nachbedingung
+	 * task ist der Name einer exisitierenden Aufgabe. // Vorbedingung, nicht nötig, da im Code geprüft wird.
+	 * Der Rückgabewert ist False, falls die Aufgabe nicht durchgeführt werden konnte // Nachbedingung
 	 */
 	public boolean task(String task, int p) {
 	
@@ -49,7 +50,9 @@ public class User {
 	}
 
 	/**
-	 * Pflanzt neuen Kürbis.
+	 * Ein neuer Topf wird für diesen Nutzer hinzugefügt. // Nachbedingung
+	 * pType und sType sind die korrekten Namen für die Sorten. // Vorbedingung, nicht nötig, da im Code geprüft wird.
+	 * Der Rückgabewert ist False, falls kein Topf hinzugefügt werden konnte. // Nachbedingung
 	 */
 	public boolean task(String task, String pType, String sType) {
 		Log.addEntry(this, "plant a " + pType + " in " + sType, null);
@@ -64,9 +67,6 @@ public class User {
 		return true;
 	}
 
-	/**
-	 * Gemeinsame Exceptionbehandlung der task-Methoden.
-	 */
 	private boolean task(String task, Pot p) {
 		try {
 			return Task.execute(this, task.toLowerCase(), p);
@@ -78,7 +78,7 @@ public class User {
 	}
 
 	/**
-	 * Ein neuer Topf eines Nutzers wird hinzugefügt.
+	 * Ein neuer Topf wird zur Liste hinzugefügt. // Nachbedingung
 	 */
 	public void addPot(Pot p) {
 		pots.add(p);

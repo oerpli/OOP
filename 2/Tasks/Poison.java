@@ -13,7 +13,7 @@ public class Poison implements Tasks {
 
 	@Override
 	public boolean execute(User u, Pot p) {
-		p.usePoison();
+		p.usePoison(0.6);
 		return true;
 	}
 

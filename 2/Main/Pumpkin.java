@@ -1,8 +1,6 @@
 package Main;
 
 import java.util.HashMap;
-import java.util.Random;
-
 import Exceptions.PlantingException;
 import Pumpkins.*;
 
@@ -14,6 +12,7 @@ public abstract class Pumpkin implements Comparable<Pumpkin> {
 		types.put("patisson", new Patisson());
 		types.put("hokkaido", new Hokkaido());
 		types.put("aladdin", new Aladdin());
+		types.put("magic", new Magic());
 	}
 	private double weight;
 	private final int planted;
@@ -22,52 +21,30 @@ public abstract class Pumpkin implements Comparable<Pumpkin> {
 	private int lifetime; // Wachstumszeit
 	private double growSpeed;
 	private boolean rot; // verfault ja/nein
-	private int poisonUsed;
-	
-	
+	private double poison;
 
-	protected Pumpkin(double d, double minWater, int lifetime, double growSpeed) {
+	protected Pumpkin(double minSun, double minWater, int lifetime,
+			double growSpeed) {
 		// pumpkins.add(this);
 		this.planted = Time.getTime();
 		this.weight = 1.0;
 		this.growSpeed = growSpeed;
-		this.minSun = d;
+		this.minSun = minSun;
 		this.minWater = minWater;
 		this.lifetime = lifetime * 24;
 		this.rot = false;
-		this.poisonUsed=0;
+		this.poison = 0;
 	}
 
 	public static Pumpkin create(String Type) throws PlantingException {
 		try {
-			if(Type.equals("Magic")) {return MagicCreation();}
 			return types.get(Type.toLowerCase()).returnNew();
 		} catch (NullPointerException e) {
 			throw new PlantingException(Type);
 		}
 	}
-	private static Pumpkin MagicCreation()
-	{
-		Random random=new Random();
-		double [][] values=new double[5][5];
-		values[0][1]=0.1;
-		values[0][2]=0.4;
-		values[0][3]=120;
-		values[0][4]=0.02;
-		
-		values[1][1]=0.1;
-		values[1][2]=0.5;
-		values[1][3]=100;
-		values[1][4]=0.025;
-		
-		values[2][1]=0.05;
-		values[2][2]=0.4;
-		values[2][3]=100;
-		values[2][4]=0.016;
-		
-		return new Magic(values[random.nextInt(2)][1], values[random.nextInt(2)][2], (int)values[random.nextInt(2)][3], values[random.nextInt(2)][4]);
-	}
-	public abstract Pumpkin returnNew();
+
+	protected abstract Pumpkin returnNew();
 
 	public int getAge() {
 		return Time.getTime() - this.planted;
@@ -77,7 +54,7 @@ public abstract class Pumpkin implements Comparable<Pumpkin> {
 		return weight;
 	}
 
-	public void grow(double water, double ferti, double weedFactor) {
+	protected void grow(double water, double ferti, double weedFactor) {
 		double growth = growSpeed * (1 + 0.5 * ferti);
 		growth *= Math.max(0, Weather.getLight() - minSun);
 		growth *= Math.max(0, water - minWater);
@@ -97,7 +74,7 @@ public abstract class Pumpkin implements Comparable<Pumpkin> {
 			return -1;
 	}
 
-	public void rot(double ferti) {
+	protected void rot(double ferti) {
 		if ((getAge() > 0.8 * lifetime) && ferti > 0.5) {
 			this.rot = true;
 		}
@@ -106,25 +83,14 @@ public abstract class Pumpkin implements Comparable<Pumpkin> {
 	public boolean isRotten() {
 		return rot;
 	}
-	
-	public void snail()
-	{
-		if(poisonUsed==0)
-		{
-			weight*=0.95;
-		}
-		else if(poisonUsed<Time.getHour())
-		{
-			weight*=0.9;
-		}
 
+	protected void snail() {
+		weight *= 1 - (1 - poison) * 0.02;
+		poison *= 0.9;
 	}
 
-	public int getPoisonUsed() {
-		return poisonUsed;
-	}
-
-	public void setPoisonUsed(int poisonUsed) {
-		this.poisonUsed = poisonUsed;
+	protected void usePoison(double amount) {
+		this.poison += amount;
+		poison = Math.min(1, Math.max(0, poison));
 	}
 }

@@ -21,17 +21,10 @@ public abstract class Task {
 		Tasks.put("poison", new Poison());
 	}
 
-	/**
-	 * Eventuell sollte man alle Exceptions die hier entstehen direkt auffangen
-	 * und nicht nach auﬂen geben. Ob etwas funktioniert hat oder nicht steht
-	 * ohnehin im Log.
-	 * 
-	 * @throws SubmittedException
-	 */
-	public static boolean execute(User u, String Task, Pot p)
+	protected static boolean execute(User u, String Task, Pot p)
 			throws CheatingException, BusyException, TaskException,
 			SubmittedException {
-		String t = Task.toLowerCase();
+		Task = Task.toLowerCase();
 		// Checks if user has time
 		if (ContestManager.UserIsBusy(u)) {
 			int freeIn = ContestManager.UserHasTimeIn(u);
@@ -39,25 +32,23 @@ public abstract class Task {
 		}
 
 		// checks if user owns the pumpkin he wants to access
-		if (!"plant".equals(t) && !ContestManager.UserOwnsPot(u, p)) {
+		if (!"plant".equals(Task) && !ContestManager.UserOwnsPot(u, p))
 			throw new CheatingException();
-		}
 
 		// checks if pumpkin is already submitted (finished)
-
-		if (p.isFinished()) {
+		if (p.isFinished())
 			throw new SubmittedException();
-		}
 
 		// execute task on pumpkin
 		boolean success = false;
 		try {
-			success = Tasks.get(t).execute(u, p);
+			success = Tasks.get(Task).execute(u, p);
 		} catch (NullPointerException e) {
 			throw new TaskException(Task);
 		}
-		// set user busy until the task is finished
-		ContestManager.setUserBusy(u, Tasks.get(t).expenditure());
+
+		// set user busy until the task is finished and finish log
+		ContestManager.setUserBusy(u, Tasks.get(Task).expenditure());
 		Log.finishEntry("successfully.", true);
 		return success;
 	}

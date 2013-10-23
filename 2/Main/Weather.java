@@ -75,4 +75,8 @@ abstract class Weather {
 	public static boolean isTempest() {
 		return tempestDays.contains(Time.getDay());
 	}
+
+	public static boolean isTempest(int x) {
+		return tempestDays.contains(x / 24);
+	}
 }

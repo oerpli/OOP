@@ -10,13 +10,14 @@ public class Test {
 	public static void main(String[] args) {
 		Random r = new Random();
 		String[] soils = { "sand", "humus", "clay" };
-		String[] sorts = { "hokkaido", "patisson", "aladdin","Magic" };
-		String[] tasks = { "water", "weed","poison","fertilize","harvest" };
-		String[] tasks1 = { "water", "weed","poison","harvest","fertilize" };
+		String[] sorts = { "hokkaido", "patisson", "aladdin", "Magic" };
+		String[] tasks = { "water", "weed", "poison", "fertilize", "harvest" };
+		String[] tasks1 = { "water", "weed", "poison", "harvest", "fertilize" };
 
-		User[] user = new User[25];
+		int users = 25;// 25 benutzer
+		User[] user = new User[users];
 		for (int i = 0; i < user.length; i++)
-			user[i] = User.register(); // 25 benutzer
+			user[i] = User.register();
 
 		Log.chatty = false; // feedback nach jedem task on/off
 
@@ -38,10 +39,7 @@ public class Test {
 			Time.nextHour();
 		}
 
-		Time.nextDay();
-		user[1].task("fertilize", 0);
-		while (Time.getDay() < Time.Tage) {// Nr. 24 düngt weiterhin
-			user[24].task("fertilize", 0); // Kürbis wird vergammeln
+		while (Time.getDay() < Time.Tage) {
 			Time.nextDay();
 		}
 		// ranking der nicht vergammelten kürbisse

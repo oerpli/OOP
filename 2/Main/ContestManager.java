@@ -29,11 +29,11 @@ public abstract class ContestManager {
 		return u;
 	}
 
-	public static User getUser(int i) {
-		return userList.get(i);
-	}
+	// public static User getUser(int i) {
+	// return userList.get(i);
+	// }
 
-	public static void setUserBusy(User user, int hours) {
+	protected static void setUserBusy(User user, int hours) {
 		busyUntil.put(user, Time.getTime() + hours);
 	}
 
@@ -68,8 +68,10 @@ public abstract class ContestManager {
 		return out;
 	}
 
-	public static boolean addFinishedPot(Pot p) {
+	protected static boolean addFinishedPot(Pot p) {
 		// vergammelte kürbisse eventuell weglassen
+		// evtl eine exception wenn userPots.get(p) nichts zurückgibt (wäre dann
+		// betrug).
 		if (!p.p.isRotten()) {
 			Log.addEntry("The pumpkin submitted by " + userPots.get(p)
 					+ " was accepted.");

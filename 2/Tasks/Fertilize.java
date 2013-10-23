@@ -13,7 +13,7 @@ public class Fertilize implements Tasks {
 
 	@Override
 	public boolean execute(User u, Pot p) {
-		p.fertilize(0.4);
+		p.fertilize(0.6);
 		return true;
 	}
 

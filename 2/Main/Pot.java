@@ -9,8 +9,8 @@ public class Pot implements Comparable<Pot> {
 	public final Soil s;
 	private int nr;
 	private boolean finished = false;
-	
-	static Random random=new Random();
+
+	static Random random = new Random();
 
 	Pot(Pumpkin p, Soil s, int nr) {
 		this.p = p;
@@ -28,12 +28,6 @@ public class Pot implements Comparable<Pot> {
 		Pots.add(p);
 	}
 
-	public static void Harvest() {
-		for (Pot p : Pots) {
-			p.harvest();
-		}
-	}
-
 	public static void Time() {
 		Evaporate();
 		Percolate();
@@ -41,6 +35,12 @@ public class Pot implements Comparable<Pot> {
 		Grow();
 		Rot();
 		Snail();
+	}
+
+	public static void Harvest() {
+		for (Pot p : Pots) {
+			p.harvest();
+		}
 	}
 
 	private static void Rain() {
@@ -70,8 +70,14 @@ public class Pot implements Comparable<Pot> {
 
 	private static void Rot() {
 		for (Pot p : Pots) {
-			p.p.rot(p.s.getFertilizer());
+			p.p.snail();
 		}
+	}
+
+	private static void Snail() {
+		for (Pot p : Pots)
+			if (Math.random() < 0.001)
+				p.p.snail();
 	}
 
 	public void waterize(double amount) {
@@ -99,22 +105,11 @@ public class Pot implements Comparable<Pot> {
 	public boolean isFinished() {
 		return finished;
 	}
-	
-	public void usePoison(){
-		if(this.p.getPoisonUsed()==0)
-			this.p.setPoisonUsed(Time.getHour());
-	}
-	
-	private static void Snail() {
 
-		if (Pots.size() > 0) {
-			if (random.nextInt(10) > 7) {
-				int index = random.nextInt(Pots.size());
-				Pot randomItem = Pots.get(index);
-				randomItem.p.snail();
-			}
-		}
+	public void usePoison(double amount) {
+		this.p.usePoison(amount);
 	}
+
 	@Override
 	public int compareTo(Pot o) {
 		return p.compareTo(o.p);

@@ -19,7 +19,7 @@ public abstract class Soil implements Soils {
 	// Eigenschaften von Instanz von Dreck
 	private double fertiLevel = 0, waterLevel = 0, weed = 0;
 
-	public Soil(double pSpeed, double eSpeed, double vulnerability) {
+	protected Soil(double pSpeed, double eSpeed, double vulnerability) {
 		this.percolationSpeed = pSpeed;
 		this.evaporationSpeed = eSpeed;
 		this.vulnerability = vulnerability;
@@ -37,25 +37,6 @@ public abstract class Soil implements Soils {
 		return weed;
 	}
 
-	// create(type) wäre vom code her logischer
-	// buy("Sand") o.Ä. von der benutzung her.
-	public static Soil create(String Type) throws PlantingException {
-		try {
-			return types.get(Type.toLowerCase()).getClass().getConstructor()
-					.newInstance();
-		} catch (Exception e) {
-			throw new PlantingException(Type);
-		}
-	}
-
-	public void absorbWater(double water) {
-		waterLevel = Math.min(1, waterLevel + water);
-	}
-
-	public void absorbFertilizer(double amount) {
-		fertiLevel = Math.min(1, fertiLevel + amount);
-	}
-
 	public double percolationSpeed() {
 		return percolationSpeed;
 	}
@@ -64,15 +45,28 @@ public abstract class Soil implements Soils {
 		return evaporationSpeed;
 	}
 
-	// public static void Percolate() {
-	// for (Soil s : soils)
-	// s.percolate();
-	// }
-	//
-	// public static void Evaporate() {
-	// for (Soil s : soils)
-	// s.evaporate();
-	// }
+	private double getWeedFactor() {
+		return vulnerability;
+	}
+
+	// create(type) wäre vom code her logischer
+	// buy("Sand") o.Ä. von der benutzung her.
+	protected static Soil create(String Type) throws PlantingException {
+		try {
+			return types.get(Type.toLowerCase()).getClass().getConstructor()
+					.newInstance();
+		} catch (Exception e) {
+			throw new PlantingException(Type);
+		}
+	}
+
+	protected void absorbWater(double water) {
+		waterLevel = Math.min(1, waterLevel + water);
+	}
+
+	protected void absorbFertilizer(double amount) {
+		fertiLevel = Math.min(1, fertiLevel + amount);
+	}
 
 	void evaporate() {
 		this.waterLevel *= this.evaporationSpeed() - 0.01 * Weather.getLight();
@@ -91,10 +85,6 @@ public abstract class Soil implements Soils {
 	void growWeed() {
 		weed += 0.05 * this.getWeedFactor();
 		weed = Math.max(0, Math.min(1, weed));
-	}
-
-	private double getWeedFactor() {
-		return vulnerability;
 	}
 
 }

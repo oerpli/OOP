@@ -111,11 +111,11 @@ public abstract class Pumpkin implements Comparable<Pumpkin> {
 	{
 		if(poisonUsed==0)
 		{
-			weight*=1;
+			weight*=0.95;
 		}
 		else if(poisonUsed<Time.getHour())
 		{
-			weight*=1;
+			weight*=0.9;
 		}
 
 	}

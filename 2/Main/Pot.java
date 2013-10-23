@@ -108,7 +108,7 @@ public class Pot implements Comparable<Pot> {
 	private static void Snail() {
 
 		if (Pots.size() > 0) {
-			if (random.nextInt(10) > 5) {
+			if (random.nextInt(10) > 7) {
 				int index = random.nextInt(Pots.size());
 				Pot randomItem = Pots.get(index);
 				randomItem.p.snail();

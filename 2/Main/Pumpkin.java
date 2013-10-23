@@ -22,6 +22,7 @@ public abstract class Pumpkin implements Comparable<Pumpkin> {
 	private int lifetime; // Wachstumszeit
 	private double growSpeed;
 	private boolean rot; // verfault ja/nein
+	private int poisonUsed;
 	
 	
 
@@ -34,6 +35,7 @@ public abstract class Pumpkin implements Comparable<Pumpkin> {
 		this.minWater = minWater;
 		this.lifetime = lifetime * 24;
 		this.rot = false;
+		this.poisonUsed=0;
 	}
 
 	public static Pumpkin create(String Type) throws PlantingException {
@@ -103,5 +105,26 @@ public abstract class Pumpkin implements Comparable<Pumpkin> {
 
 	public boolean isRotten() {
 		return rot;
+	}
+	
+	public void snail()
+	{
+		if(poisonUsed==0)
+		{
+			weight*=1;
+		}
+		else if(poisonUsed<Time.getHour())
+		{
+			weight*=1;
+		}
+
+	}
+
+	public int getPoisonUsed() {
+		return poisonUsed;
+	}
+
+	public void setPoisonUsed(int poisonUsed) {
+		this.poisonUsed = poisonUsed;
 	}
 }

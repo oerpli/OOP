@@ -1,5 +1,6 @@
 package Main;
 
+import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 public class Pot implements Comparable<Pot> {
@@ -8,6 +9,8 @@ public class Pot implements Comparable<Pot> {
 	public final Soil s;
 	private int nr;
 	private boolean finished = false;
+	
+	static Random random=new Random();
 
 	Pot(Pumpkin p, Soil s, int nr) {
 		this.p = p;
@@ -37,6 +40,7 @@ public class Pot implements Comparable<Pot> {
 		Rain();
 		Grow();
 		Rot();
+		Snail();
 	}
 
 	private static void Rain() {
@@ -95,7 +99,22 @@ public class Pot implements Comparable<Pot> {
 	public boolean isFinished() {
 		return finished;
 	}
+	
+	public void usePoison(){
+		if(this.p.getPoisonUsed()==0)
+			this.p.setPoisonUsed(Time.getHour());
+	}
+	
+	private static void Snail() {
 
+		if (Pots.size() > 0) {
+			if (random.nextInt(10) > 5) {
+				int index = random.nextInt(Pots.size());
+				Pot randomItem = Pots.get(index);
+				randomItem.p.snail();
+			}
+		}
+	}
 	@Override
 	public int compareTo(Pot o) {
 		return p.compareTo(o.p);

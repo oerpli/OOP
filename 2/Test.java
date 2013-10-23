@@ -10,8 +10,9 @@ public class Test {
 	public static void main(String[] args) {
 		Random r = new Random();
 		String[] soils = { "sand", "humus", "clay" };
-		String[] sorts = { "hokkaido", "patisson", "aladdin" };
-		String[] tasks = { "water", "weed", "fertilize", "harvest" };
+		String[] sorts = { "hokkaido", "patisson", "aladdin","Magic" };
+		String[] tasks = { "water", "weed","poison","fertilize","harvest" };
+		String[] tasks1 = { "water", "weed","poison","harvest","fertilize" };
 
 		User[] user = new User[25];
 		for (int i = 0; i < user.length; i++)
@@ -21,18 +22,18 @@ public class Test {
 
 		// jeweils 2 kürbisse (zufällige kombi) pro benutzer
 		for (int i = 0; i < user.length; i++)
-			user[i].task("plant", sorts[r.nextInt(3)], soils[r.nextInt(3)]);
+			user[i].task("plant", sorts[r.nextInt(4)], soils[r.nextInt(3)]);
 		Time.nextHour();
 		for (int i = 0; i < user.length; i++)
-			user[i].task("plant", sorts[r.nextInt(3)], soils[r.nextInt(3)]);
+			user[i].task("plant", sorts[r.nextInt(4)], soils[r.nextInt(3)]);
 
 		// die ersten 1500 stunden wird auch gedüngt, dann nicht mehr
 		for (int t = 0; t < 5300; t++) {
 			for (int i = 0; i < user.length; i++) {
 				if (t < 1500)
-					user[i].task(tasks[r.nextInt(3)], r.nextInt(2));
+					user[i].task(tasks[r.nextInt(4)], r.nextInt(2));
 				else
-					user[i].task(tasks[r.nextInt(2)], r.nextInt(2));
+					user[i].task(tasks1[r.nextInt(4)], r.nextInt(2));
 			}
 			Time.nextHour();
 		}

@@ -6,6 +6,9 @@ import java.util.Random;
 /**
  * Stellt Wetterdaten pro Tag bereit.
  */
+//GUT:Klassenzusammenhalt: Weather beeinhaltet alle Wetterreleveanten Methoden
+//GUT:Objektkopplung: Methoden haben wenige Parameter
+//Schlecht:Alle Methoden public
 abstract class Weather {
 	private static double[][] w = new double[Time.Tage][3];
 	private static double light = 0;
@@ -19,6 +22,8 @@ abstract class Weather {
 
 	// KÃ¶nnte sonst der Benutzer konfigurieren - ist in dem fall aber einfach
 	// random.
+	//Berechnet zufällige Wetterdaten
+	//Daten sind in den jeweiligen Speichern //Nachbedinung
 	static {
 		int hailDays = random.nextInt(10);
 		for (int i = 0; i < hailDays; i++)
@@ -43,8 +48,9 @@ abstract class Weather {
 	public static double getClouds() {// wird oft gebraucht - nur 1x/h berechnet
 		return getClouds(Time.getTime());
 	}
-
-	public static double getClouds(int x) {
+	//Geben den Lichtgrad /Bewölkung an zur Stunde x an //Invariante: x darf nicht kleiner 0 werden (-> negative Zeit )
+	//Gibt Wert zwischen 0 und 1 zurück //Nachbedinung
+	public static double getClouds(int x) { 
 		if (x != cloudsTime) {
 			clouds = w[x / 24][0] * Math.max(0, Math.sin(x / 24));
 			cloudsTime = x;
@@ -71,7 +77,7 @@ abstract class Weather {
 		}
 		return rain;
 	}
-
+	//Überprüft ob Stunde x ein Spezieller Wettertag ist
 	public static boolean isTempest() {
 		return tempestDays.contains(Time.getDay());
 	}

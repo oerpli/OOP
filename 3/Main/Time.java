@@ -1,3 +1,5 @@
+//GUT:Klassenzusammenhalt: Alle Zeit Methoden sind in dieser Klasse
+//Schlecht:Objektkopplung:Alle Methoden sind public
 package Main;
 
 public abstract class Time {

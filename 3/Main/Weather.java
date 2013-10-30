@@ -48,7 +48,7 @@ abstract class Weather {
 	public static double getClouds() {// wird oft gebraucht - nur 1x/h berechnet
 		return getClouds(Time.getTime());
 	}
-	//Geben den Lichtgrad /Bewölkung an zur Stunde x an //Invariante: x darf nicht kleiner 0 werden (-> negative Zeit )
+	//Geben den Lichtgrad /Bewölkung /Regenmenge an zur Stunde x an //Invariante: x darf nicht kleiner 0 werden (-> negative Zeit )
 	//Gibt Wert zwischen 0 und 1 zurück //Nachbedinung
 	public static double getClouds(int x) { 
 		if (x != cloudsTime) {
@@ -82,6 +82,8 @@ abstract class Weather {
 		return tempestDays.contains(Time.getDay());
 	}
 
+	//Gibt zurück ob am Zeitpunkt x Unwetter herrscht
+	//gibt false zurück wenn kein Unwetter
 	public static boolean isTempest(int x) {
 		return tempestDays.contains(x / 24);
 	}

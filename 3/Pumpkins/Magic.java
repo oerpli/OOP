@@ -5,12 +5,7 @@ import java.util.Random;
 import Main.Pumpkin;
 
 public class Magic extends Pumpkin {
-	/**
-	 * Zufällige Mischung aus anderen Sorten. Bessere Implementierung wäre 2
-	 * Kürbisse anderer Sorten zu erzeugen und die Werte anschließend mitteln
-	 * oder ähnliches. kommt im Grunde aber auf ähnliches raus (wenn auch die
-	 * hier verwendete Methode nicth erweiterbar ist).
-	 */
+
 	private static Random random = new Random();
 	private static double[] mSun = new double[3];
 	private static int[] lifetime = new int[3];

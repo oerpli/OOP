@@ -29,21 +29,25 @@ public abstract class Task {
 			throws CheatingException, BusyException, TaskException,
 			SubmittedException {
 		Task = Task.toLowerCase();
-		// Checks if user has time
+		// Überprüft ob der User Zeit hat
+		//Wirft Exception falls nicht
 		if (ContestManager.UserIsBusy(u)) {
 			int freeIn = ContestManager.UserHasTimeIn(u);
 			throw new BusyException(freeIn);
 		}
 
-		// checks if user owns the pumpkin he wants to access
+		// Überprüft ob der User der Besitzer des Kürbis ist
+		//Wirft Exception falls nicht
 		if (!"plant".equals(Task) && !ContestManager.UserOwnsPot(u, p))
 			throw new CheatingException();
 
-		// checks if pumpkin is already submitted (finished)
+		//Überprüft ob der Kürbis schon fertiggestellt wurde
+		//Wirft Exception falls er schon fertig ist
 		if (p.isFinished())
 			throw new SubmittedException();
 
-		// execute task on pumpkin
+		//Führe Tätigkeit aus
+		//Wirft Exception falls Task nicht verfügbar
 		boolean success = false;
 		try {
 			success = Tasks.get(Task).execute(u, p);
@@ -51,7 +55,9 @@ public abstract class Task {
 			throw new TaskException(Task);
 		}
 
-		// set user busy until the task is finished and finish log
+		//Setzt den User für einen vorgegeben Zeitraum(je nach Tätigkeit) auf beschäftigt 
+		//Macht einen Logeintrag
+		//Gibt false zurück falls das ausführen nicht geklappt hat
 		ContestManager.setUserBusy(u, Tasks.get(Task).expenditure());
 		Log.finishEntry("successfully.", true);
 		return success;

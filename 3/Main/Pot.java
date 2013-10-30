@@ -4,10 +4,6 @@ package Main;
 import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 
-/**
- * Speichert jeweils einen KÃ¼rbis und einen Boden.
- * Channelt den Zugriff nach AuÃŸen.
- */
 public class Pot implements Comparable<Pot> {
 	private static CopyOnWriteArrayList<Pot> Pots = new CopyOnWriteArrayList<Pot>();
 	public final Pumpkin p;
@@ -29,10 +25,12 @@ public class Pot implements Comparable<Pot> {
 		this.nr = p;
 	}
 
+	//Neuer Kürbistopf wird hinzugefügt
 	public static void plant(Pot p) {
 		Pots.add(p);
 	}
 
+	//Methode die Zeitabhängige Methoden aufruft
 	public static void Time() {
 		Evaporate();
 		Percolate();
@@ -41,6 +39,7 @@ public class Pot implements Comparable<Pot> {
 		Rot();
 		Snail();
 	}
+
 
 	public static void Harvest() {
 		for (Pot p : Pots) {
@@ -72,10 +71,9 @@ public class Pot implements Comparable<Pot> {
 			p.s.evaporate();
 		}
 	}
-
 	private static void Rot() {
 		for (Pot p : Pots) {
-			p.p.snail();
+			p.p.rot(p.s.getFertilizer());
 		}
 	}
 
@@ -97,6 +95,8 @@ public class Pot implements Comparable<Pot> {
 		this.s.weed(amount);
 	}
 
+	//Erntet den Topf
+	//Gibt false zurueck falls ContestManager false zurueckgibt (im Falle einer Vergammellung)
 	public boolean harvest() {
 		finished = true;
 		Pots.remove(this);

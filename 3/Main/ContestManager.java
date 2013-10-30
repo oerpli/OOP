@@ -33,34 +33,37 @@ public abstract class ContestManager {
 		return u;
 	}
 
-	// public static User getUser(int i) {
-	// return userList.get(i);
-	// }
-
+	//Verwaltet beschäftigte User
+	//busyUntil speichert den User + den Zeitpunkt wie lange er beschäftigt ist
 	protected static void setUserBusy(User user, int hours) {
 		busyUntil.put(user, Time.getTime() + hours);
 	}
 
+	//Ueberprüft ob Topf dem User gehört
+	//gibt false zurück falls dem User der Topf nicht gehört
 	public static boolean UserOwnsPot(User u, Pot p) {
 		return userPots.get(p) == u;
 	}
 
-	// public static ArrayList<Pot> getPots(User user) {
-	// return userPots.get(user);
-	// }
-
+	//Speichert die Zugehörigkeit eines Topfes zu einem User
 	public static void addPotToUser(User u, Pot p) {
 		userPots.put(p, u);
 	}
 
+	//Gibt zurück wie lange der User noch beschäftigt ist
+	//Falls er nicht mehr beschäftigt ist würde zurückgegeben wie lange er das schon nicht mehr ist
 	public static int UserHasTimeIn(User u) {
 		return busyUntil.get(u) - Time.getTime();
 	}
 
+	//Überprüft ob der User beschäftigt ist
+	//gibt false zurueck wenn der User beschäftigt ist
 	public static boolean UserIsBusy(User u) {
 		return busyUntil.get(u) > Time.getTime();
 	}
 
+	//Listet alle fertigen Toepfe auf
+	//gibt einen String mit allen fertigen Toepfen aus
 	public static String getRanking() {
 		String out = "";
 		Collections.sort(finishedPots);
@@ -72,10 +75,10 @@ public abstract class ContestManager {
 		return out;
 	}
 
+	//Ueberprueft ob der Kuerbis vergammelt ist und gibt false zurück falls dem so ist
+	//gibt true zurueck wenn der Kuerbis nicht vergammelt ist und erfolgreich zu 
+	//finishedPots hinzugefuegt wurde
 	protected static boolean addFinishedPot(Pot p) {
-		// vergammelte kÃ¼rbisse eventuell weglassen
-		// evtl eine exception wenn userPots.get(p) nichts zurÃ¼ckgibt (wÃ¤re dann
-		// betrug).
 		if (!p.p.isRotten()) {
 			Log.addEntry("The pumpkin submitted by " + userPots.get(p)
 					+ " was accepted.");

@@ -49,10 +49,12 @@ public abstract class Pumpkin implements Comparable<Pumpkin> {
 
 	protected abstract Pumpkin returnNew();
 
+	//Gibt aktuelles Alter zurück //Muss ein positiver Wert sein
 	public int getAge() {
 		return Time.getTime() - this.planted;
 	}
 
+	//gibt gewicht zurück
 	public double getWeight() {
 		return weight;
 	}
@@ -61,13 +63,13 @@ public abstract class Pumpkin implements Comparable<Pumpkin> {
 	 * Berechnet das Wachstum.
 	 */
 	protected void grow(double water, double ferti, double weedFactor) {
-		double growth = growSpeed * (1 + 0.5 * ferti);
-		growth *= Math.max(0, Weather.getLight() - minSun);
+		double growth = growSpeed * (1 + 0.5 * ferti); //Wachstum errechnet sich aus dem Düngerlevel und einer Sortenkonstante
+		growth *= Math.max(0, Weather.getLight() - minSun); 
 		growth *= Math.max(0, water - minWater);
 		growth *= 1 - weedFactor * 0.5;
-		if (Weather.isTempest())
+		if (Weather.isTempest())  //Falls ein Unwetter herrscht reduziere Gewicht
 			weight *= 0.99;
-		weight *= 1 + growth;
+		weight *= 1 + growth;  //Gewicht steigt oder bleibt gleich
 	}
 
 	@Override
@@ -93,12 +95,15 @@ public abstract class Pumpkin implements Comparable<Pumpkin> {
 		return rot;
 	}
 
+	//Ungeziefer reduziert das Gewicht des Kürbis, Wirkung wird durch Gift reduziert, verbraucht Gift	
 	protected void snail() {
 		weight *= 1 - (1 - poison) * 0.02;
 		poison *= 0.9;
 	}
 
-	protected void usePoison(double amount) {
+	//Gift wird zugegeben 
+	//0 <= poison <= 1 //Invariante
+ 	protected void usePoison(double amount) {
 		this.poison += amount;
 		poison = Math.min(1, Math.max(0, poison));
 	}

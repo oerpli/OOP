@@ -1,5 +1,7 @@
 package Main;
 
+//GUT: Klassenzusammenhalt: Pumpkin enthält alle Methoden die zum Kürbis gehören
+//Schlecht:Klassenzusammenhalt: Snail() passt nicht 100%ig zum Rest der Klasse
 import java.util.HashMap;
 import Exceptions.PlantingException;
 import Pumpkins.*;
@@ -35,7 +37,7 @@ public abstract class Pumpkin implements Comparable<Pumpkin> {
 		this.poison = 0;
 	}
 
-	public static Pumpkin create(String Type) throws PlantingException {
+	public static Pumpkin create(String Type) throws PlantingException { //Vorbedinung:Sorte muss vorhanden sein sonst wird Exception geworfen
 		try {
 		
 			return types.get(Type.toLowerCase()).returnNew();

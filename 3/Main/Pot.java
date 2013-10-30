@@ -1,5 +1,6 @@
 package Main;
-
+//GUT:Klassenzusammenhalt:Pot bietet alle Schnittstellen für Pots an
+//Schlecht:Objektkopplung:Es werden viele Methoden in anderen Klassen aufgerufen 
 import java.util.Random;
 import java.util.concurrent.CopyOnWriteArrayList;
 

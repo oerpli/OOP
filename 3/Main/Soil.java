@@ -1,4 +1,6 @@
 package Main;
+//GUT:Klassenzusammenhalt: Soil enth‰lt ausschlieﬂlich Methoden die mit dem Boden zusammenh‰ngen
+
 
 import java.util.HashMap;
 

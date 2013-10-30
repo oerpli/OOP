@@ -10,7 +10,7 @@ import Exceptions.TaskException;
 import Log.Log;
 
 // GUT: Klassenzusammenhalt: User enthält fast nur Methoden die die einzige Schnittstelle zum Benutzer darstellen.
-// SCHLECHT: Objektkapselung: Die Methoden in User dienen hauptsächlich dazu, Methoden in anderen Klassen aufzurufen.
+// SCHLECHT: Objektkopplung: Die Methoden in User dienen hauptsächlich dazu, Methoden in anderen Klassen aufzurufen.
 // SCHELCHT: Klassenzusammenhalt: addPot passt nicht zur restlichen Aufgabe der Klasse.
 public class User {
 

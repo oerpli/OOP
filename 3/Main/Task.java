@@ -9,7 +9,7 @@ import Exceptions.SubmittedException;
 import Exceptions.TaskException;
 import Interfaces.Tasks;
 import Log.Log;
-
+//Schlecht:Objektkopplung:Methoden dienen hauptsächlich dazu Methoden anderer Klasse aufzurufen
 public abstract class Task {
 	private static HashMap<String, Tasks> Tasks = new HashMap<String, Tasks>();
 	static {

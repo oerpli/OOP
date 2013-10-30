@@ -1,13 +1,12 @@
 package Main;
-
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import Log.Log;
 
-/**
- * Verwaltet alle  Teilnehmer.
- */
+
+ //Verwaltet alle  Teilnehmer.
+
 public abstract class ContestManager {
 	private static int N = 0; // Anzahl der Teilnehmer
 	private static HashMap<Integer, User> userList;

@@ -9,9 +9,8 @@ public class Test {
 		// System.out.println(file);
 
 		Copyrighter c = new Copyrighter();
-		c.addAuthor("bla");
-		c.addAuthor("blu");
-		System.out.println(c.pretty(" "));
-
+		Copyrighter.addAuthor("bla");
+		Copyrighter.addAuthor("blu");
+		System.out.println(c.pretty(file));
 	}
 }

@@ -35,7 +35,8 @@ public class Copyrighter extends Adder implements Prettifier {
 
 	private static String generateComment() {
 		String out = informationen;
-		out += "\n" + formatAuthors();
+		if (authors.size() > 0)
+			out += "\n" + formatAuthors();
 		out += "\n" + d;
 		return out;
 	}

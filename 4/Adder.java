@@ -1,5 +1,5 @@
 public class Adder implements Prettifier {
-	private final String comment;
+	private String comment;
 	private final int line;
 
 	public Adder(String c, int i) {
@@ -9,10 +9,19 @@ public class Adder implements Prettifier {
 		this.line = i;
 	}
 
+	public boolean changeComment(final String c) {
+		this.comment = c;
+		return true;
+	}
+
 	@Override
 	public String pretty(String prog) {
-		// TODO Auto-generated method stub
-		return null;
+		String out = prog;
+		if (line == 0) {
+			// Benötigt noch Funktion zum generieren mehrzeiliger Kommentare
+			out = "/* \n" + comment + "\n */ \n" + out;
+		}
+		return out;
 	}
 
 }

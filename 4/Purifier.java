@@ -1,4 +1,9 @@
+public class Purifier implements Prettifier {
 
-public class Purifier {
+	@Override
+	public String pretty(String prog) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

@@ -1,4 +1,9 @@
+public class Stripper implements Prettifier {
 
-public class Stripper {
+	@Override
+	public String pretty(String prog) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

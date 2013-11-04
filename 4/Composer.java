@@ -1,4 +1,9 @@
+public class Composer implements Prettifier {
 
-public class Composer {
+	@Override
+	public String pretty(String prog) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

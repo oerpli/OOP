@@ -1,4 +1,9 @@
+public class Eraser implements Prettifier {
 
-public class Eraser {
+	@Override
+	public String pretty(String prog) {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 }

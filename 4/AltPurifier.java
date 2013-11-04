@@ -1,4 +1,3 @@
-
-public class AltPurifier {
+public class AltPurifier extends Purifier {
 
 }

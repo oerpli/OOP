@@ -1,4 +1,3 @@
-
-public class DeepPurifier {
+public class DeepPurifier extends Purifier {
 
 }

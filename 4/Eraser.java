@@ -6,8 +6,9 @@ public class Eraser implements Prettifier {
 		return null;
 	}
 	/*
-	 * Result corresponds to the Java program in prog, but with more, less or
-	 * prettier comments. This method has no side-effects.
+	 * Result corresponds to the Java program in prog, but with less comments.
+	 * This method has no side-effects.
+	 * // Nachbedingung -> Nachbedingung im Untertyp strenger.
 	 */
 
 }

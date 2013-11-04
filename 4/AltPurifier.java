@@ -6,7 +6,8 @@ public class AltPurifier {
 		return null;
 	}
 	/*
-	 * Result corresponds to the Java program in prog, but with more, less or
-	 * prettier comments. This method has no side-effects.
+	 * Result corresponds to the Java program in prog, but with prettier
+	 * comments. This method has no side-effects.
+	 * // Nachbedingung -> Nachbedingung im Untertyp strenger.
 	 */
 }

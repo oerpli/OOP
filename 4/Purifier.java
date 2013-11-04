@@ -5,5 +5,9 @@ public class Purifier implements Prettifier {
 		// TODO Auto-generated method stub
 		return null;
 	}
+	/*
+	 * Result corresponds to the Java program in prog, but with more, less or
+	 * prettier comments. This method has no side-effects.
+	 */
 
 }

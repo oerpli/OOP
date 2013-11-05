@@ -3,13 +3,13 @@ public class Eraser implements Prettifier {
 	private final String pattern;
 	private boolean topBot;
 
-	public Adder(String pattern) {
+	public Eraser(String pattern) {
 	
 		if (pattern == null) pattern = "";
 		this.pattern = pattern;
 	}
 	
-	public Adder(Boolean topBot) {
+	public Eraser(Boolean topBot) {
 	
 		this.topBot = topBot;
 		pattern = null;

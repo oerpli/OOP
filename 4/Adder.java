@@ -50,7 +50,7 @@ public class Adder implements Prettifier {
 			int[] positions = code.search(pattern);
 			
 			for (int i = 0; i < positions.length; i++) {
-				code.addLine(positions[i], comment.toString());
+				code.addLine(positions[i], comment.toString()); // Nach der gefunden Zeile wird eingefügt
 			}
 		}
 		

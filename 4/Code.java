@@ -24,8 +24,8 @@ public class Code {
 	}
 	
 	/*
-	 * Searches all lines for the specified pattern and returns
-	 * the indexes where the pattern is found in regular code within an array.
+	 * Searches all lines for the specified pattern and returns within an array
+	 * the indexes where the pattern is found in regular code.
 	 */
 	public int[] search(String pattern)
 	{
@@ -38,6 +38,15 @@ public class Code {
 		return result;
 	}
 	
+	/*
+	 * Erases all comments from the line with the specified index.
+	 */
+	public void eraseComment(int index)
+	{
+		// TODO: alle Kommentare aus dieser Zeile löschen.
+	}
+	
+	@Override
 	public void toString()
 	{
 		String result = "";

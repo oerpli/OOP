@@ -11,7 +11,7 @@ public class Adder implements Prettifier {
 		this.text = text;
 	}
 	
-	public Adder(String text, Boolean topBot) {
+	public Adder(String text, boolean topBot) {
 	
 		this.text = text;
 		this.topBot = topBot;

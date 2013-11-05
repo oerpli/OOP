@@ -9,7 +9,7 @@ public class Eraser implements Prettifier {
 		this.pattern = pattern;
 	}
 	
-	public Eraser(Boolean topBot) {
+	public Eraser(boolean topBot) {
 	
 		this.topBot = topBot;
 		pattern = null;

@@ -21,7 +21,7 @@ public class Adder implements Prettifier {
 	/*
 	 * From now on the new text-to-be-added replaces the old one.
 	 */
-	public void changeText(String comment) {
+	public void changeText(String text) {
 	
 		this.text = text;
 	}

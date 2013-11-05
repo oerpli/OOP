@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Code {
 
 	private ArrayList<String> lines;
@@ -20,7 +22,7 @@ public class Code {
 	
 	public void addLine(int index, String text)
 	{
-		lines.add(index, text);
+		lines.add(index, text); // Achtung! Die eingefügte Zeile kann Zeilenumbrüche enthalten!
 	}
 	
 	/*

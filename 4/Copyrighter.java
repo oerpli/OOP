@@ -1,43 +1,94 @@
 import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * @author oerpli
  */
-public class Copyrighter extends Adder implements Prettifier {
-	public Copyrighter() {
-		super(generateComment(), 0);
+public class Copyrighter extends Adder {
+
+	private String text;
+	private String info;
+	private String date;
+	private ArrayList<String> authors;
+	
+	public Copyrighter(String info, String date) {
+	
+		this.authors = new ArrayList<String>();
+		this.info = info;
+		this.date = date;
+		
+		updateText();
 	}
 
-	private static ArrayList<String> authors = new ArrayList<String>();
-	private static String informationen = "Informationen und so";
-	private static Date d = new Date();
-
-	public static boolean changeInfos(final String infos) {
-		informationen = infos;
-		return true;
+	public void changeInfo(String info) {
+	
+		this.info = info;
+		updateText();
+	}
+	
+	public void changeDate(String date) {
+	
+		this.date = date;
+		updateText();
 	}
 
-	public static boolean addAuthor(final String author) {
-		return authors.add(author);
+	public void addAuthor(String author) {
+	
+		authors.add(author);
+		updateText();
 	}
 
-	public static boolean removeAuthor(final String author) {
-		return authors.remove(author);
+	public void removeAuthor(String author) {
+	
+		authors.remove(author);
+		updateText();
 	}
-
-	private static String formatAuthors() {
-		String out = "@author ";
-		for (String s : authors)
-			out += s + ", ";
-		return out.substring(0, out.length() - 2);
+	
+	private void updateText() { // Strings auf null überprüfen?
+	
+		String result = info;
+		
+		if (authors.size() > 0) {
+			result += System.getProperty("line.separator");
+			result += "@author ";
+		}
+		
+		for (String s: authors) {
+			result += (s + ", ");
+		}
+		
+		if (authors.size() > 0) result = substring(0, result.length() - 2);
+		
+		if (date != "") {
+			result += System.getProperty("line.separator");
+			result += date;
+		}
+		
+		changeText(result);
 	}
-
-	private static String generateComment() {
-		String out = informationen;
-		if (authors.size() > 0)
-			out += "\n" + formatAuthors();
-		out += "\n" + d;
-		return out;
+	
+	/*
+	public void changeText(String text) {
+	
+		this.text = text;
+	}
+	*/
+	
+	/*
+	 * Result corresponds to the Java program in prog, but with more comments.
+	 * This method has no side-effects.
+	 * Nachbedingung -> Nachbedingung im Untertyp strenger.
+	 */
+	@Override
+	public String pretty(String prog) {
+	
+		if (text == null || text.equals(""))
+			return prog;
+	
+		Code code = new Code(prog);
+		Comment comment = new Comment(text, true);
+		
+		code.addLine(0, comment.toString());
+		
+		return code.toString();
 	}
 }

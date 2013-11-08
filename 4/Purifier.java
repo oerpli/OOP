@@ -1,4 +1,4 @@
-public class Purifier implements Prettifier {
+public class Purifier extends AltPurifier {
 
 	/*
 	 * Result corresponds to the Java program in prog, but with prettier

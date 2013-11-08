@@ -1,10 +1,13 @@
 public class AltPurifier extends DeepPurifier {
 
-	public AltPurifier() {
+	private int style; // Invariante 0-2
+
+	public AltPurifier(int style) {
 	
+		if (style > 2 || style < 0) style = 0; // Auswahl der Formatierung.
 		
+		this.style = style;
 	}
-	
 	
 	/*
 	 * Result corresponds to the Java program in prog, but with prettier
@@ -15,7 +18,11 @@ public class AltPurifier extends DeepPurifier {
 	 */
 	@Override
 	public String pretty(String prog) {
-		// TODO Auto-generated method stub
+	
+		Code code = new Code(prog);
+		
+		// TODO: Nach style Formatieren.
+		
 		return null;
 	}
 }

@@ -5,7 +5,7 @@ import java.util.ArrayList;
  */
 public class Copyrighter extends Adder {
 
-	private String text;
+	private String text; // welcher Text wird von changeText verändert?
 	private String info;
 	private String date;
 	private ArrayList<String> authors;

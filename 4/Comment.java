@@ -45,7 +45,7 @@ public class Comment {
 			result += System.getProperty("line.separator");
 		}
 		
-		return result; 
+		return result;
 	}
 	
 	public static String format(String text, boolean style) {

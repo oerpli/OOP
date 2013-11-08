@@ -31,7 +31,7 @@ public class Code {
 	 */
 	public int[] search(String pattern)
 	{
-		int[] result;
+		int[] result = new int[0];
 		
 		if (pattern == null || pattern.equals("")) return result;
 		
@@ -49,12 +49,13 @@ public class Code {
 	}
 	
 	@Override
-	public void toString()
+	public String toString()
 	{
 		String result = "";
 	
 		for (int i = 0; i < lines.size(); i++) {
 			result += lines.get(i);
+			result += System.getProperty("line.separator");
 		}
 		
 		return result;

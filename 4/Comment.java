@@ -3,12 +3,12 @@ import java.util.ArrayList;
 public class Comment {
 
 	private ArrayList<String> Lines;
-	private boolean format;
+	private boolean style;
 	
-	Comment(String text, boolean format) {
+	Comment(String text, boolean style) {
 	
 		Lines = new ArrayList<String>();
-		this.format = format;
+		this.style = stlye;
 		
 		String[] separated = text.split(System.getProperty("line.separator"));
 		
@@ -23,7 +23,7 @@ public class Comment {
 	
 		String result;
 	
-		if (format)
+		if (style)
 		{
 			// Gibt Kommentar in moderner Form zurück
 		}
@@ -32,5 +32,11 @@ public class Comment {
 			// Gibt Kommentar in alter Form zurück
 			// Mehrzeilige Kommentare werden immer in moderner Form zurückgegeben
 		}
+	}
+	
+	public static String format(String text, boolean style) {
+	
+		Comment c = new Comment(text, style);
+		return c.toString();
 	}
 }

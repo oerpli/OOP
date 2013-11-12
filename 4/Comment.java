@@ -13,7 +13,7 @@ public class Comment {
 		scanner=new Scanner(text);
 		while(scanner.hasNext()){
 			lines.add(scanner.nextLine());
-
+		}
 		scanner.close();
 	}
 

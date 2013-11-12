@@ -15,11 +15,6 @@ public class AltPurifier implements Prettifier {
 	@Override
 	public String pretty(String prog) {
 		Code code = new Code(prog);
-		for (int i = 0; i < code.size(); i++) {
-			String text = "";
-			text = code.getComment(i);
-			code.addLine("/* " + text + " */");
-		}
 		return code.toString();
 	}
 }

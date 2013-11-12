@@ -72,6 +72,10 @@ public class Test {
 		
 		eraser =  new Stripper();
 		System.out.println(eraser.pretty(codeTest));
+		
+		// Test Purifier
+		Purifier purifier = new Purifier();
+		System.out.println(purifier.pretty(codeTest));
 	}
 
 }

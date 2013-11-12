@@ -98,7 +98,7 @@ public class Code {
 	 * Returns the text of a comment within the specified line.
 	 */
 	public String getComment(int index) {
-		if (index < 0 || index >= lines.size()) return null;
+		if (index < 0 || index >= lines.size()) return "";
 		String line = lines.get(index);
 		int oldCoSt = line.indexOf("//");
 		if (oldCoSt != -1)
@@ -108,12 +108,9 @@ public class Code {
 		int newCoSt = line.indexOf("/*");
 		int newCoEnd = line.indexOf("*/");
 		String comment = "";
-		if (newCoSt != -1)
+		if (newCoSt != -1 && newCoEnd != -1)
 		{
-			comment = line.substring(newCoSt + 2, line.length());
-			if (newCoEnd != -1) {
-				comment += line.substring(newCoEnd + 2, line.length());
-			}
+			comment = line.substring(newCoSt + 2, newCoEnd);
 		}
 		return comment;
 	}

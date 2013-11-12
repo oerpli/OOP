@@ -1,14 +1,16 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Code {
 	private ArrayList<String> lines;
-
+	private Scanner scanner;
 	Code(String text) {
 		lines = new ArrayList<String>();
-		String[] separated = text.split(System.getProperty("line.separator"));
-		for (int i = 0; i < separated.length; i++) {
-			lines.add(separated[i]);
+		scanner=new Scanner(text);
+		while(scanner.hasNext()){
+			lines.add(scanner.nextLine());
 		}
+		scanner.close();
 	}
 
 	public int size() {

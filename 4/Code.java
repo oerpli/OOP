@@ -21,16 +21,46 @@ public class Code {
 	}
 
 	/*
-	 * Searches all lines for the specified pattern and returns within an array
-	 * the indexes where the pattern is found in regular code.
+	 * / Searches all lines for the specified pattern and returns within an
+	 * array the indexes where the pattern is found in regular code.
 	 */
-	public int[] search(String pattern) {
-		int[] result = new int[0];
+	public ArrayList<Integer> search(String pattern) {
+		int comment = -1, commentend = -1;
+		ArrayList<Integer> matched = new ArrayList<Integer>();
 		if (pattern == null || pattern.equals(""))
-			return result;
-		// TODO: alle Zeilen in denen pattern nicht als Kommentar vorkommt
-		// finden.
-		return result;
+			return matched;
+		else {
+			for (int i = 0; i < lines.size(); i++) {
+				String line = lines.get(i);
+				// mehrzeilige kommentare
+				comment = line.indexOf("/*");
+				if (line.substring(comment).indexOf("*/") == -1) {
+					comment = 0;
+					continue;
+				} else {
+					line = line.substring(comment, commentend);
+					commentend = -1;
+					comment = -1;
+				}
+				//
+				int pat = lines.indexOf(pattern);
+				if (pat >= 0) {
+					if (countChar('"', line.substring(0, pat)) % 2 == 0)
+						if (line.indexOf("//") < 0 || line.indexOf("//") > pat)
+							matched.add(i);
+				}
+			}
+		}
+		return matched;
+	}
+
+	private int countChar(char c, String s) {
+		int i = 0;
+		for (char x : s.toCharArray()) {
+			if (x == c)
+				i++;
+		}
+		return i;
 	}
 
 	/*

@@ -70,7 +70,7 @@ public class Code {
 	 * if the line ends on an open comment.
 	 */
 	public boolean eraseComment(int index) {
-		if (index < 0 || index >= lines.size()) return null;
+		if (index < 0 || index >= lines.size()) return false;
 		String line = lines.get(index);
 		int oldCoSt = line.indexOf("//");
 		if (oldCoSt != -1)
@@ -112,10 +112,10 @@ public class Code {
 		{
 			comment = line.substring(newCoSt + 2, line.length());
 			if (newCoEnd != -1) {
-				newLine += line.substring(newCoEnd + 2, line.length());
+				comment += line.substring(newCoEnd + 2, line.length());
 			}
-			return newLine;
 		}
+		return comment;
 	}
 
 	@Override

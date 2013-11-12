@@ -30,7 +30,7 @@ public class Test {
 
 	public static void main(String[] args) {
 	
-		// Teste Comment Klasse
+		// Test Comment Klasse
 		String comTest = "Hallo Welt";
 		System.out.println(Comment.format(comTest, true)); // modern
 		System.out.println(Comment.format(comTest, false)); // alt
@@ -38,7 +38,7 @@ public class Test {
 		comTest += "Servus Welt";
 		System.out.println(Comment.format(comTest, false)); // mehrzeilig
 		
-		// Teste Code Klasse
+		// Test Code Klasse
 		String codeTest = "package Parser;" + '\n' + "public class Parser {" + '\n'
 				+ "	public String state = null;" + '\n' + '\n'
 				+ "	public Document parse(/* bla */final String document) {"
@@ -47,6 +47,18 @@ public class Test {
 		Code code = new Code(codeTest);
 		System.out.println(code.toString());
 		
+		// Test Copyrighter
+		Copyrighter pretty = new Copyrighter("Copyright 2013", "11.11.2013");
+		pretty.addAuthor("Max Mustermann");
+		pretty.addAuthor("Lisa Musterfrau");
+		System.out.println(pretty.pretty(codeTest));
+		
+		// Test Adder und Ersetzbarkeit
+		Adder adder = new Adder("Bottom Information", false);
+		adder.changeText("Bottom Information Changed");
+		System.out.println(adder.pretty(codeTest));
+		
+		adder = new Copyrighter("Bottom Information", false);
 	}
 
 }

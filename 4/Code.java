@@ -48,7 +48,7 @@ public class Code {
 	{
 		if (index < 0 || index >= lines.size()) return false;
 		 
-		line = lines.get(index);
+		String line = lines.get(index);
 		
 		int oldCoSt = line.indexOf("//");
 		if (oldCoSt != -1)
@@ -61,7 +61,7 @@ public class Code {
 		String newLine = "";
 		if (newCoSt != -1)
 		{
-			newLine = line.substring(0, newCoSt));
+			newLine = line.substring(0, newCoSt);
 			
 			lines.set(index, newLine);
 		}
@@ -74,7 +74,7 @@ public class Code {
 	 */
 	public String getComment(int index)
 	{
-		
+		return null;
 	}
 	
 	@Override

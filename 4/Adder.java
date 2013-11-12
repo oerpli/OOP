@@ -1,7 +1,7 @@
 public class Adder implements Prettifier {
 
+	protected String text;
 	private final String pattern;
-	private String text;
 	private boolean topBot;
 
 	public Adder(String text, String pattern) {

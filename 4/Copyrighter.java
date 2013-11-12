@@ -2,12 +2,13 @@ import java.util.ArrayList;
 
 public class Copyrighter extends Adder {
 
-	private String text; // welcher Text wird von changeText verändert?
 	private String info;
 	private String date;
 	private ArrayList<String> authors;
 	
 	public Copyrighter(String info, String date) {
+	
+		super(info, true);
 	
 		this.authors = new ArrayList<String>();
 		this.info = info;
@@ -53,7 +54,7 @@ public class Copyrighter extends Adder {
 			result += (s + ", ");
 		}
 		
-		if (authors.size() > 0) result = substring(0, result.length() - 2);
+		if (authors.size() > 0) result = result.substring(0, result.length() - 2);
 		
 		if (date != "") {
 			result += System.getProperty("line.separator");
@@ -62,13 +63,6 @@ public class Copyrighter extends Adder {
 		
 		changeText(result);
 	}
-	
-	/*
-	public void changeText(String text) {
-	
-		this.text = text;
-	}
-	*/
 	
 	/*
 	 * Result corresponds to the Java program in prog, but with more comments.

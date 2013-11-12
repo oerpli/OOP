@@ -10,13 +10,10 @@ public class Stripper extends Eraser {
 	 */
 	@Override
 	public String pretty(String prog) {
-		
 		Code code = new Code(prog);
-		
 		for (int i = 0; i < code.size(); i++) {
 			code.eraseComment(i);
 		}
-		
 		return code.toString();
 	}
 }

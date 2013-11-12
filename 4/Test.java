@@ -39,7 +39,7 @@ public class Test {
 		System.out.println(Comment.format(comTest, false)); // mehrzeilig
 		
 		// Test Code Klasse
-		String codeTest = "package Parser;" + '\n' + "public class Parser {" + '\n'
+		String codeTest = "//Kommentar" + '\n' + "package Parser;" + '\n' + "public class Parser {" + '\n'
 				+ "	public String state = null;" + '\n' + '\n'
 				+ "	public Document parse(/* bla */final String document) {"
 				+ '\n' + "		String bla = \"/* bla */\";" + '\n'
@@ -61,6 +61,12 @@ public class Test {
 		adder = new Copyrighter("Copyright 2013", "11.11.2013");
 		adder.changeText("Information Changed, unknown place"); // In der Nachbedingung ist die Position nicht spezifiziert.
 		System.out.println(adder.pretty(codeTest));
+		
+		// Test Eraser
+		Eraser eraser = new Eraser(true);
+		System.out.println(eraser.pretty(codeTest));
+		
+		// Test Stripper und Ersetzbarkeit
 	}
 
 }

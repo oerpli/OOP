@@ -1,16 +1,20 @@
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Comment {
 	private ArrayList<String> lines;
 	private boolean style;
-
+	public Scanner scanner;
 	Comment(String text, boolean style) {
 		lines = new ArrayList<String>();
 		this.style = style;
-		String[] separated = text.split(System.getProperty("line.separator"));
-		for (int i = 0; i < separated.length; i++) {
-			lines.add(separated[i]);
-		}
+
+		System.out.println(text);
+		scanner=new Scanner(text);
+		while(scanner.hasNext()){
+			lines.add(scanner.nextLine());
+
+		scanner.close();
 	}
 
 	@Override

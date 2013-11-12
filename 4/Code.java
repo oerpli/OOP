@@ -42,10 +42,39 @@ public class Code {
 	
 	/*
 	 * Erases all comments from the line with the specified index.
+	 * Returns true if the line ends on an open comment.
 	 */
-	public void eraseComment(int index)
+	public boolean eraseComment(int index)
 	{
-		// TODO: alle Kommentare aus dieser Zeile löschen.
+		if (index < 0 || index >= lines.size()) return false;
+		 
+		line = lines.get(index);
+		
+		int oldCoSt = line.indexOf("//");
+		if (oldCoSt != -1)
+		{
+			lines.set(index, line.substring(0, oldCoSt));
+			return false;
+		}
+			
+		int newCoSt = line.indexOf("/*");
+		String newLine = "";
+		if (newCoSt != -1)
+		{
+			newLine = line.substring(0, newCoSt));
+			
+			lines.set(index, newLine);
+		}
+		
+		return false;
+	}
+	
+	/*
+	 * Returns the text of a comment within the specified line.
+	 */
+	public String getComment(int index)
+	{
+		
 	}
 	
 	@Override

@@ -18,7 +18,6 @@ public class Eraser implements Prettifier {
 	/*
 	 * Result corresponds to the Java program in prog, but with less comments.
 	 * This method has no side-effects.
-	 * Nachbedingung -> Nachbedingung im Untertyp strenger.
 	 */
 	@Override
 	public String pretty(String prog) {

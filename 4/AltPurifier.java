@@ -1,4 +1,4 @@
-public class AltPurifier extends DeepPurifier {
+public class AltPurifier implements Prettifier {
 
 	private int style; // Invariante 0-2
 
@@ -14,15 +14,19 @@ public class AltPurifier extends DeepPurifier {
 	 * comments. This method has no side-effects.
 	 * Comments will be formatted old-school or new-school.
 	 * Indent is set automatically.
-	 * // Nachbedingung -> Nachbedingung im Untertyp strenger.
 	 */
 	@Override
 	public String pretty(String prog) {
 	
 		Code code = new Code(prog);
 		
-		// TODO: Nach style Formatieren.
+		for (int i = 0; i < code.size(); i++)
+		{
+			String text = "";
+			text = code.getComment(i);
+			code.addLine("/* " + text + " */");
+		}
 		
-		return null;
+		return code.toString();
 	}
 }

@@ -1,8 +1,5 @@
 import java.util.ArrayList;
 
-/**
- * @author oerpli
- */
 public class Copyrighter extends Adder {
 
 	private String text; // welcher Text wird von changeText verändert?

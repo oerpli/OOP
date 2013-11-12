@@ -5,13 +5,20 @@ public class Purifier extends AltPurifier {
 	 * comments. This method has no side-effects.
 	 * Comments will be formatted new-school.
 	 * Indent is set automatically.
-	 * Nachbedingung -> Nachbedingung im Untertyp strenger.
 	 */
 	@Override
 	public String pretty(String prog) {
-		// TODO Methode implementieren
-		// Es werden keine anderen Parameter gebraucht.
-		return null;
+	
+		Code code = new Code(prog);
+		
+		for (int i = 0; i < code.size(); i++)
+		{
+			String text = "";
+			text = code.getComment(i);
+			code.addLine("/* " + text + " */");
+		}
+		
+		return code.toString();
 	}
 
 }

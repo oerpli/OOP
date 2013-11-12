@@ -40,9 +40,9 @@ public class Adder implements Prettifier {
 			if (!topBot)
 				code.addLine(code.size(), comment.toString());
 		} else {
-			int[] positions = code.search(pattern);
-			for (int i = 0; i < positions.length; i++) {
-				code.addLine(positions[i], comment.toString()); // Nach der
+			ArrayList<Integer> positions = code.search(pattern);
+			for (int i = 0; i < positions.size(); i++) {
+				code.addLine(positions.get(i), comment.toString()); // Nach der
 																// gefunden
 																// Zeile wird
 																// eingefügt

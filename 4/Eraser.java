@@ -30,10 +30,10 @@ public class Eraser implements Prettifier {
 			if (!topBot) code.eraseComment(code.size());
 		} else {
 		
-			int[] positions = code.search(pattern);
+			ArrayList<Integer> positions = code.search(pattern);
 			
-			for (int i = 0; i < positions.length; i++) {
-				code.eraseComment(positions[i]+1); // Nach der gefunden Zeile wird gelöscht
+			for (int i = 0; i < positions.size(); i++) {
+				code.eraseComment(positions.get(i) + 1); // Nach der gefunden Zeile wird gelöscht
 			}
 		}
 		

@@ -23,7 +23,7 @@ public class Code {
 	}
 
 	/*
-	 * / Searches all lines for the specified pattern and returns within an
+	 * Searches all lines for the specified pattern and returns within an
 	 * array the indexes where the pattern is found in regular code.
 	 */
 	public ArrayList<Integer> search(String pattern) {

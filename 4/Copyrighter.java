@@ -8,7 +8,7 @@ public class Copyrighter extends Adder {
 	
 	public Copyrighter(String info, String date) {
 	
-		super(info, true);
+		super("", true);
 	
 		this.authors = new ArrayList<String>();
 		this.info = info;

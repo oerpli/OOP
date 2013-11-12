@@ -58,7 +58,9 @@ public class Test {
 		adder.changeText("Bottom Information Changed");
 		System.out.println(adder.pretty(codeTest));
 		
-		adder = new Copyrighter("Bottom Information", false);
+		adder = new Copyrighter("Copyright 2013", "11.11.2013");
+		adder.changeText("Information Changed, unknown place"); // In der Nachbedingung ist die Position nicht spezifiziert.
+		System.out.println(adder.pretty(codeTest));
 	}
 
 }

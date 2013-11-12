@@ -58,10 +58,15 @@ public class Code {
 		}
 			
 		int newCoSt = line.indexOf("/*");
+		int newCoEnd = line.indexOf("*/");
 		String newLine = "";
 		if (newCoSt != -1)
 		{
 			newLine = line.substring(0, newCoSt);
+			
+			if (newCoEnd != -1) {
+				newLine += line.substring(newCoEnd + 2, line.length());
+			}
 			
 			lines.set(index, newLine);
 		}

@@ -62,11 +62,16 @@ public class Test {
 		adder.changeText("Information Changed, unknown place"); // In der Nachbedingung ist die Position nicht spezifiziert.
 		System.out.println(adder.pretty(codeTest));
 		
-		// Test Eraser
+		// Test Stripper
+		Stripper stripper = new Stripper();
+		System.out.println(stripper.pretty(codeTest));
+		
+		// Test Eraser und Ersetzbarkeit
 		Eraser eraser = new Eraser(true);
 		System.out.println(eraser.pretty(codeTest));
 		
-		// Test Stripper und Ersetzbarkeit
+		eraser =  new Stripper();
+		System.out.println(eraser.pretty(codeTest));
 	}
 
 }

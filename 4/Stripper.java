@@ -1,5 +1,9 @@
 public class Stripper extends Eraser {
 
+	public Stripper() {
+		super(true);
+	}
+
 	/*
 	 * Result corresponds to the Java program in prog, but with no comments.
 	 * This method has no side-effects.

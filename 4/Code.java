@@ -70,22 +70,25 @@ public class Code {
 	 * if the line ends on an open comment.
 	 */
 	public boolean eraseComment(int index) {
-		if (index < 0 || index >= lines.size())
-			return false;
+		if (index < 0 || index >= lines.size()) return null;
 		String line = lines.get(index);
 		int oldCoSt = line.indexOf("//");
-		if (oldCoSt != -1) {
+		if (oldCoSt != -1)
+		{
 			lines.set(index, line.substring(0, oldCoSt));
 			return false;
 		}
 		int newCoSt = line.indexOf("/*");
 		int newCoEnd = line.indexOf("*/");
 		String newLine = "";
-		if (newCoSt != -1) {
+		if (newCoSt != -1)
+		{
 			newLine = line.substring(0, newCoSt);
+			
 			if (newCoEnd != -1) {
 				newLine += line.substring(newCoEnd + 2, line.length());
 			}
+			
 			lines.set(index, newLine);
 		}
 		return false;
@@ -95,7 +98,24 @@ public class Code {
 	 * Returns the text of a comment within the specified line.
 	 */
 	public String getComment(int index) {
-		return null;
+		if (index < 0 || index >= lines.size()) return null;
+		String line = lines.get(index);
+		int oldCoSt = line.indexOf("//");
+		if (oldCoSt != -1)
+		{
+			return line.substring(oldCoSt + 2, line.length());
+		}	
+		int newCoSt = line.indexOf("/*");
+		int newCoEnd = line.indexOf("*/");
+		String comment = "";
+		if (newCoSt != -1)
+		{
+			comment = line.substring(newCoSt + 2, line.length());
+			if (newCoEnd != -1) {
+				newLine += line.substring(newCoEnd + 2, line.length());
+			}
+			return newLine;
+		}
 	}
 
 	@Override

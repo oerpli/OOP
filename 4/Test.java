@@ -79,7 +79,7 @@ public class Test {
 		// Test DeepPurifier
 		System.out.println("DeepPurifier");
 		DeepPurifier dp = new DeepPurifier(1);
-		dp.changeIndent(5);
+		dp.changeIndent(-10);
 		System.out.println(dp.pretty(codeTest));
 
 		// Test AltPurifier und Ersetzbarkeit

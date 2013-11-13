@@ -16,7 +16,7 @@ public class AltPurifier implements Prettifier {
 			if (line[i] == ' ')
 				ind += ' ';
 			else if (line[i] == '\t')
-				ind += "    ";
+				ind += "        ";
 			else
 				break;
 		}

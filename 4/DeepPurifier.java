@@ -3,9 +3,7 @@ public class DeepPurifier implements Prettifier {
 	private int indent;
 
 	public DeepPurifier(int style) {
-		if (style > 2 || style < 0)
-			style = 0; // Auswahl der Formatierung.
-		this.style = style;
+		this.style = Math.max(0, Math.min(0, style));
 		this.indent = 0;
 	}
 

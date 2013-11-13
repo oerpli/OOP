@@ -1,29 +1,19 @@
 import java.util.ArrayList;
 
-public class Adder implements Prettifier {
+public class Adder extends AddComment {
 
-	protected String text;
 	private final String pattern;
 	private boolean topBot;
 
 	public Adder(String text, String pattern) {
-		if (pattern == null)
-			pattern = "";
+		super(text);
 		this.pattern = pattern;
-		this.text = text;
 	}
 
 	public Adder(String text, boolean topBot) {
-		this.text = text;
+		super(text);
 		this.topBot = topBot;
 		pattern = null;
-	}
-
-	/*
-	 * From now on the new text-to-be-added replaces the old one.
-	 */
-	public void changeText(String text) {
-		this.text = text;
 	}
 
 	/*
@@ -45,9 +35,9 @@ public class Adder implements Prettifier {
 			ArrayList<Integer> positions = code.search(pattern);
 			for (int i = 0; i < positions.size(); i++) {
 				code.addLine(positions.get(i), comment.toString()); // Nach der
-																// gefunden
-																// Zeile wird
-																// eingefügt
+				// gefunden
+				// Zeile wird
+				// eingefügt
 			}
 		}
 		return code.toString();

@@ -5,13 +5,14 @@ public class Comment {
 	private ArrayList<String> lines;
 	private boolean style;
 	private Scanner scanner;
+
 	Comment(String text, boolean style) {
 		lines = new ArrayList<String>();
 		this.style = style;
 
 		System.out.println(text);
-		scanner=new Scanner(text);
-		while(scanner.hasNext()){
+		scanner = new Scanner(text);
+		while (scanner.hasNext()) {
 			lines.add(scanner.nextLine());
 		}
 		scanner.close();

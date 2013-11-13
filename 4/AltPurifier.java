@@ -2,9 +2,7 @@ public class AltPurifier implements Prettifier {
 	private int style; // Invariante 0-2
 
 	public AltPurifier(int style) {
-		if (style > 2 || style < 0)
-			style = 0; // Auswahl der Formatierung.
-		this.style = style;
+		this.style = Math.max(0, Math.min(0, style));
 	}
 
 	/*
@@ -19,7 +17,7 @@ public class AltPurifier implements Prettifier {
 			for (int i = 0; i < code.size(); i++) {
 				String text = code.getComment(i);
 				if (!text.equals("")) {
-					code.eraseComment(i,false);
+					code.eraseComment(i, false);
 					code.addLine(i, "/* " + text + " */");
 				}
 			}
@@ -29,7 +27,7 @@ public class AltPurifier implements Prettifier {
 			for (int i = 0; i < code.size(); i++) {
 				String text = code.getComment(i);
 				if (!text.equals("")) {
-					code.eraseComment(i,false);
+					code.eraseComment(i, false);
 					code.addLine(i, "// " + text);
 				}
 			}

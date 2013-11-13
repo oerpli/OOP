@@ -1,16 +1,25 @@
 import java.util.ArrayList;
+import java.util.Date;
 
-public class Copyrighter extends Adder {
+public class Copyrighter extends AddComment {
 
 	private String info;
 	private String date;
 	private ArrayList<String> authors;
 
 	public Copyrighter(String info, String date) {
-		super("", true);
+		super("");
 		this.authors = new ArrayList<String>();
 		this.info = info;
 		this.date = date;
+		updateText();
+	}
+
+	public Copyrighter(String info) {
+		super("");
+		this.authors = new ArrayList<String>();
+		this.info = info;
+		this.date = new Date().toString();
 		updateText();
 	}
 
@@ -21,6 +30,11 @@ public class Copyrighter extends Adder {
 
 	public void changeDate(String date) {
 		this.date = date;
+		updateText();
+	}
+
+	public void currentDate() {
+		this.date = new Date().toString();
 		updateText();
 	}
 

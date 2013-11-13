@@ -27,7 +27,7 @@ public class Code {
 	 * array the indexes where the pattern is found in regular code.
 	 */
 	public ArrayList<Integer> search(String pattern) {
-		int comment = -1, commentend = -1;
+		int comment = -1, commentend = -1;boolean iscomment=false;
 		ArrayList<Integer> matched = new ArrayList<Integer>();
 		if (pattern == null || pattern.equals(""))
 			return matched;
@@ -36,21 +36,32 @@ public class Code {
 				String line = lines.get(i);
 				// mehrzeilige kommentare
 				comment = line.indexOf("/*");
-				if (line.substring(comment).indexOf("*/") == -1) {
+				if (line.indexOf("*/") == -1) {
 					comment = 0;
+					iscomment=true;
 					continue;
 				} else {
-					line = line.substring(comment, commentend);
+					commentend=line.indexOf("*/");
+					if((comment!=-1)&&(commentend!=-1))
+					{
+						line=line.substring(0,comment)+line.substring(commentend);
+					}
+					else line = line.substring(commentend);
 					commentend = -1;
 					comment = -1;
+					iscomment=false;
+				
 				}
 				//
-				int pat = lines.indexOf(pattern);
+				if(iscomment==false)
+				{
+					int pat = line.indexOf(pattern);
 				if (pat >= 0) {
 					if (countChar('"', line.substring(0, pat)) % 2 == 0)
 						if (line.indexOf("//") < 0 || line.indexOf("//") > pat)
 							matched.add(i);
 				}
+			}
 			}
 		}
 		return matched;

@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class Comment {
 	private ArrayList<String> lines;
 	private boolean style;
-	public Scanner scanner;
+	private Scanner scanner;
 	Comment(String text, boolean style) {
 		lines = new ArrayList<String>();
 		this.style = style;

@@ -24,11 +24,6 @@ public abstract class AddComment implements Prettifier {
 		top = false;
 	}
 
-	/*
-	 * Result corresponds to the Java program in prog, but with more comments.
-	 * This method has no side-effects.
-	 * Comments will be placed on top, bottom or within the code.
-	 */
 	public String pretty(String prog) {
 		if (text == null || text.equals(""))
 			return prog;
@@ -42,7 +37,10 @@ public abstract class AddComment implements Prettifier {
 		} else {
 			ArrayList<Integer> positions = code.search(pattern);
 			for (int i = 0; i < positions.size(); i++) {
-				code.addLine(positions.get(i), comment.toString());
+				code.addLine(positions.get(i), comment.toString()); // Nach der
+				// gefunden
+				// Zeile wird
+				// eingefuegt
 			}
 		}
 		return code.toString();

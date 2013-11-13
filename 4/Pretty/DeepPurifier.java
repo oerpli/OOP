@@ -25,20 +25,17 @@ public class DeepPurifier extends AltPurifier {
 	}
 
 	/**
-	 * Negative indents wären möglich - wurden hier aber nicht implementiert, da
-	 * man sonst eventuell \t in 4*' ' oder ähnlich umrechnen müsste in
-	 * super.getIndent() und das ist von Konventionen abhängig, wieviel ' ' es
-	 * genau sind.
+	 * Negative indents wären möglich - wurden hier aber nicht implementiert.
 	 */
 	protected String getIndent(Code code, int i) {
 		String ind = "";
 		for (int j = 0; j < indent; j++) {
-			ind += " ";
+			ind += ' ';
 		}
-		ind += super.getIndent(code, i);
-//		System.out.println("X" + super.getIndent(code, i) + "X" + indent);
-//		System.out.println("Y" + ind + "Y");
-		
+		String sind = super.getIndent(code, i);
+		System.out.println("X" + sind + "X" + indent);
+		System.out.println("Y" + ind + sind + "Y");
+
 		return ind;
 	}
 }

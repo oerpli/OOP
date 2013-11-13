@@ -57,7 +57,7 @@ public class Copyrighter extends AddComment {
 		updateText();
 	}
 
-	private void updateText() {
+	private void updateText() { // string == null ueberpruefen?
 		String result = info;
 		if (authors.size() > 0) {
 			result += System.getProperty("line.separator");

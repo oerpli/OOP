@@ -1,6 +1,14 @@
 import java.util.ArrayList;
 import java.util.Date;
 
+/**
+ * Spezielle Form von Adder - da die in Adder verwendeten Funktionen hier aber
+ * nicht anwendbar sind keine Vererbung von dort. Gemeinsamkeiten (das sind
+ * recht wenige) in AddComment ausgelagert.
+ * 
+ * @author oerpli
+ * 
+ */
 public class Copyrighter extends AddComment {
 
 	private String info;
@@ -48,7 +56,7 @@ public class Copyrighter extends AddComment {
 		updateText();
 	}
 
-	private void updateText() { // Strings auf null überprüfen?
+	private void updateText() { // string == null ueberpruefen?
 		String result = info;
 		if (authors.size() > 0) {
 			result += System.getProperty("line.separator");
@@ -63,21 +71,6 @@ public class Copyrighter extends AddComment {
 			result += System.getProperty("line.separator");
 			result += date;
 		}
-		changeText(result);
-	}
-
-	/*
-	 * Result corresponds to the Java program in prog, but with more comments.
-	 * This method has no side-effects. Nachbedingung -> Nachbedingung im
-	 * Untertyp strenger.
-	 */
-	@Override
-	public String pretty(String prog) {
-		if (text == null || text.equals(""))
-			return prog;
-		Code code = new Code(prog);
-		Comment comment = new Comment(text, true);
-		code.addLine(0, comment.toString());
-		return code.toString();
+		this.text = result;
 	}
 }

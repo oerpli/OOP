@@ -56,13 +56,13 @@ public class Test {
 		System.out.println(pretty.pretty(codeTest));
 
 		// Test Adder, Copyrighter Untertypbeziehung (AddComment)
-		AddComment adder = new Adder("Bottom Information", false);
-		adder.changeText("Bottom Information Changed");
-		System.out.println(adder.pretty(codeTest));
+		AddComment addcomment = new Adder("Bottom Information", false);
+		// adder.changeText("Bottom Information Changed");
+		System.out.println(addcomment.pretty(codeTest));
 
-		adder = new Copyrighter("Copyright 2013", "11.11.2013");
-		adder.changeText("Information Changed, unknown place");
-		System.out.println(adder.pretty(codeTest));
+		addcomment = new Copyrighter("Copyright 2013", "11.11.2013");
+		// adder.changeText("Information Changed, unknown place");
+		System.out.println(addcomment.pretty(codeTest));
 
 		// Test Strippe
 		System.out.println("Stripper & Eraser");

@@ -17,29 +17,9 @@ public class Adder extends AddComment {
 	}
 
 	/*
-	 * Result corresponds to the Java program in prog, but with more comments.
-	 * This method has no side-effects.
+	 * From now on the new text-to-be-added replaces the old one.
 	 */
-	@Override
-	public String pretty(String prog) {
-		if (text == null || text.equals(""))
-			return prog;
-		Code code = new Code(prog);
-		Comment comment = new Comment(text, true);
-		if (pattern == null) {
-			if (topBot)
-				code.addLine(0, comment.toString());
-			if (!topBot)
-				code.addLine(code.size(), comment.toString());
-		} else {
-			ArrayList<Integer> positions = code.search(pattern);
-			for (int i = 0; i < positions.size(); i++) {
-				code.addLine(positions.get(i), comment.toString()); // Nach der
-				// gefunden
-				// Zeile wird
-				// eingefügt
-			}
-		}
-		return code.toString();
+	public void changeText(String text) {
+		this.text = text;
 	}
 }

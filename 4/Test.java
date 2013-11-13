@@ -76,6 +76,13 @@ public class Test {
 		// Test Purifier
 		Purifier purifier = new Purifier();
 		System.out.println(purifier.pretty(codeTest));
+		
+		// Test AltPurifier und Ersetzbarkeit
+		AltPurifier altPurifier = new AltPurifier(1);
+		System.out.println(altPurifier.pretty(codeTest));
+		
+		altPurifier = new Purifier();
+		System.out.println(altPurifier.pretty(codeTest));
 	}
 
 }

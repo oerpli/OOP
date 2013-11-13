@@ -1,27 +1,36 @@
 import java.util.ArrayList;
 
 public class Composer implements Prettifier {
+	ArrayList<Prettifier> list;
 
-	private ArrayList<Prettifier> list;
-
-	public void add(Prettifier prettifier) {
-		list.add(prettifier);
+	public Composer() {
+		this.list = new ArrayList<Prettifier>();
 	}
 
-	public void add(int index, Prettifier prettifier) {
-		list.add(index, prettifier);
+	public Composer(ArrayList<Prettifier> list) {
+		this.list = list;
 	}
 
-	public void remove(int index) {
-		list.remove(index);
+	public boolean add(Prettifier elem, int i) {
+		if (i <= list.size()) {
+			list.add(i, elem);
+			return true;
+		} else
+			return false;
 	}
 
-	/*
-	 * Result corresponds to the Java program in prog, but with more, less or
-	 * prettier comments. This method has no side-effects.
-	 */
-	@Override
+	public boolean remove(int index) {
+		if (index < list.size()) {
+			list.remove(index);
+			return true;
+		} else
+			return false;
+	}
+
 	public String pretty(String prog) {
-		return null;
+		String out = prog;
+		for (Prettifier p : list)
+			out = p.pretty(out);
+		return out;
 	}
 }

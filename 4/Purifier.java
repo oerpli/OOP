@@ -15,7 +15,7 @@ public class Purifier extends AltPurifier {
 		for (int i = 0; i < code.size(); i++) {
 			String text = code.getComment(i);
 			if (!text.equals("")) {
-				code.eraseComment(i);
+				code.eraseComment(i,false);
 				code.addLine(i, "/* " + text + " */");
 			}
 		}

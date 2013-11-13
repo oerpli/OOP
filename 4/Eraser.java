@@ -28,14 +28,14 @@ public class Eraser implements Prettifier {
 		
 		if (pattern == null) {
 		
-			if (topBot) code.eraseComment(0);
-			if (!topBot) code.eraseComment(code.size());
+			if (topBot) code.eraseComment(0,false);
+			if (!topBot) code.eraseComment(code.size(),false);
 		} else {
 		
 			ArrayList<Integer> positions = code.search(pattern);
 			
 			for (int i = 0; i < positions.size(); i++) {
-				code.eraseComment(positions.get(i) + 1); // Nach der gefunden Zeile wird gelöscht
+				code.eraseComment((positions.get(i) + 1),false); // Nach der gefunden Zeile wird gelöscht
 			}
 		}
 		

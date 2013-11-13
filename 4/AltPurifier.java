@@ -19,7 +19,7 @@ public class AltPurifier implements Prettifier {
 			for (int i = 0; i < code.size(); i++) {
 				String text = code.getComment(i);
 				if (!text.equals("")) {
-					code.eraseComment(i);
+					code.eraseComment(i,false);
 					code.addLine(i, "/* " + text + " */");
 				}
 			}
@@ -29,7 +29,7 @@ public class AltPurifier implements Prettifier {
 			for (int i = 0; i < code.size(); i++) {
 				String text = code.getComment(i);
 				if (!text.equals("")) {
-					code.eraseComment(i);
+					code.eraseComment(i,false);
 					code.addLine(i, "// " + text);
 				}
 			}

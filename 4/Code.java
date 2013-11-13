@@ -80,7 +80,7 @@ public class Code {
 	 * Erases all comments from the line with the specified index. Returns true
 	 * if the line ends on an open comment.
 	 */
-	public boolean eraseComment(int index) {
+	public boolean eraseComment(int index,boolean wasComment) {
 		if (index < 0 || index >= lines.size()) return false;
 		String line = lines.get(index);
 		int oldCoSt = line.indexOf("//");
@@ -98,9 +98,23 @@ public class Code {
 			
 			if (newCoEnd != -1) {
 				newLine += line.substring(newCoEnd + 2, line.length());
+				lines.set(index, newLine);
 			}
-			
+			else {lines.set(index, newLine);
+			return true;}
+
+		}
+		if(wasComment == true)
+		{
+			if (newCoEnd != -1) {
+				newLine += line.substring(newCoEnd + 2, line.length());
+				lines.set(index, newLine);
+				return false;
+			}
+			else{
 			lines.set(index, newLine);
+			return true;
+			}
 		}
 		return false;
 	}

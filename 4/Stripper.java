@@ -11,8 +11,9 @@ public class Stripper extends Eraser {
 	@Override
 	public String pretty(String prog) {
 		Code code = new Code(prog);
+		boolean helper=false;
 		for (int i = 0; i < code.size(); i++) {
-			code.eraseComment(i);
+			helper=code.eraseComment(i,helper);
 		}
 		return code.toString();
 	}

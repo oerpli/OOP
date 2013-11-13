@@ -25,6 +25,14 @@ public class Code {
 								// Zeilenumbrüche enthalten!
 	}
 
+	public String getLine(int i) {
+		if (i < lines.size()) {
+			String out = "" + lines.get(i);
+			return out;
+		} else
+			return null;
+	}
+
 	/*
 	 * Searches all lines for the specified pattern and returns within an array
 	 * the indexes where the pattern is found in regular code.

@@ -7,10 +7,25 @@ public class AltPurifier implements Prettifier {
 		this.style = Math.max(0, Math.min(0, style));
 	}
 
+	protected String getIndent(Code code, int i) {
+		String ind = "";
+		char[] line = code.getLine(i - 1).toCharArray();
+		for (i = 0; i < line.length; i++) {
+			if (line[i] == ' ')
+				ind += ' ';
+			else if (line[i] == '\t')
+				ind += '\t';
+			else
+				break;
+		}
+		return ind;
+	}
+
 	/*
 	 * Result corresponds to the Java program in prog, but with prettier
 	 * comments. This method has no side-effects. Comments will be formatted
-	 * old-school or new-school. Indent is set automatically.
+	 * old-school or new-school. Indent is set automatically (can be overwritten
+	 * via getIndent(int)).
 	 */
 	@Override
 	public String pretty(String prog) {
@@ -20,7 +35,7 @@ public class AltPurifier implements Prettifier {
 				String text = code.getComment(i);
 				if (!text.equals("")) {
 					code.eraseComment(i, false);
-					code.addLine(i, "/* " + text + " */");
+					code.addLine(i, getIndent(code, i) + "/* " + text + " */");
 				}
 			}
 			return code.toString();

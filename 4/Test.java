@@ -42,11 +42,11 @@ public class Test {
 		String codeTest = "//Kommentar" + '\n' + "package Parser;" + '\n' + "public class Parser {" + '\n'
 				+ "	public String state = null;" + '\n' + '\n'
 				+ "	public Document parse(/* bla */final String document) {"
-				+ '\n' + "		String bla = \"/* bla */\";" + '\n'
+				+ '\n' + "		String bla = \"/* \n bla */\";" + '\n'
 				+ "		return null;" + '\n' + "	}" + '\n' + "}";
 		Code code = new Code(codeTest);
 		System.out.println(code.toString());
-		
+		System.out.println(code.search("bla"));
 		// Test Copyrighter
 		Copyrighter pretty = new Copyrighter("Copyright 2013", "11.11.2013");
 		pretty.addAuthor("Max Mustermann");

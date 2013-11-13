@@ -42,10 +42,7 @@ public abstract class AddComment implements Prettifier {
 		} else {
 			ArrayList<Integer> positions = code.search(pattern);
 			for (int i = 0; i < positions.size(); i++) {
-				code.addLine(positions.get(i), comment.toString()); // Nach der
-				// gefunden
-				// Zeile wird
-				// eingefuegt
+				code.addLine(positions.get(i), comment.toString());
 			}
 		}
 		return code.toString();

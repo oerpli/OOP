@@ -36,7 +36,7 @@ public class Eraser implements Prettifier {
 			ArrayList<Integer> positions = code.search(pattern);
 			
 			for (int i = 0; i < positions.size(); i++) {
-				code.eraseComment((positions.get(i) + 1),false); // Nach der gefunden Zeile wird gelöscht
+				code.eraseComment((positions.get(i) + 1),false);
 			}
 		}
 		

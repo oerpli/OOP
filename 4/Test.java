@@ -1,6 +1,15 @@
 import Pretty.*;
 
 /*
+ * AltPurifier ist kein Untertyp von DeepPurifier, auch wenn
+ * die Zusicherungen bezgl. pretty(String) es erlauben würden.
+ * DeepPurifier.changeIndent(int) mit der Nachbedingung würde
+ * nicht zu der Beschreibung von AltPurifier aus der Angabe passen.
+ * In die andere Richtung gibt es zwar das changeIndent Problem nicht,
+ * aber pretty würde unvorhersehbares Verhalten aufweisen.
+ */
+
+/*
  * Purifier ist ein Untertyp von AltPurifier, da die Nachbedingungen
  * bezgl. pretty(String) die gleichen oder strenger sind. Der Konstruktor
  * wird nicht vererbt, ebenso die private Variable.

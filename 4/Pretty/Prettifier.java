@@ -1,3 +1,4 @@
+package Pretty;
 public interface Prettifier {
 
 	String pretty(String prog);

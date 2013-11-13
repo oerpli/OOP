@@ -1,9 +1,11 @@
-public class DeepPurifier implements Prettifier {
+package Pretty;
+
+public class DeepPurifier extends AltPurifier {
 	private int style; // Invariante 0-2
 	private int indent;
 
 	public DeepPurifier(int style) {
-		this.style = Math.max(0, Math.min(0, style));
+		super(style);
 		this.indent = 0;
 	}
 

@@ -1,3 +1,4 @@
+package Pretty;
 public class Adder extends AddComment {
 	public Adder(String text, String pattern) {
 		super(text,pattern);

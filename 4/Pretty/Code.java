@@ -1,3 +1,5 @@
+package Pretty;
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -5,7 +7,7 @@ public class Code {
 	private ArrayList<String> lines;
 	private Scanner scanner;
 
-	Code(String text) {
+	public Code(String text) {
 		lines = new ArrayList<String>();
 		scanner = new Scanner(text);
 		while (scanner.hasNext()) {

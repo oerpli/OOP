@@ -1,9 +1,10 @@
+package Pretty;
 import java.util.ArrayList;
 
 public abstract class AddComment implements Prettifier {
 	protected String text;
-	protected boolean top;
-	protected String pattern;
+	private boolean top;
+	private String pattern;
 
 	public AddComment(String text) {
 		this.text = text;
@@ -39,7 +40,7 @@ public abstract class AddComment implements Prettifier {
 				code.addLine(positions.get(i), comment.toString()); // Nach der
 				// gefunden
 				// Zeile wird
-				// eingefügt
+				// eingefuegt
 			}
 		}
 		return code.toString();

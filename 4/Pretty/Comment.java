@@ -1,3 +1,4 @@
+package Pretty;
 import java.util.ArrayList;
 import java.util.Scanner;
 

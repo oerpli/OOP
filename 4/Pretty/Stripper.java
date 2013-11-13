@@ -1,3 +1,4 @@
+package Pretty;
 public class Stripper extends Eraser {
 
 	public Stripper() {

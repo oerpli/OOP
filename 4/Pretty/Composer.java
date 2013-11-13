@@ -1,3 +1,4 @@
+package Pretty;
 import java.util.ArrayList;
 
 public class Composer implements Prettifier {

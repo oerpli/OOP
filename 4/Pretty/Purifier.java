@@ -1,3 +1,4 @@
+package Pretty;
 public class Purifier extends AltPurifier {
 
 	public Purifier() {

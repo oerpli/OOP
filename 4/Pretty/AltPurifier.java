@@ -1,3 +1,5 @@
+package Pretty;
+
 public class AltPurifier implements Prettifier {
 	private int style; // Invariante 0-2
 

@@ -14,11 +14,13 @@ public abstract class AddComment implements Prettifier {
 	public AddComment(String text, boolean top) {
 		this.text = text;
 		this.top = top;
+		pattern = null;
 	}
 
 	public AddComment(String text, String pattern) {
 		this.text = text;
 		this.pattern = pattern;
+		top = false;
 	}
 
 	public String pretty(String prog) {

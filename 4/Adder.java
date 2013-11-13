@@ -1,19 +1,10 @@
-import java.util.ArrayList;
-
 public class Adder extends AddComment {
-
-	private final String pattern;
-	private boolean topBot;
-
 	public Adder(String text, String pattern) {
-		super(text);
-		this.pattern = pattern;
+		super(text,pattern);
 	}
 
-	public Adder(String text, boolean topBot) {
-		super(text);
-		this.topBot = topBot;
-		pattern = null;
+	public Adder(String text, boolean top) {
+		super(text, top);
 	}
 
 	/*

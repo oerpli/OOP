@@ -1,15 +1,6 @@
 import Pretty.*;
 
 /*
- * AltPurifier ist kein Untertyp von DeepPurifier, auch wenn
- * die Zusicherungen bezgl. pretty(String) es erlauben würden.
- * DeepPurifier.changeIndent(int) mit der Nachbedingung würde
- * nicht zu der Beschreibung von AltPurifier aus der Angabe passen.
- * In die andere Richtung gibt es zwar das changeIndent Problem nicht,
- * aber pretty würde unvorhersehbares Verhalten aufweisen.
- */
-
-/*
  * Purifier ist ein Untertyp von AltPurifier, da die Nachbedingungen
  * bezgl. pretty(String) die gleichen oder strenger sind. Der Konstruktor
  * wird nicht vererbt, ebenso die private Variable.
@@ -43,7 +34,7 @@ public class Test {
 		// Test Code Klasse
 		String codeTest = "//Kommentar" + '\n' + "package Parser;" + '\n'
 				+ "public class Parser {" + '\n'
-				+ "	public String state = null;" + '\n' + '\n'
+				+ "	public String state = null;" + '\n'
 				+ "	public Document parse(/* bla */final String document) {"
 				+ '\n' + "		String bla = \"/* \n bla */\";" + '\n'
 				+ "		return null;" + '\n' + "	}" + '\n' + "}";
@@ -84,6 +75,12 @@ public class Test {
 		Purifier purifier = new Purifier();
 		System.out.println("Purifier");
 		System.out.println(purifier.pretty(codeTest));
+
+		// Test DeepPurifier
+		System.out.println("DeepPurifier");
+		DeepPurifier dp = new DeepPurifier(1);
+		dp.changeIndent(5);
+		System.out.println(dp.pretty(codeTest));
 
 		// Test AltPurifier und Ersetzbarkeit
 		System.out.println("AltPurifier");

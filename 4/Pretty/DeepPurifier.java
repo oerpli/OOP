@@ -31,10 +31,14 @@ public class DeepPurifier extends AltPurifier {
 	 * genau sind.
 	 */
 	protected String getIndent(Code code, int i) {
-		String ind = super.getIndent(code, i);
+		String ind = "";
 		for (int j = 0; j < indent; j++) {
 			ind += " ";
 		}
+		ind += super.getIndent(code, i);
+//		System.out.println("X" + super.getIndent(code, i) + "X" + indent);
+//		System.out.println("Y" + ind + "Y");
+		
 		return ind;
 	}
 }

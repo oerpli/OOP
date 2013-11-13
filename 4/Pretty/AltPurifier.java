@@ -9,6 +9,8 @@ public class AltPurifier implements Prettifier {
 
 	protected String getIndent(Code code, int i) {
 		String ind = "";
+		if (i == 0)
+			return ind;
 		char[] line = code.getLine(i - 1).toCharArray();
 		for (i = 0; i < line.length; i++) {
 			if (line[i] == ' ')

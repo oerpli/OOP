@@ -24,6 +24,11 @@ public abstract class AddComment implements Prettifier {
 		top = false;
 	}
 
+	/*
+	 * Result corresponds to the Java program in prog, but with more comments.
+	 * This method has no side-effects.
+	 * Comments will be placed on top, bottom or within the code.
+	 */
 	public String pretty(String prog) {
 		if (text == null || text.equals(""))
 			return prog;

@@ -11,4 +11,9 @@ public class Aladdin extends Pumpkin {
 	public Pumpkin returnNew() {
 		return new Aladdin();
 	}
+
+	@Override
+	protected void rot(double ferti) {
+		//Aladdins dont rot.
+	}
 }

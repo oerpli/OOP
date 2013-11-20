@@ -11,4 +11,8 @@ public class Hokkaido extends Pumpkin {
 	public Pumpkin returnNew() {
 		return new Hokkaido();
 	}
+
+	protected void snail() {
+		// Immune to snails
+	}
 }

@@ -4,21 +4,15 @@ public class SList<E> implements Iterable<E> {
 	protected int size = 0;
 
 	/**
-	 * Invariante: (first == null && last == null) || (first.prev == null &&
-	 * first.item != null)
+	 * Invariante: (first == null && last == null) || ((first.prev == null &&
+	 * first.item != null)&&(last.next == null && last.item != null))
 	 */
-	private Node<E> first;
-
-	/**
-	 * Invariante: (first == null && last == null) || (last.next == null &&
-	 * last.item != null)
-	 */
-	private Node<E> last;
+	private Node<E> first, last;
 
 	public SList() {
 	}
 
-	protected void linkFirst(E e) {
+	private void linkFirst(E e) {
 		final Node<E> f = first;
 		final Node<E> newNode = new Node<>(null, e, f);// <E> || <> ?
 		first = newNode;
@@ -29,7 +23,7 @@ public class SList<E> implements Iterable<E> {
 		size++;
 	}
 
-	void linkLast(E e) {
+	private void linkLast(E e) {
 		final Node<E> l = last;
 		final Node<E> newNode = new Node<>(l, e, null);
 		last = newNode;
@@ -43,7 +37,7 @@ public class SList<E> implements Iterable<E> {
 	/**
 	 * Inserts element e before non-null Node succ.
 	 */
-	void linkBefore(E e, Node<E> succ) {
+	private void linkBefore(E e, Node<E> succ) {
 		assert succ != null;
 		final Node<E> pred = succ.prev;
 		final Node<E> newNode = new Node<>(pred, e, succ);
@@ -90,7 +84,7 @@ public class SList<E> implements Iterable<E> {
 	/**
 	 * Unlinks non-null node x.
 	 */
-	E unlink(Node<E> x) {
+	private E unlink(Node<E> x) {
 		assert x != null;
 		final E element = x.item;
 		final Node<E> next = x.next;
@@ -107,28 +101,6 @@ public class SList<E> implements Iterable<E> {
 		}
 		size--;
 		return element;
-	}
-
-	/**
-	 * Returns the first element in this list.
-	 * 
-	 * @return the first element in this list
-	 */
-	public E addFirst() {
-		assert first != null;
-		final Node<E> f = first;
-		return f.item;
-	}
-
-	/**
-	 * Returns the last element in this list.
-	 * 
-	 * @return the last element in this list
-	 */
-	public E addLast() {
-		assert last != null;
-		final Node<E> l = last;
-		return l.item;
 	}
 
 	/**
@@ -335,8 +307,6 @@ public class SList<E> implements Iterable<E> {
 		}
 	}
 
-	// Search Operations
-
 	/**
 	 * Returns the index of the first occurrence of the specified element in
 	 * this list, or -1 if this list does not contain the element. More
@@ -381,7 +351,10 @@ public class SList<E> implements Iterable<E> {
 	 */
 	public int lastIndexOf(Object o) {
 		int index = size;
-		if (o == null) {
+		if (o == null) { // TODO müsste man eigtl löschen weil ich unten
+							// verlangt habe, dass item != null sein sollte.
+							// wenn das nicht der fall ist passt die invariante
+							// oben nicht.
 			for (Node<E> x = last; x != null; x = x.prev) {
 				index--;
 				if (x.item == null)
@@ -399,60 +372,13 @@ public class SList<E> implements Iterable<E> {
 
 	// Queue operations.
 
-	/**
-	 * Retrieves, but does not remove, the head (first element) of this list.
-	 * 
-	 * @return the head of this list, or {@code null} if this list is empty
-	 * @since 1.5
-	 */
-	public E peek() {
-		final Node<E> f = first;
-		return (f == null) ? null : f.item;
-	}
-
-	/**
-	 * Retrieves, but does not remove, the head (first element) of this list.
-	 * 
-	 * @return the head of this list
-	 * @throws NoSuchElementException
-	 *             if this list is empty
-	 * @since 1.5
-	 */
-	public E element() {
-		return addFirst();
-	}
-
-	/**
-	 * Retrieves and removes the head (first element) of this list.
-	 * 
-	 * @return the head of this list, or {@code null} if this list is empty
-	 * @since 1.5
-	 */
-	public E poll() {
-		final Node<E> f = first;
-		return (f == null) ? null : unlinkFirst(f);
-	}
-
-	/**
-	 * Retrieves and removes the head (first element) of this list.
-	 * 
-	 * @return the head of this list
-	 * @throws NoSuchElementException
-	 *             if this list is empty
-	 * @since 1.5
-	 */
-	public E remove() {
-		return removeFirst();
-	}
-
 	private static class Node<E> {
 		E item;
 		/**
 		 * Invariante: Es gibt jeweils maximal 1 Node mit next == null und prev
 		 * == null.
 		 */
-		Node<E> next;
-		Node<E> prev;
+		Node<E> next, prev;
 
 		Node(Node<E> prev, E element, Node<E> next) {
 			assert item != null;

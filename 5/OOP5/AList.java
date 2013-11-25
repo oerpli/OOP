@@ -1,12 +1,13 @@
+package OOP5;
+
 import java.util.Iterator;
 
 public class AList<E, T> extends SList<E> {
-
-	transient Node<E, T> first;
-	transient Node<E, T> last;
+	private Node<E, T> first;
+	private Node<E, T> last;
 
 	public void add(int index, E element, T[] asso) {
-		SList<T> List = new SList<T>();
+		SList<T> List = new SList<>();
 		for (int i = 0; i < asso.length; i++) {
 			List.add(-1, asso[i]);
 		}
@@ -18,7 +19,7 @@ public class AList<E, T> extends SList<E> {
 			} else
 				linkBefore(element, List, node1(index));
 		}// TODO könnte man glaub ersetzen mit
-		super.add(index, element);
+			// super.add(index, element);
 
 	}
 
@@ -100,7 +101,7 @@ public class AList<E, T> extends SList<E> {
 		return new Itr2();
 	}
 
-	public class Itr2 extends Itr {
+	protected class Itr2 extends Itr {
 		public Iterator<T> iterator() {
 			return node1(cursor).asso.iterator();
 		}

@@ -1,3 +1,4 @@
+package OOP5;
 public class IntCategory extends Category {
 	private int a;
 	private int b;

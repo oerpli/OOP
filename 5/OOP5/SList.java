@@ -1,3 +1,4 @@
+package OOP5;
 import java.util.Iterator;
 
 public class SList<E> implements Iterable<E> {
@@ -372,7 +373,7 @@ public class SList<E> implements Iterable<E> {
 
 	// Queue operations.
 
-	private static class Node<E> {
+	protected static class Node<E> {
 		E item;
 		/**
 		 * Invariante: Es gibt jeweils maximal 1 Node mit next == null und prev

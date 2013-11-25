@@ -1,10 +1,8 @@
 public class Prefixed implements Dependent<T> {
-	
-private String string1;
-	
-	public Prefixed(String test)
-	{
-		this.string1=test;
+	private String string1;
+
+	public Prefixed(String test) {
+		this.string1 = test;
 	}
 
 	public boolean dependsOn(Prefixed element) {
@@ -16,6 +14,5 @@ private String string1;
 		// TODO Auto-generated method stub
 		return false;
 	}
-
 
 }

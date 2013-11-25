@@ -1,642 +1,668 @@
 import java.util.Iterator;
 
-public class SList<E> implements Iterable<E> 
-{
-    transient int size = 0;
+public class SList<E> implements Iterable<E> {
+	transient int size = 0;
 
-    /**
-     * Pointer to first node.
-     * Invariant: (first == null && last == null) ||
-     *            (first.prev == null && first.item != null)
-     */
-    transient Node<E> first;
+	/**
+	 * Pointer to first node. Invariant: (first == null && last == null) ||
+	 * (first.prev == null && first.item != null)
+	 */
+	transient Node<E> first;
 
-    /**
-     * Pointer to last node.
-     * Invariant: (first == null && last == null) ||
-     *            (last.next == null && last.item != null)
-     */
-    transient Node<E> last;
+	/**
+	 * Pointer to last node. Invariant: (first == null && last == null) ||
+	 * (last.next == null && last.item != null)
+	 */
+	transient Node<E> last;
 
-    /**
-     * Constructs an empty list.
-     */
-    public SList() {
-    }
+	/**
+	 * Constructs an empty list.
+	 */
+	public SList() {
+	}
 
-    /**
-     * Links e as first element.
-     */
-    protected void linkFirst(E e) {
-        final Node<E> f = first;
-        final Node<E> newNode = new Node<>(null, e, f);
-        first = newNode;
-        if (f == null)
-            last = newNode;
-        else
-            f.prev = newNode;
-        size++;
-    }
+	/**
+	 * Links e as first element.
+	 */
+	protected void linkFirst(E e) {
+		final Node<E> f = first;
+		final Node<E> newNode = new Node<>(null, e, f);// <E> || <> ?
+		first = newNode;
+		if (f == null)
+			last = newNode;
+		else
+			f.prev = newNode;
+		size++;
+	}
 
-    /**
-     * Links e as last element.
-     */
-    void linkLast(E e) {
-        final Node<E> l = last;
-        final Node<E> newNode = new Node<>(l, e, null);
-        last = newNode;
-        if (l == null)
-            first = newNode;
-        else
-            l.next = newNode;
-        size++;
-    }
+	/**
+	 * Links e as last element.
+	 */
+	void linkLast(E e) {
+		final Node<E> l = last;
+		final Node<E> newNode = new Node<>(l, e, null);
+		last = newNode;
+		if (l == null)
+			first = newNode;
+		else
+			l.next = newNode;
+		size++;
+	}
 
-    /**
-     * Inserts element e before non-null Node succ.
-     */
-    void linkBefore(E e, Node<E> succ) {
-        // assert succ != null;
-        final Node<E> pred = succ.prev;
-        final Node<E> newNode = new Node<>(pred, e, succ);
-        succ.prev = newNode;
-        if (pred == null)
-            first = newNode;
-        else
-            pred.next = newNode;
-        size++;
-    }
+	/**
+	 * Inserts element e before non-null Node succ.
+	 */
+	void linkBefore(E e, Node<E> succ) {
+		// assert succ != null;
+		final Node<E> pred = succ.prev;
+		final Node<E> newNode = new Node<>(pred, e, succ);
+		succ.prev = newNode;
+		if (pred == null)
+			first = newNode;
+		else
+			pred.next = newNode;
+		size++;
+	}
 
-    /**
-     * Unlinks non-null first node f.
-     */
-    private E unlinkFirst(Node<E> f) {
-        // assert f == first && f != null;
-        final E element = f.item;
-        final Node<E> next = f.next;
-        f.item = null;
-        f.next = null; // help GC
-        first = next;
-        if (next == null)
-            last = null;
-        else
-            next.prev = null;
-        size--;
-        return element;
-    }
+	/**
+	 * Unlinks non-null first node f.
+	 */
+	private E unlinkFirst(Node<E> f) {
+		// assert f == first && f != null;
+		final E element = f.item;
+		final Node<E> next = f.next;
+		f.item = null;
+		f.next = null; // help GC
+		first = next;
+		if (next == null)
+			last = null;
+		else
+			next.prev = null;
+		size--;
+		return element;
+	}
 
-    /**
-     * Unlinks non-null last node l.
-     */
-    private E unlinkLast(Node<E> l) {
-        // assert l == last && l != null;
-        final E element = l.item;
-        final Node<E> prev = l.prev;
-        l.item = null;
-        l.prev = null; // help GC
-        last = prev;
-        if (prev == null)
-            first = null;
-        else
-            prev.next = null;
-        size--;
-        
-        return element;
-    }
+	/**
+	 * Unlinks non-null last node l.
+	 */
+	private E unlinkLast(Node<E> l) {
+		assert l == last && l != null;
+		final E element = l.item;
+		final Node<E> prev = l.prev;
+		l.item = null;
+		l.prev = null; // help GC
+		last = prev;
+		if (prev == null)
+			first = null;
+		else
+			prev.next = null;
+		size--;
+		return element;
+	}
 
-    /**
-     * Unlinks non-null node x.
-     */
-    E unlink(Node<E> x) {
-        // assert x != null;
-        final E element = x.item;
-        final Node<E> next = x.next;
-        final Node<E> prev = x.prev;
+	/**
+	 * Unlinks non-null node x.
+	 */
+	E unlink(Node<E> x) {
+		assert x != null;
+		final E element = x.item;
+		final Node<E> next = x.next;
+		final Node<E> prev = x.prev;
 
-        if (prev == null) {
-            first = next;
-        } else {
-            prev.next = next;
-            x.prev = null;
-        }
+		if (prev == null) {
+			first = next;
+		} else {
+			prev.next = next;
+			x.prev = null;
+		}
 
-        if (next == null) {
-            last = prev;
-        } else {
-            next.prev = prev;
-            x.next = null;
-        }
+		if (next == null) {
+			last = prev;
+		} else {
+			next.prev = prev;
+			x.next = null;
+		}
 
-        x.item = null;
-        size--;
-        
-        return element;
-    }
+		x.item = null;
+		size--;
 
-    /**
-     * Returns the first element in this list.
-     *
-     * @return the first element in this list
-     * @throws NoSuchElementException if this list is empty
-     */
-    public E getFirst() {
-        final Node<E> f = first;
-        return f.item;
-    }
+		return element;
+	}
 
-    /**
-     * Returns the last element in this list.
-     *
-     * @return the last element in this list
-     * @throws NoSuchElementException if this list is empty
-     */
-    public E getLast() {
-        final Node<E> l = last;
-        return l.item;
-    }
+	/**
+	 * Returns the first element in this list.
+	 * 
+	 * @return the first element in this list
+	 * @throws NoSuchElementException
+	 *             if this list is empty
+	 */
+	public E getFirst() {
+		// if (first == null)
+		// throw new NoSuchElementException();
+		final Node<E> f = first;
+		return f.item;
+	}
 
-    /**
-     * Removes and returns the first element from this list.
-     *
-     * @return the first element from this list
-     * @throws NoSuchElementException if this list is empty
-     */
-    public E removeFirst() {
-        final Node<E> f = first;
-        return unlinkFirst(f);
-    }
+	/**
+	 * Returns the last element in this list.
+	 * 
+	 * @return the last element in this list
+	 * @throws NoSuchElementException
+	 *             if this list is empty
+	 */
+	public E getLast() {
+		// if (last == null)
+		// throw new NoSuchElementException();
+		final Node<E> l = last;
+		return l.item;
+	}
 
-    /**
-     * Removes and returns the last element from this list.
-     *
-     * @return the last element from this list
-     * @throws NoSuchElementException if this list is empty
-     */
-    public E removeLast() {
-        final Node<E> l = last;
-        return unlinkLast(l);
-    }
+	/**
+	 * Removes and returns the first element from this list.
+	 * 
+	 * @return the first element from this list
+	 * @throws NoSuchElementException
+	 *             if this list is empty
+	 */
+	public E removeFirst() {
+		final Node<E> f = first;
+		return unlinkFirst(f);
+	}
 
-    /**
-     * Inserts the specified element at the beginning of this list.
-     *
-     * @param e the element to add
-     */
-    public void addFirst(E e) {
-        linkFirst(e);
-    }
+	/**
+	 * Removes and returns the last element from this list.
+	 * 
+	 * @return the last element from this list
+	 * @throws NoSuchElementException
+	 *             if this list is empty
+	 */
+	public E removeLast() {
+		final Node<E> l = last;
+		return unlinkLast(l);
+	}
 
-    /**
-     * Appends the specified element to the end of this list.
-     *
-     * <p>This method is equivalent to {@link #add}.
-     *
-     * @param e the element to add
-     */
-    public void addLast(E e) {
-        linkLast(e);
-    }
+	/**
+	 * Inserts the specified element at the beginning of this list.
+	 * 
+	 * @param e
+	 *            the element to add
+	 */
+	public void addFirst(E e) {
+		linkFirst(e);
+	}
 
-    /**
-     * Returns {@code true} if this list contains the specified element.
-     * More formally, returns {@code true} if and only if this list contains
-     * at least one element {@code e} such that
-     * <tt>(o==null&nbsp;?&nbsp;e==null&nbsp;:&nbsp;o.equals(e))</tt>.
-     *
-     * @param o element whose presence in this list is to be tested
-     * @return {@code true} if this list contains the specified element
-     */
-    public boolean contains(Object o) {
-        return indexOf(o) != -1;
-    }
+	/**
+	 * Appends the specified element to the end of this list.
+	 * 
+	 * <p>
+	 * This method is equivalent to {@link #add}.
+	 * 
+	 * @param e
+	 *            the element to add
+	 */
+	public void addLast(E e) {
+		linkLast(e);
+	}
 
-    /**
-     * Returns the number of elements in this list.
-     *
-     * @return the number of elements in this list
-     */
-    public int size() {
-        return size;
-    }
+	/**
+	 * Returns {@code true} if this list contains the specified element. More
+	 * formally, returns {@code true} if and only if this list contains at least
+	 * one element {@code e} such that
+	 * <tt>(o==null&nbsp;?&nbsp;e==null&nbsp;:&nbsp;o.equals(e))</tt>.
+	 * 
+	 * @param o
+	 *            element whose presence in this list is to be tested
+	 * @return {@code true} if this list contains the specified element
+	 */
+	public boolean contains(Object o) {
+		return indexOf(o) != -1;
+	}
 
-    /**
-     * Appends the specified element to the end of this list.
-     *
-     * <p>This method is equivalent to {@link #addLast}.
-     *
-     * @param e element to be appended to this list
-     * @return {@code true} (as specified by {@link Collection#add})
-     */
-    public boolean add(E e) {
-        linkLast(e);
-        return true;
-    }
+	/**
+	 * Returns the number of elements in this list.
+	 * 
+	 * @return the number of elements in this list
+	 */
+	public int size() {
+		return size;
+	}
 
-    /**
-     * Removes the first occurrence of the specified element from this list,
-     * if it is present.  If this list does not contain the element, it is
-     * unchanged.  More formally, removes the element with the lowest index
-     * {@code i} such that
-     * <tt>(o==null&nbsp;?&nbsp;get(i)==null&nbsp;:&nbsp;o.equals(get(i)))</tt>
-     * (if such an element exists).  Returns {@code true} if this list
-     * contained the specified element (or equivalently, if this list
-     * changed as a result of the call).
-     *
-     * @param o element to be removed from this list, if present
-     * @return {@code true} if this list contained the specified element
-     */
-    public boolean remove(Object o) {
-        if (o == null) {
-            for (Node<E> x = first; x != null; x = x.next) {
-                if (x.item == null) {
-                    unlink(x);
-                    return true;
-                }
-            }
-        } else {
-            for (Node<E> x = first; x != null; x = x.next) {
-                if (o.equals(x.item)) {
-                    unlink(x);
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
+	/**
+	 * Appends the specified element to the end of this list.
+	 * 
+	 * <p>
+	 * This method is equivalent to {@link #addLast}.
+	 * 
+	 * @param e
+	 *            element to be appended to this list
+	 * @return {@code true} (as specified by {@link Collection#add})
+	 */
+	public boolean add(E e) {
+		linkLast(e);
+		return true;
+	}
 
-    /**
-     * Removes all of the elements from this list.
-     * The list will be empty after this call returns.
-     */
-    public void clear() {
-        // Clearing all of the links between nodes is "unnecessary", but:
-        // - helps a generational GC if the discarded nodes inhabit
-        //   more than one generation
-        // - is sure to free memory even if there is a reachable Iterator
-        for (Node<E> x = first; x != null; ) {
-            Node<E> next = x.next;
-            x.item = null;
-            x.next = null;
-            x.prev = null;
-            x = next;
-        }
-        first = last = null;
-        size = 0;
-        
-    }
+	/**
+	 * Removes the first occurrence of the specified element from this list, if
+	 * it is present. If this list does not contain the element, it is
+	 * unchanged. More formally, removes the element with the lowest index
+	 * {@code i} such that
+	 * <tt>(o==null&nbsp;?&nbsp;get(i)==null&nbsp;:&nbsp;o.equals(get(i)))</tt>
+	 * (if such an element exists). Returns {@code true} if this list contained
+	 * the specified element (or equivalently, if this list changed as a result
+	 * of the call).
+	 * 
+	 * @param o
+	 *            element to be removed from this list, if present
+	 * @return {@code true} if this list contained the specified element
+	 */
+	public boolean remove(Object o) {
+		if (o == null) {
+			for (Node<E> x = first; x != null; x = x.next) {
+				if (x.item == null) {
+					unlink(x);
+					return true;
+				}
+			}
+		} else {
+			for (Node<E> x = first; x != null; x = x.next) {
+				if (o.equals(x.item)) {
+					unlink(x);
+					return true;
+				}
+			}
+		}
+		return false;
+	}
 
+	/**
+	 * Removes all of the elements from this list. The list will be empty after
+	 * this call returns.
+	 */
+	public void clear() {
+		// Clearing all of the links between nodes is "unnecessary", but:
+		// - helps a generational GC if the discarded nodes inhabit
+		// more than one generation
+		// - is sure to free memory even if there is a reachable Iterator
+		for (Node<E> x = first; x != null;) {
+			Node<E> next = x.next;
+			x.item = null;
+			x.next = null;
+			x.prev = null;
+			x = next;
+		}
+		first = last = null;
+		size = 0;
 
-    // Positional Access Operations
+	}
 
-    /**
-     * Returns the element at the specified position in this list.
-     *
-     * @param index index of the element to return
-     * @return the element at the specified position in this list
-     * @throws IndexOutOfBoundsException {@inheritDoc}
-     */
-    public E get(int index) {
-        checkElementIndex(index);
-        return node(index).item;
-    }
+	// Positional Access Operations
 
-    /**
-     * Replaces the element at the specified position in this list with the
-     * specified element.
-     *
-     * @param index index of the element to replace
-     * @param element element to be stored at the specified position
-     * @return the element previously at the specified position
-     * @throws IndexOutOfBoundsException {@inheritDoc}
-     */
-    public E set(int index, E element) {
-        checkElementIndex(index);
-        Node<E> x = node(index);
-        E oldVal = x.item;
-        x.item = element;
-        return oldVal;
-    }
+	/**
+	 * Returns the element at the specified position in this list.
+	 * 
+	 * @param index
+	 *            index of the element to return
+	 * @return the element at the specified position in this list
+	 * @throws IndexOutOfBoundsException
+	 *             {@inheritDoc}
+	 */
+	public E get(int index) {
+		checkElementIndex(index);
+		return node(index).item;
+	}
 
-    /**
-     * Inserts the specified element at the specified position in this list.
-     * Shifts the element currently at that position (if any) and any
-     * subsequent elements to the right (adds one to their indices).
-     *
-     * @param index index at which the specified element is to be inserted
-     * @param element element to be inserted
-     * @throws IndexOutOfBoundsException {@inheritDoc}
-     */
-    public void add(int index, E element) {
-        checkPositionIndex(index);
+	/**
+	 * Replaces the element at the specified position in this list with the
+	 * specified element.
+	 * 
+	 * @param index
+	 *            index of the element to replace
+	 * @param element
+	 *            element to be stored at the specified position
+	 * @return the element previously at the specified position
+	 * @throws IndexOutOfBoundsException
+	 *             {@inheritDoc}
+	 */
+	public E set(int index, E element) {
+		checkElementIndex(index);
+		Node<E> x = node(index);
+		E oldVal = x.item;
+		x.item = element;
+		return oldVal;
+	}
 
-        if (index == -1)
-            linkLast(element);
-        else if(index == 0)
-        {
-        	linkFirst(element);
-        }
-        else
-            linkBefore(element, node(index));
-    }
+	/**
+	 * Inserts the specified element at the specified position in this list.
+	 * Shifts the element currently at that position (if any) and any subsequent
+	 * elements to the right (adds one to their indices).
+	 * 
+	 * @param index
+	 *            index at which the specified element is to be inserted
+	 * @param element
+	 *            element to be inserted
+	 * @throws IndexOutOfBoundsException
+	 *             {@inheritDoc}
+	 */
+	public void add(int index, E element) {
+		checkPositionIndex(index);
 
-    /**
-     * Removes the element at the specified position in this list.  Shifts any
-     * subsequent elements to the left (subtracts one from their indices).
-     * Returns the element that was removed from the list.
-     *
-     * @param index the index of the element to be removed
-     * @return the element previously at the specified position
-     * @throws IndexOutOfBoundsException {@inheritDoc}
-     */
-    public E remove(int index) {
-        checkElementIndex(index);
-        return unlink(node(index));
-    }
+		if (index == -1)
+			linkLast(element);
+		else if (index == 0) {
+			linkFirst(element);
+		} else
+			linkBefore(element, node(index));
+	}
 
-    /**
-     * Tells if the argument is the index of an existing element.
-     */
-    private boolean isElementIndex(int index) {
-        return index >= 0 && index < size;
-    }
+	/**
+	 * Removes the element at the specified position in this list. Shifts any
+	 * subsequent elements to the left (subtracts one from their indices).
+	 * Returns the element that was removed from the list.
+	 * 
+	 * @param index
+	 *            the index of the element to be removed
+	 * @return the element previously at the specified position
+	 * @throws IndexOutOfBoundsException
+	 *             {@inheritDoc}
+	 */
+	public E remove(int index) {
+		checkElementIndex(index);
+		return unlink(node(index));
+	}
 
-    /**
-     * Tells if the argument is the index of a valid position for an
-     * iterator or an add operation.
-     */
-    private boolean isPositionIndex(int index) {
-        return index >= 0 && index <= size;
-    }
+	/**
+	 * Tells if the argument is the index of an existing element.
+	 */
+	private boolean isElementIndex(int index) {
+		return index >= 0 && index < size;
+	}
 
-    /**
-     * Constructs an IndexOutOfBoundsException detail message.
-     * Of the many possible refactorings of the error handling code,
-     * this "outlining" performs best with both server and client VMs.
-     */
-    private String outOfBoundsMsg(int index) {
-        return "Index: "+index+", Size: "+size;
-    }
+	/**
+	 * Tells if the argument is the index of a valid position for an iterator or
+	 * an add operation.
+	 */
+	private boolean isPositionIndex(int index) {
+		return index >= 0 && index <= size;
+	}
 
-    private void checkElementIndex(int index) {
-        if (!isElementIndex(index))
-            throw new IndexOutOfBoundsException(outOfBoundsMsg(index));
-    }
+	/**
+	 * Constructs an IndexOutOfBoundsException detail message. Of the many
+	 * possible refactorings of the error handling code, this "outlining"
+	 * performs best with both server and client VMs.
+	 */
+	private String outOfBoundsMsg(int index) {
+		return "Index: " + index + ", Size: " + size;
+	}
 
-    private void checkPositionIndex(int index) {
-        if (!isPositionIndex(index))
-            throw new IndexOutOfBoundsException(outOfBoundsMsg(index));
-    }
+	private void checkElementIndex(int index) {
+		if (!isElementIndex(index))
+			throw new IndexOutOfBoundsException(outOfBoundsMsg(index));
+	}
 
-    /**
-     * Returns the (non-null) Node at the specified element index.
-     */
-    Node<E> node(int index) {
-        // assert isElementIndex(index);
+	private void checkPositionIndex(int index) {
+		if (!isPositionIndex(index))
+			throw new IndexOutOfBoundsException(outOfBoundsMsg(index));
+	}
 
-        if (index < (size >> 1)) {
-            Node<E> x = first;
-            for (int i = 0; i < index; i++)
-                x = x.next;
-            return x;
-        } else {
-            Node<E> x = last;
-            for (int i = size - 1; i > index; i--)
-                x = x.prev;
-            return x;
-        }
-    }
+	/**
+	 * Returns the (non-null) Node at the specified element index.
+	 */
+	Node<E> node(int index) {
+		// assert isElementIndex(index);
 
-    // Search Operations
+		if (index < (size >> 1)) {
+			Node<E> x = first;
+			for (int i = 0; i < index; i++)
+				x = x.next;
+			return x;
+		} else {
+			Node<E> x = last;
+			for (int i = size - 1; i > index; i--)
+				x = x.prev;
+			return x;
+		}
+	}
 
-    /**
-     * Returns the index of the first occurrence of the specified element
-     * in this list, or -1 if this list does not contain the element.
-     * More formally, returns the lowest index {@code i} such that
-     * <tt>(o==null&nbsp;?&nbsp;get(i)==null&nbsp;:&nbsp;o.equals(get(i)))</tt>,
-     * or -1 if there is no such index.
-     *
-     * @param o element to search for
-     * @return the index of the first occurrence of the specified element in
-     *         this list, or -1 if this list does not contain the element
-     */
-    public int indexOf(Object o) {
-        int index = 0;
-        if (o == null) {
-            for (Node<E> x = first; x != null; x = x.next) {
-                if (x.item == null)
-                    return index;
-                index++;
-            }
-        } else {
-            for (Node<E> x = first; x != null; x = x.next) {
-                if (o.equals(x.item))
-                    return index;
-                index++;
-            }
-        }
-        return -1;
-    }
+	// Search Operations
 
-    /**
-     * Returns the index of the last occurrence of the specified element
-     * in this list, or -1 if this list does not contain the element.
-     * More formally, returns the highest index {@code i} such that
-     * <tt>(o==null&nbsp;?&nbsp;get(i)==null&nbsp;:&nbsp;o.equals(get(i)))</tt>,
-     * or -1 if there is no such index.
-     *
-     * @param o element to search for
-     * @return the index of the last occurrence of the specified element in
-     *         this list, or -1 if this list does not contain the element
-     */
-    public int lastIndexOf(Object o) {
-        int index = size;
-        if (o == null) {
-            for (Node<E> x = last; x != null; x = x.prev) {
-                index--;
-                if (x.item == null)
-                    return index;
-            }
-        } else {
-            for (Node<E> x = last; x != null; x = x.prev) {
-                index--;
-                if (o.equals(x.item))
-                    return index;
-            }
-        }
-        return -1;
-    }
+	/**
+	 * Returns the index of the first occurrence of the specified element in
+	 * this list, or -1 if this list does not contain the element. More
+	 * formally, returns the lowest index {@code i} such that
+	 * <tt>(o==null&nbsp;?&nbsp;get(i)==null&nbsp;:&nbsp;o.equals(get(i)))</tt>,
+	 * or -1 if there is no such index.
+	 * 
+	 * @param o
+	 *            element to search for
+	 * @return the index of the first occurrence of the specified element in
+	 *         this list, or -1 if this list does not contain the element
+	 */
+	public int indexOf(Object o) {
+		int index = 0;
+		if (o == null) {
+			for (Node<E> x = first; x != null; x = x.next) {
+				if (x.item == null)
+					return index;
+				index++;
+			}
+		} else {
+			for (Node<E> x = first; x != null; x = x.next) {
+				if (o.equals(x.item))
+					return index;
+				index++;
+			}
+		}
+		return -1;
+	}
 
-    // Queue operations.
+	/**
+	 * Returns the index of the last occurrence of the specified element in this
+	 * list, or -1 if this list does not contain the element. More formally,
+	 * returns the highest index {@code i} such that
+	 * <tt>(o==null&nbsp;?&nbsp;get(i)==null&nbsp;:&nbsp;o.equals(get(i)))</tt>,
+	 * or -1 if there is no such index.
+	 * 
+	 * @param o
+	 *            element to search for
+	 * @return the index of the last occurrence of the specified element in this
+	 *         list, or -1 if this list does not contain the element
+	 */
+	public int lastIndexOf(Object o) {
+		int index = size;
+		if (o == null) {
+			for (Node<E> x = last; x != null; x = x.prev) {
+				index--;
+				if (x.item == null)
+					return index;
+			}
+		} else {
+			for (Node<E> x = last; x != null; x = x.prev) {
+				index--;
+				if (o.equals(x.item))
+					return index;
+			}
+		}
+		return -1;
+	}
 
-    /**
-     * Retrieves, but does not remove, the head (first element) of this list.
-     *
-     * @return the head of this list, or {@code null} if this list is empty
-     * @since 1.5
-     */
-    public E peek() {
-        final Node<E> f = first;
-        return (f == null) ? null : f.item;
-    }
+	// Queue operations.
 
-    /**
-     * Retrieves, but does not remove, the head (first element) of this list.
-     *
-     * @return the head of this list
-     * @throws NoSuchElementException if this list is empty
-     * @since 1.5
-     */
-    public E element() {
-        return getFirst();
-    }
+	/**
+	 * Retrieves, but does not remove, the head (first element) of this list.
+	 * 
+	 * @return the head of this list, or {@code null} if this list is empty
+	 * @since 1.5
+	 */
+	public E peek() {
+		final Node<E> f = first;
+		return (f == null) ? null : f.item;
+	}
 
-    /**
-     * Retrieves and removes the head (first element) of this list.
-     *
-     * @return the head of this list, or {@code null} if this list is empty
-     * @since 1.5
-     */
-    public E poll() {
-        final Node<E> f = first;
-        return (f == null) ? null : unlinkFirst(f);
-    }
+	/**
+	 * Retrieves, but does not remove, the head (first element) of this list.
+	 * 
+	 * @return the head of this list
+	 * @throws NoSuchElementException
+	 *             if this list is empty
+	 * @since 1.5
+	 */
+	public E element() {
+		return getFirst();
+	}
 
-    /**
-     * Retrieves and removes the head (first element) of this list.
-     *
-     * @return the head of this list
-     * @throws NoSuchElementException if this list is empty
-     * @since 1.5
-     */
-    public E remove() {
-        return removeFirst();
-    }
+	/**
+	 * Retrieves and removes the head (first element) of this list.
+	 * 
+	 * @return the head of this list, or {@code null} if this list is empty
+	 * @since 1.5
+	 */
+	public E poll() {
+		final Node<E> f = first;
+		return (f == null) ? null : unlinkFirst(f);
+	}
 
-    private static class Node<E> {
-        E item;
-        Node<E> next;
-        Node<E> prev;
+	/**
+	 * Retrieves and removes the head (first element) of this list.
+	 * 
+	 * @return the head of this list
+	 * @throws NoSuchElementException
+	 *             if this list is empty
+	 * @since 1.5
+	 */
+	public E remove() {
+		return removeFirst();
+	}
 
-        Node(Node<E> prev, E element, Node<E> next) {
-            this.item = element;
-            this.next = next;
-            this.prev = prev;
-        }
-    }
+	private static class Node<E> {
+		E item;
+		Node<E> next;
+		Node<E> prev;
 
+		Node(Node<E> prev, E element, Node<E> next) {
+			this.item = element;
+			this.next = next;
+			this.prev = prev;
+		}
+	}
 
-    /**
-     * Returns an array containing all of the elements in this list
-     * in proper sequence (from first to last element).
-     *
-     * <p>The returned array will be "safe" in that no references to it are
-     * maintained by this list.  (In other words, this method must allocate
-     * a new array).  The caller is thus free to modify the returned array.
-     *
-     * <p>This method acts as bridge between array-based and collection-based
-     * APIs.
-     *
-     * @return an array containing all of the elements in this list
-     *         in proper sequence
-     */
-    public Object[] toArray() {
-        Object[] result = new Object[size];
-        int i = 0;
-        for (Node<E> x = first; x != null; x = x.next)
-            result[i++] = x.item;
-        return result;
-    }
+	/**
+	 * Returns an array containing all of the elements in this list in proper
+	 * sequence (from first to last element).
+	 * 
+	 * <p>
+	 * The returned array will be "safe" in that no references to it are
+	 * maintained by this list. (In other words, this method must allocate a new
+	 * array). The caller is thus free to modify the returned array.
+	 * 
+	 * <p>
+	 * This method acts as bridge between array-based and collection-based APIs.
+	 * 
+	 * @return an array containing all of the elements in this list in proper
+	 *         sequence
+	 */
+	public Object[] toArray() {
+		Object[] result = new Object[size];
+		int i = 0;
+		for (Node<E> x = first; x != null; x = x.next)
+			result[i++] = x.item;
+		return result;
+	}
 
-    /**
-     * Returns an array containing all of the elements in this list in
-     * proper sequence (from first to last element); the runtime type of
-     * the returned array is that of the specified array.  If the list fits
-     * in the specified array, it is returned therein.  Otherwise, a new
-     * array is allocated with the runtime type of the specified array and
-     * the size of this list.
-     *
-     * <p>If the list fits in the specified array with room to spare (i.e.,
-     * the array has more elements than the list), the element in the array
-     * immediately following the end of the list is set to {@code null}.
-     * (This is useful in determining the length of the list <i>only</i> if
-     * the caller knows that the list does not contain any null elements.)
-     *
-     * <p>Like the {@link #toArray()} method, this method acts as bridge between
-     * array-based and collection-based APIs.  Further, this method allows
-     * precise control over the runtime type of the output array, and may,
-     * under certain circumstances, be used to save allocation costs.
-     *
-     * <p>Suppose {@code x} is a list known to contain only strings.
-     * The following code can be used to dump the list into a newly
-     * allocated array of {@code String}:
-     *
-     * <pre>
-     *     String[] y = x.toArray(new String[0]);</pre>
-     *
-     * Note that {@code toArray(new Object[0])} is identical in function to
-     * {@code toArray()}.
-     *
-     * @param a the array into which the elements of the list are to
-     *          be stored, if it is big enough; otherwise, a new array of the
-     *          same runtime type is allocated for this purpose.
-     * @return an array containing the elements of the list
-     * @throws ArrayStoreException if the runtime type of the specified array
-     *         is not a supertype of the runtime type of every element in
-     *         this list
-     * @throws NullPointerException if the specified array is null
-     */
-    @SuppressWarnings("unchecked")
-    public <T> T[] toArray(T[] a) {
-        if (a.length < size)
-            a = (T[])java.lang.reflect.Array.newInstance(
-                                a.getClass().getComponentType(), size);
-        int i = 0;
-        Object[] result = a;
-        for (Node<E> x = first; x != null; x = x.next)
-            result[i++] = x.item;
+	/**
+	 * Returns an array containing all of the elements in this list in proper
+	 * sequence (from first to last element); the runtime type of the returned
+	 * array is that of the specified array. If the list fits in the specified
+	 * array, it is returned therein. Otherwise, a new array is allocated with
+	 * the runtime type of the specified array and the size of this list.
+	 * 
+	 * <p>
+	 * If the list fits in the specified array with room to spare (i.e., the
+	 * array has more elements than the list), the element in the array
+	 * immediately following the end of the list is set to {@code null}. (This
+	 * is useful in determining the length of the list <i>only</i> if the caller
+	 * knows that the list does not contain any null elements.)
+	 * 
+	 * <p>
+	 * Like the {@link #toArray()} method, this method acts as bridge between
+	 * array-based and collection-based APIs. Further, this method allows
+	 * precise control over the runtime type of the output array, and may, under
+	 * certain circumstances, be used to save allocation costs.
+	 * 
+	 * <p>
+	 * Suppose {@code x} is a list known to contain only strings. The following
+	 * code can be used to dump the list into a newly allocated array of
+	 * {@code String}:
+	 * 
+	 * <pre>
+	 * String[] y = x.toArray(new String[0]);
+	 * </pre>
+	 * 
+	 * Note that {@code toArray(new Object[0])} is identical in function to
+	 * {@code toArray()}.
+	 * 
+	 * @param a
+	 *            the array into which the elements of the list are to be
+	 *            stored, if it is big enough; otherwise, a new array of the
+	 *            same runtime type is allocated for this purpose.
+	 * @return an array containing the elements of the list
+	 * @throws ArrayStoreException
+	 *             if the runtime type of the specified array is not a supertype
+	 *             of the runtime type of every element in this list
+	 * @throws NullPointerException
+	 *             if the specified array is null
+	 */
+	@SuppressWarnings("unchecked")
+	public <T> T[] toArray(T[] a) {
+		if (a.length < size)
+			a = (T[]) java.lang.reflect.Array.newInstance(a.getClass()
+					.getComponentType(), size);
+		int i = 0;
+		Object[] result = a;
+		for (Node<E> x = first; x != null; x = x.next)
+			result[i++] = x.item;
 
-        if (a.length > size)
-            a[size] = null;
+		if (a.length > size)
+			a[size] = null;
 
-        return a;
-    }
+		return a;
+	}
 
 	@Override
 	public Iterator<E> iterator() {
 		return new Itr();
 	}
-	
+
 	private class Itr implements Iterator<E> {
-        /**
-         * Index of element to be returned by subsequent call to next.
-         */
-        int cursor = 0;
+		/**
+		 * Index of element to be returned by subsequent call to next.
+		 */
+		int cursor = 0;
 
-        /**
-         * Index of element returned by most recent call to next or
-         * previous.  Reset to -1 if this element is deleted by a call
-         * to remove.
-         */
-        int lastRet = -1;
+		/**
+		 * Index of element returned by most recent call to next or previous.
+		 * Reset to -1 if this element is deleted by a call to remove.
+		 */
+		int lastRet = -1;
 
-        public boolean hasNext() {
-            return cursor != size();
-        }
+		public boolean hasNext() {
+			return cursor != size();
+		}
 
-        public E next() {
-            	int i = cursor;
-                E next = get(i);
-                lastRet = i;
-                cursor = i + 1;
-                return next;
-            }
+		public E next() {
+			int i = cursor;
+			E next = get(i);
+			lastRet = i;
+			cursor = i + 1;
+			return next;
+		}
 
-        public void remove() {
-                SList.this.remove(lastRet);
-                if (lastRet < cursor)
-                    cursor--;
-                lastRet = -1;
-            }
-        }
+		public void remove() {
+			SList.this.remove(lastRet);
+			if (lastRet < cursor)
+				cursor--;
+			lastRet = -1;
+		}
+	}
 
-   }
+}

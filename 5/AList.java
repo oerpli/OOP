@@ -135,8 +135,8 @@ public class AList<E,T> extends SList<E> {
 		                
 		        }
 		        
-		        public Iterator<E> iterator(){ 
-		        	return Node.this.getAsso().iterator();
+		        public Iterator<T> iterator(){ 
+		        	return Node.this.asso.iterator();
 					//return new Itr();
 				}
 			}

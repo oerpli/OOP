@@ -1,6 +1,6 @@
 import java.util.Iterator;
 
-public class AList<E, T extends Iterator<T>> extends SList<E> {
+public class AList<E, T> extends SList<E> {
 	transient Node<E, T> first;
 	transient Node<E, T> last;
 

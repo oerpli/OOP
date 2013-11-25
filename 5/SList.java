@@ -1,29 +1,23 @@
 import java.util.Iterator;
 
 public class SList<E> implements Iterable<E> {
-	transient int size = 0;
+	protected int size = 0;
 
 	/**
-	 * Pointer to first node. Invariant: (first == null && last == null) ||
-	 * (first.prev == null && first.item != null)
+	 * Invariante: (first == null && last == null) || (first.prev == null &&
+	 * first.item != null)
 	 */
-	transient Node<E> first;
+	private Node<E> first;
 
 	/**
-	 * Pointer to last node. Invariant: (first == null && last == null) ||
-	 * (last.next == null && last.item != null)
+	 * Invariante: (first == null && last == null) || (last.next == null &&
+	 * last.item != null)
 	 */
-	transient Node<E> last;
+	private Node<E> last;
 
-	/**
-	 * Constructs an empty list.
-	 */
 	public SList() {
 	}
 
-	/**
-	 * Links e as first element.
-	 */
 	protected void linkFirst(E e) {
 		final Node<E> f = first;
 		final Node<E> newNode = new Node<>(null, e, f);// <E> || <> ?
@@ -35,9 +29,6 @@ public class SList<E> implements Iterable<E> {
 		size++;
 	}
 
-	/**
-	 * Links e as last element.
-	 */
 	void linkLast(E e) {
 		final Node<E> l = last;
 		final Node<E> newNode = new Node<>(l, e, null);
@@ -53,7 +44,7 @@ public class SList<E> implements Iterable<E> {
 	 * Inserts element e before non-null Node succ.
 	 */
 	void linkBefore(E e, Node<E> succ) {
-		// assert succ != null;
+		assert succ != null;
 		final Node<E> pred = succ.prev;
 		final Node<E> newNode = new Node<>(pred, e, succ);
 		succ.prev = newNode;
@@ -68,11 +59,9 @@ public class SList<E> implements Iterable<E> {
 	 * Unlinks non-null first node f.
 	 */
 	private E unlinkFirst(Node<E> f) {
-		// assert f == first && f != null;
+		assert f == first && f != null;
 		final E element = f.item;
 		final Node<E> next = f.next;
-		f.item = null;
-		f.next = null; // help GC
 		first = next;
 		if (next == null)
 			last = null;
@@ -89,8 +78,6 @@ public class SList<E> implements Iterable<E> {
 		assert l == last && l != null;
 		final E element = l.item;
 		final Node<E> prev = l.prev;
-		l.item = null;
-		l.prev = null; // help GC
 		last = prev;
 		if (prev == null)
 			first = null;
@@ -108,24 +95,17 @@ public class SList<E> implements Iterable<E> {
 		final E element = x.item;
 		final Node<E> next = x.next;
 		final Node<E> prev = x.prev;
-
 		if (prev == null) {
 			first = next;
 		} else {
 			prev.next = next;
-			x.prev = null;
 		}
-
 		if (next == null) {
 			last = prev;
 		} else {
 			next.prev = prev;
-			x.next = null;
 		}
-
-		x.item = null;
 		size--;
-
 		return element;
 	}
 
@@ -133,12 +113,9 @@ public class SList<E> implements Iterable<E> {
 	 * Returns the first element in this list.
 	 * 
 	 * @return the first element in this list
-	 * @throws NoSuchElementException
-	 *             if this list is empty
 	 */
-	public E getFirst() {
-		// if (first == null)
-		// throw new NoSuchElementException();
+	public E addFirst() {
+		assert first != null;
 		final Node<E> f = first;
 		return f.item;
 	}
@@ -147,12 +124,9 @@ public class SList<E> implements Iterable<E> {
 	 * Returns the last element in this list.
 	 * 
 	 * @return the last element in this list
-	 * @throws NoSuchElementException
-	 *             if this list is empty
 	 */
-	public E getLast() {
-		// if (last == null)
-		// throw new NoSuchElementException();
+	public E addLast() {
+		assert last != null;
 		final Node<E> l = last;
 		return l.item;
 	}
@@ -161,10 +135,9 @@ public class SList<E> implements Iterable<E> {
 	 * Removes and returns the first element from this list.
 	 * 
 	 * @return the first element from this list
-	 * @throws NoSuchElementException
-	 *             if this list is empty
 	 */
 	public E removeFirst() {
+		assert first != null;
 		final Node<E> f = first;
 		return unlinkFirst(f);
 	}
@@ -173,35 +146,11 @@ public class SList<E> implements Iterable<E> {
 	 * Removes and returns the last element from this list.
 	 * 
 	 * @return the last element from this list
-	 * @throws NoSuchElementException
-	 *             if this list is empty
 	 */
 	public E removeLast() {
+		assert last != null;
 		final Node<E> l = last;
 		return unlinkLast(l);
-	}
-
-	/**
-	 * Inserts the specified element at the beginning of this list.
-	 * 
-	 * @param e
-	 *            the element to add
-	 */
-	public void addFirst(E e) {
-		linkFirst(e);
-	}
-
-	/**
-	 * Appends the specified element to the end of this list.
-	 * 
-	 * <p>
-	 * This method is equivalent to {@link #add}.
-	 * 
-	 * @param e
-	 *            the element to add
-	 */
-	public void addLast(E e) {
-		linkLast(e);
 	}
 
 	/**
@@ -225,21 +174,6 @@ public class SList<E> implements Iterable<E> {
 	 */
 	public int size() {
 		return size;
-	}
-
-	/**
-	 * Appends the specified element to the end of this list.
-	 * 
-	 * <p>
-	 * This method is equivalent to {@link #addLast}.
-	 * 
-	 * @param e
-	 *            element to be appended to this list
-	 * @return {@code true} (as specified by {@link Collection#add})
-	 */
-	public boolean add(E e) {
-		linkLast(e);
-		return true;
 	}
 
 	/**
@@ -305,31 +239,10 @@ public class SList<E> implements Iterable<E> {
 	 *            index of the element to return
 	 * @return the element at the specified position in this list
 	 * @throws IndexOutOfBoundsException
-	 *             {@inheritDoc}
 	 */
 	public E get(int index) {
 		checkElementIndex(index);
 		return node(index).item;
-	}
-
-	/**
-	 * Replaces the element at the specified position in this list with the
-	 * specified element.
-	 * 
-	 * @param index
-	 *            index of the element to replace
-	 * @param element
-	 *            element to be stored at the specified position
-	 * @return the element previously at the specified position
-	 * @throws IndexOutOfBoundsException
-	 *             {@inheritDoc}
-	 */
-	public E set(int index, E element) {
-		checkElementIndex(index);
-		Node<E> x = node(index);
-		E oldVal = x.item;
-		x.item = element;
-		return oldVal;
 	}
 
 	/**
@@ -346,7 +259,6 @@ public class SList<E> implements Iterable<E> {
 	 */
 	public void add(int index, E element) {
 		checkPositionIndex(index);
-
 		if (index == -1)
 			linkLast(element);
 		else if (index == 0) {
@@ -409,8 +321,7 @@ public class SList<E> implements Iterable<E> {
 	 * Returns the (non-null) Node at the specified element index.
 	 */
 	Node<E> node(int index) {
-		// assert isElementIndex(index);
-
+		assert isElementIndex(index);
 		if (index < (size >> 1)) {
 			Node<E> x = first;
 			for (int i = 0; i < index; i++)
@@ -508,7 +419,7 @@ public class SList<E> implements Iterable<E> {
 	 * @since 1.5
 	 */
 	public E element() {
-		return getFirst();
+		return addFirst();
 	}
 
 	/**
@@ -536,37 +447,19 @@ public class SList<E> implements Iterable<E> {
 
 	private static class Node<E> {
 		E item;
+		/**
+		 * Invariante: Es gibt jeweils maximal 1 Node mit next == null und prev
+		 * == null.
+		 */
 		Node<E> next;
 		Node<E> prev;
 
 		Node(Node<E> prev, E element, Node<E> next) {
+			assert item != null;
 			this.item = element;
 			this.next = next;
 			this.prev = prev;
 		}
-	}
-
-	/**
-	 * Returns an array containing all of the elements in this list in proper
-	 * sequence (from first to last element).
-	 * 
-	 * <p>
-	 * The returned array will be "safe" in that no references to it are
-	 * maintained by this list. (In other words, this method must allocate a new
-	 * array). The caller is thus free to modify the returned array.
-	 * 
-	 * <p>
-	 * This method acts as bridge between array-based and collection-based APIs.
-	 * 
-	 * @return an array containing all of the elements in this list in proper
-	 *         sequence
-	 */
-	public Object[] toArray() {
-		Object[] result = new Object[size];
-		int i = 0;
-		for (Node<E> x = first; x != null; x = x.next)
-			result[i++] = x.item;
-		return result;
 	}
 
 	/**
@@ -612,22 +505,6 @@ public class SList<E> implements Iterable<E> {
 	 * @throws NullPointerException
 	 *             if the specified array is null
 	 */
-	@SuppressWarnings("unchecked")
-	public <T> T[] toArray(T[] a) {
-		if (a.length < size)
-			a = (T[]) java.lang.reflect.Array.newInstance(a.getClass()
-					.getComponentType(), size);
-		int i = 0;
-		Object[] result = a;
-		for (Node<E> x = first; x != null; x = x.next)
-			result[i++] = x.item;
-
-		if (a.length > size)
-			a[size] = null;
-
-		return a;
-	}
-
 	@Override
 	public Iterator<E> iterator() {
 		return new Itr();

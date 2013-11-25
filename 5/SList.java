@@ -258,7 +258,7 @@ public class SList<E> implements Iterable<E> {
 	/**
 	 * Tells if the argument is the index of an existing element.
 	 */
-	private boolean isElementIndex(int index) {
+	protected boolean isElementIndex(int index) {
 		return index >= 0 && index < size;
 	}
 
@@ -436,7 +436,7 @@ public class SList<E> implements Iterable<E> {
 		return new Itr();
 	}
 
-	private class Itr implements Iterator<E> {
+	protected class Itr implements Iterator<E> {
 		/**
 		 * Index of element to be returned by subsequent call to next.
 		 */
@@ -467,5 +467,4 @@ public class SList<E> implements Iterable<E> {
 			lastRet = -1;
 		}
 	}
-
 }

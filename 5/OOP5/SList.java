@@ -1,4 +1,5 @@
 package OOP5;
+
 import java.util.Iterator;
 
 public class SList<E> implements Iterable<E> {
@@ -8,14 +9,16 @@ public class SList<E> implements Iterable<E> {
 	 * Invariante: (first == null && last == null) || ((first.prev == null &&
 	 * first.item != null)&&(last.next == null && last.item != null))
 	 */
-	private Node<E> first, last;
+	protected Node<E> first;
+
+	protected Node<E> last;
 
 	public SList() {
 	}
 
-	private void linkFirst(E e) {
+	protected void linkFirst(E e) {
 		final Node<E> f = first;
-		final Node<E> newNode = new Node<>(null, e, f);// <E> || <> ?
+		final Node<E> newNode = new Node<>(null, e, f);
 		first = newNode;
 		if (f == null)
 			last = newNode;
@@ -24,7 +27,7 @@ public class SList<E> implements Iterable<E> {
 		size++;
 	}
 
-	private void linkLast(E e) {
+	protected void linkLast(E e) {
 		final Node<E> l = last;
 		final Node<E> newNode = new Node<>(l, e, null);
 		last = newNode;
@@ -38,7 +41,7 @@ public class SList<E> implements Iterable<E> {
 	/**
 	 * Inserts element e before non-null Node succ.
 	 */
-	private void linkBefore(E e, Node<E> succ) {
+	protected void linkBefore(E e, Node<E> succ) {
 		assert succ != null;
 		final Node<E> pred = succ.prev;
 		final Node<E> newNode = new Node<>(pred, e, succ);
@@ -164,21 +167,21 @@ public class SList<E> implements Iterable<E> {
 	 * @return {@code true} if this list contained the specified element
 	 */
 	public boolean remove(Object o) {
-		if (o == null) {
-			for (Node<E> x = first; x != null; x = x.next) {
-				if (x.item == null) {
-					unlink(x);
-					return true;
-				}
-			}
-		} else {
-			for (Node<E> x = first; x != null; x = x.next) {
-				if (o.equals(x.item)) {
-					unlink(x);
-					return true;
-				}
+		// if (o == null) {
+		// for (Node<E> x = first; x != null; x = x.next) {
+		// if (x.item == null) {
+		// unlink(x);
+		// return true;
+		// }
+		// }
+		// } else {
+		for (Node<E> x = first; x != null; x = x.next) {
+			if (o.equals(x.item)) {
+				unlink(x);
+				return true;
 			}
 		}
+		// }
 		return false;
 	}
 

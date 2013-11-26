@@ -96,7 +96,6 @@ public class AList<E, T> extends SList<E> {
 		// }
 	}
 
-	@Override
 	public Iterator<E> iterator() {
 		return new Itr2();
 	}

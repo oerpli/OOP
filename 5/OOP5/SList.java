@@ -243,6 +243,11 @@ public class SList<E> implements Iterable<E> {
 			linkBefore(element, node(index));
 	}
 
+	
+	public boolean add(E e) {
+		     linkLast(e);
+		    return true;
+		   }
 	/**
 	 * Removes the element at the specified position in this list. Shifts any
 	 * subsequent elements to the left (subtracts one from their indices).

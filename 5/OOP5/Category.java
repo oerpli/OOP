@@ -1,5 +1,5 @@
 package OOP5;
-public abstract class Category<T> implements Dependent<T> {
+public abstract class Category implements Dependent<Category> {
 	/**
 	 * Invariante: used >= 0;
 	 */
@@ -10,10 +10,10 @@ public abstract class Category<T> implements Dependent<T> {
 		return used;
 	}
 
-	public boolean dependsOn(Category<?> y) {
+	public boolean dependsOn(Category y) {
 		this.used++;
 		y.used++;
 		return (this.getClass() == y.getClass()) && this.uncheckedDependsOn(y);
 	}
-	protected abstract boolean uncheckedDependsOn(Category<?> y);
+	protected abstract boolean uncheckedDependsOn(Category that);
 }

@@ -13,12 +13,6 @@ public class IntCategory extends Category {
 		return false;
 	}
 
-	@Override
-	public boolean dependsOn(Object element) {
-		// TODO Auto-generated method stub
-		return false;
-	}
-
 	public String toString() {
 		return "" + "a= " + a + "\n" + "b= " + b;
 	}

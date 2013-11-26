@@ -1,5 +1,5 @@
 package OOP5;
-public class CharCategory extends Category<Character> {
+public class CharCategory extends Category {
 	private char zeichen;
 
 	public CharCategory(char zeichen) {
@@ -15,17 +15,10 @@ public class CharCategory extends Category<Character> {
 	}
 
 	@Override
-	protected boolean uncheckedDependsOn(Category<?> y) {
+	protected boolean uncheckedDependsOn(Category y) {
 		char zeichen1 = ((CharCategory) y).getChar();
 		if (this.getChar() == zeichen1)
 			return true;
 		return false;
 	}
-
-	@Override
-	public boolean dependsOn(Character element) {
-		return false;
-
-	}
-
 }

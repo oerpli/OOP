@@ -78,6 +78,10 @@ public class AList<E, T> extends SList<E> {
 		}
 	}
 
+	public E get(int index) {
+		checkElementIndex(index);
+		return node1(index).item;
+	}
 	static class Node<E, T> {
 		E item;
 		SList<T> asso;

@@ -288,7 +288,7 @@ public class SList<E> implements Iterable<E> {
 		return "Index: " + index + ", Size: " + size;
 	}
 
-	private void checkElementIndex(int index) {
+	protected void checkElementIndex(int index) {
 		if (!isElementIndex(index))
 			throw new IndexOutOfBoundsException(outOfBoundsMsg(index));
 	}

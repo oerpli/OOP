@@ -78,7 +78,7 @@ public class AList<E, T> extends SList<E> {
 		}
 	}
 
-	private static class Node<E, T> {
+	static class Node<E, T> {
 		E item;
 		SList<T> asso;
 		Node<E, T> next;

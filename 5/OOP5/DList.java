@@ -12,18 +12,41 @@ public class DList<A extends Dependent<? super A>, B> extends AList<A, B> {
 
 	public boolean consistent() {
 		Iterator<A> iter = this.iterator();
-		Iterator<A> iter1 = this.iterator();
-		Boolean bool;
+		Boolean bool=true;
+		Boolean bool1=false;
+		Boolean bool2=false;
 		A f = null;
+		A k = null;
 		for (int i = 0; i < this.size(); i++) {
-			if(iter1.hasNext()) f=iter1.next();
-			while (iter.hasNext()) {
-				A k = iter.next();
-				if(k.dependsOn(f)) return false;
+			bool1=false;
+			if(iter.hasNext()) f=iter.next() ;
+					else break;
+			Iterator<A> iter1 = this.iterator();
+			if(iter1.hasNext())k=iter1.next(); 
+			while(true){
+				if(!(k.equals(f))&&!bool1&&iter1.hasNext()) k=iter1.next();
+				else if(k.equals(f)&&!bool1) {
+					bool1=true;
+					if(iter1.hasNext())k=iter1.next();
+				}
+				else if(!(k.equals(f))&&bool1) break;
+				else if(k.equals(f)&&bool1&&!iter1.hasNext()){
+					bool2=true;
+					break;
+				};
+			}
+			if(!bool2){
+			if(f.dependsOn(k)) return false;
+			
+			while (iter1.hasNext()) {
+				k = iter1.next();
+				if(f.dependsOn(k)) return false;
+			}
 			}
 		}
 		return true;
 
 	}
+
 
 }

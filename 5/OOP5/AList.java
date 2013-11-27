@@ -99,42 +99,6 @@ public class AList<E,T> extends SList<E> {
 			return asso;
 		}
 	}
-/*
-	public Iterator<E> iterator() {
-		return new Itr();
-	}
-		
-		  protected class Itr2 extends Itr {
-		  
-		  public Iterator<T> iterator() { return node1(cursor).asso.iterator();
-		  } }
-		 
-
-		class Itr implements Iterator<E> {
-			 
-			int cursor = 0;
-
-			int lastRet = -1;
-
-			public boolean hasNext() {
-				return cursor < size();
-			}
-
-			public E next() {
-				E next = get(cursor);
-				lastRet = cursor;
-				cursor += 1;
-				return next;
-			}
-
-			public void remove() {
-			}
-
-			public Iterator<T> iterator() {
-				return node1(cursor).asso.iterator();
-			}
-
-		}*/
 
 	public Iterable_Iterator iterator() {
 		 return new ListIterator();

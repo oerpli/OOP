@@ -10,8 +10,9 @@ public class IntCategory extends Category {
 
 	protected boolean uncheckedDependsOn(Category that) {
 		IntCategory y = (IntCategory) that;
-		if ((this.getA() == y.getA())&&(this.getB() == y.getB() || (this.getB() > y.getB())))
+		if ((this.getA() == y.getA())&&(this.getB() >= y.getB())){
 			return true;
+		}
 		return false;
 	}
 

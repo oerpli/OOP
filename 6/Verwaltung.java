@@ -3,7 +3,7 @@ class Verwaltung {
 		return 5;
 	}
 	
-	public Ware store(int) {
+	public Ware remove(int) {
 		return null;
 	}
 	

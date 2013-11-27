@@ -82,7 +82,7 @@ public class AList<E, T> extends SList<E> {
 		checkElementIndex(index);
 		return node1(index).item;
 	}
-	static class Node<E, T> {
+	protected static class Node<E, T> {
 		E item;
 		SList<T> asso;
 		Node<E, T> next;
@@ -94,17 +94,35 @@ public class AList<E, T> extends SList<E> {
 			this.next = next;
 			this.prev = prev;
 		}
-		//
-		// protected SList<T> getAsso() {
-		// return asso;
-		// }
+		
+	 public SList<T> getAsso() {
+		 return asso;
+		 }
 	}
-
+	
 	public Iterator<E> iterator() {
 		return new Itr2();
 	}
 
 	protected class Itr2 extends Itr {
+		
+		int cursor = 0;
+
+		int lastRet = -1;
+
+		public boolean hasNext() {
+			return cursor != size();
+		}
+
+		public Node<E, T> nextAList() {
+			int i = cursor;
+			lastRet = i;
+			cursor = i + 1;
+			return node1(cursor);
+		}
+
+		public void remove() {
+		}
 		public Iterator<T> iterator() {
 			return node1(cursor).asso.iterator();
 		}

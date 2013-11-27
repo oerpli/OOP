@@ -10,4 +10,8 @@ public class Prefixed implements Dependent<Prefixed> {
 	public boolean dependsOn(Prefixed element) {
 		return string.startsWith(element.string);
 	}
+	
+	public String toString(){
+		return string;
+	}
 }

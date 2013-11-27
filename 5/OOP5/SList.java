@@ -234,7 +234,6 @@ public class SList<E> implements Iterable<E> {
 	 *             {@inheritDoc}
 	 */
 	public void add(int index, E element) {
-		checkPositionIndex(index);
 		if (index == -1)
 			linkLast(element);
 		else if (index == 0) {

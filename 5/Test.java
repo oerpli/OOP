@@ -38,12 +38,9 @@ public class Test {
 		asso[1]=2;
 			
 		Integer[] asso1=new Integer[1];
-		asso[0]=2;
-		asso[1]=2;
-		
+		asso1[0]=2;
+				
 		Integer[] asso2=new Integer[0];
-		asso[0]=2;
-		asso[1]=2;
 		
 		AList<String,Integer> list1=new AList<String,Integer>();
 	
@@ -51,10 +48,17 @@ public class Test {
 		list1.add(-1, word1, asso1);
 		list1.add(-1, word2, asso2);
 				
-		Iterator<String> iter2=list1.iterator();
-		while(iter2.hasNext())
+		Iterable_Iterator it = list1.iterator();
+		Iterator it2;
+		while(it.hasNext())
 		{
-			System.out.println(iter2.next().toString());
+			it2 = it.iterator();
+			System.out.println(it.next().toString());
+			while(it2.hasNext())
+			{
+				System.out.println(it2.next().toString());
+			}
+			
 		}
 				
 		
@@ -82,7 +86,6 @@ public class Test {
 		dl.add(-1, ii2, cca2);
 		dl.add(-1, ii3, cca3);
 		System.out.println(dl.consistent()); // == false, weil min. ein dependsOn der Elemente true gegeben hat
-		
 		
 	}
 }

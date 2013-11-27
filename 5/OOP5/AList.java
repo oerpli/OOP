@@ -2,7 +2,7 @@ package OOP5;
 
 import java.util.Iterator;
 
-public class AList<E, T> extends SList<E> {
+public class AList<E,T> extends SList<E> {
 	private Node<E, T> first;
 	private Node<E, T> last;
 
@@ -18,8 +18,7 @@ public class AList<E, T> extends SList<E> {
 				linkFirst(element, List);
 			} else
 				linkBefore(element, List, node1(index));
-		}// TODO könnte man glaub ersetzen mit
-			// super.add(index, element);
+		}
 
 	}
 
@@ -82,6 +81,7 @@ public class AList<E, T> extends SList<E> {
 		checkElementIndex(index);
 		return node1(index).item;
 	}
+
 	protected static class Node<E, T> {
 		E item;
 		SList<T> asso;
@@ -94,37 +94,80 @@ public class AList<E, T> extends SList<E> {
 			this.next = next;
 			this.prev = prev;
 		}
-		
-	 public SList<T> getAsso() {
-		 return asso;
-		 }
-	}
-	
-	public Iterator<E> iterator() {
-		return new Itr2();
-	}
 
-	protected class Itr2 extends Itr {
+		public SList<T> getAsso() {
+			return asso;
+		}
+	}
+/*
+	public Iterator<E> iterator() {
+		return new Itr();
+	}
 		
+		  protected class Itr2 extends Itr {
+		  
+		  public Iterator<T> iterator() { return node1(cursor).asso.iterator();
+		  } }
+		 
+
+		class Itr implements Iterator<E> {
+			 
+			int cursor = 0;
+
+			int lastRet = -1;
+
+			public boolean hasNext() {
+				return cursor < size();
+			}
+
+			public E next() {
+				E next = get(cursor);
+				lastRet = cursor;
+				cursor += 1;
+				return next;
+			}
+
+			public void remove() {
+			}
+
+			public Iterator<T> iterator() {
+				return node1(cursor).asso.iterator();
+			}
+
+		}*/
+
+	public Iterable_Iterator iterator() {
+		 return new ListIterator();
+	 }
+	class ListIterator implements Iterable_Iterator<E,T> {
+
+		 
 		int cursor = 0;
 
 		int lastRet = -1;
-
-		public boolean hasNext() {
-			return cursor != size();
-		}
-
-		public Node<E, T> nextAList() {
-			int i = cursor;
-			lastRet = i;
-			cursor = i + 1;
-			return node1(cursor);
-		}
-
-		public void remove() {
-		}
+		@Override
 		public Iterator<T> iterator() {
 			return node1(cursor).asso.iterator();
 		}
+
+		@Override
+		public boolean hasNext() {
+			return cursor < size();
+		}
+
+		@Override
+		public E next() {
+			E next = get(cursor);
+			lastRet = cursor;
+			cursor += 1;
+			return next;
+		}
+
+		@Override
+		public void remove() {
+			// TODO Auto-generated method stub
+			
+		}
+		
 	}
 }

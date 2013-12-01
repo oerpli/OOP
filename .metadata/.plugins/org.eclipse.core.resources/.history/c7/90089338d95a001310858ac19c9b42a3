@@ -1,0 +1,5 @@
+public class LP18 extends Lagerplatz {
+	public LP18(int s) {
+		super(s);
+	}
+}

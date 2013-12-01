@@ -1,0 +1,7 @@
+public class Ware30 extends Ware {
+
+	public Ware30(int n, String t) {
+		super(n, t);
+	}
+
+}

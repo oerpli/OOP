@@ -1,0 +1,10 @@
+public class Lager {
+	Lagerplatz[][] lp = new Lagerplatz[4][];
+
+	public Lager(int L_30, int L_18, int L5, int L20) {
+		this.lp[0] = new Lagerplatz[L_30];
+		this.lp[0] = new Lagerplatz[L_18];
+		this.lp[0] = new Lagerplatz[L5];
+		this.lp[0] = new Lagerplatz[L20];
+	}
+}

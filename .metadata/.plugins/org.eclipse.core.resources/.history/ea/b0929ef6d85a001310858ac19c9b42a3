@@ -1,0 +1,8 @@
+
+public class W18 extends Ware {
+
+	public W18(int n, String t) {
+		super(n, t);
+	}
+
+}

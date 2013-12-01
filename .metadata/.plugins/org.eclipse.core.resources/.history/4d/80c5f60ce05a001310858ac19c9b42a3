@@ -1,0 +1,11 @@
+public class W5 extends Ware {
+	public W5(String t) {
+		super(t);
+	}
+
+	@Override
+	protected void setT(int T) {
+		// TODO Auto-generated method stub
+
+	}
+}

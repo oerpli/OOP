@@ -1,0 +1,7 @@
+abstract class Lagerplatz {
+	Ware[] waren;
+
+	Lagerplatz(int size) {
+		waren = new Ware[size];
+	}
+}

@@ -1,0 +1,5 @@
+public class Lager30 extends Lagerplatz {
+	public Lager30(int s) {
+		super(s);
+	}
+}

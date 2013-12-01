@@ -1,0 +1,58 @@
+public class LagerVerwaltung {
+	Lagerplatz[] lp = new Lagerplatz[4];
+
+	public LagerVerwaltung(int L_30, int L_18, int L5, int L20) {
+		this.lp[0] = new Lagerplatz(L_30);
+		this.lp[1] = new Lagerplatz(L_18);
+		this.lp[2] = new Lagerplatz(L5);
+		this.lp[3] = new Lagerplatz(L20);
+	}
+
+	private int store(Ware w, int L) {
+		if (lp[L].store(w)) {
+			return 1;
+		} else if (L % 2 == 1 && lp[L - 1].store(w)) {
+			return 0;
+		} else
+			return -1;
+	}
+
+	public int store(Ware ware) {
+		return L.store(ware);
+	}
+
+	public String inventar() {
+		return "";
+	}
+
+	public String utilization() {
+		return "";
+	}
+
+	protected int store(W5 w) {
+		return store(w, 2);
+	}
+
+	protected int store(W20 w) {
+		return store(w, 3);
+	}
+
+	protected int store(W18 w) {
+		return store(w, 1);
+	}
+
+	protected int store(W30 w) {
+		return store(w, 0);
+	}
+
+	protected Ware remove(int nr) {
+		Ware w;
+		for (Lagerplatz LP : lp) {
+			w = LP.remove(nr);
+			if (w != null)
+				
+			break
+		}
+		return null;
+	}
+}

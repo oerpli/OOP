@@ -1,0 +1,19 @@
+class Verwaltung {
+	private Lager L;
+
+	public int store(Ware ware) {
+		return L.store(ware);
+	}
+
+	public Ware remove(int nr) {
+		return L.remove(nr);
+	}
+
+	public String inventar() {
+		return L.inv();
+	}
+
+	public String utilization() {
+		return L.util();
+	}
+}

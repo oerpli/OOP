@@ -1,0 +1,17 @@
+abstract class Lagerplatz {
+	Ware[] waren;
+
+	Lagerplatz(int size) {
+		waren = new Ware[size];
+	}
+
+	protected boolean store(Ware w) {
+		for (int i = 0; i < waren.size; i++) {
+			if (waren[i] == null) {
+				waren[i] = w;
+				return true;
+			}
+		}
+		return false;
+	}
+}

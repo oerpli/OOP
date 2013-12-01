@@ -1,0 +1,4 @@
+abstract class Ware {
+	int number;
+	String name;
+}

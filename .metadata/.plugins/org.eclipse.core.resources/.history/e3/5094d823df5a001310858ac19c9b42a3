@@ -1,7 +1,0 @@
-public class W30 extends Ware {
-
-	public W30(String t) {
-		super(t);
-	}
-
-}

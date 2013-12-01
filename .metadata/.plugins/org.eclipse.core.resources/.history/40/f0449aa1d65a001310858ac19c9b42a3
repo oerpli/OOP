@@ -1,7 +1,0 @@
-public class Lager {
-	Lagerplatz[][] lp;
-
-	public Lager(int L_30, int L_18, int L5, int L20) {
-		this.
-	}
-}

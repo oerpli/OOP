@@ -1,9 +1,0 @@
-import java.util.ArrayList;
-
-abstract class Lager {
-	Ware[] waren;
-
-	Lager(int size) {
-		waren = new Ware[size];
-	}
-}

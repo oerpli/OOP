@@ -1,5 +1,0 @@
-public class LP20 extends Lagerplatz {
-	public LP20(int s) {
-		super(s);
-	}
-}

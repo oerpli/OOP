@@ -1,5 +1,0 @@
-public class W5 extends Ware {
-	public W5(int n, String t) {
-		super(n, t);
-	}
-}

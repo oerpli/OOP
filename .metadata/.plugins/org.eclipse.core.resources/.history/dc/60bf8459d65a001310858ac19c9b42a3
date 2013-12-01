@@ -1,5 +1,0 @@
-public class Lager5 extends Lager {
-	public Lager5(int s) {
-		super(s);
-	}
-}

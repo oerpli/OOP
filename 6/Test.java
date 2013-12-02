@@ -12,13 +12,13 @@ public class Test {
 		waren[N++] = new W20("Glas");// 4
 		waren[N++] = new W20("Cinnamon Chips");// 5 -- muss ins falsche Lager
 		waren[N++] = new W20("Nagelzwicker");// 6 -- passt nicht mehr rein. :(
-		waren[N++] = new W18("Eisw�rfel"); // 7
+		waren[N++] = new W18("Eiswuerfel"); // 7
 		waren[N++] = new W18("Schnee"); // 8 -- muss ins -30�C Lager
 		waren[N++] = new W18("Fisch");// 9 -- passt nicht mehr rein.
 		System.out
-				.println("Einlagern aller Gegenst�nde in Lager x."
+				.println("Einlagern aller Gegenstaende in Lager x."
 						+ "\n Wenn Ware in richtigem Lager return == 1,"
-						+ "\n wenn Waren in m�glichem aber nicht optimalem Lager return == 0,"
+						+ "\n wenn Waren in moeglichem aber nicht optimalem Lager return == 0,"
 						+ "\n wenn kein Lager frei return == 0");
 
 		for (int i = 0; i < N; i++) {
@@ -50,9 +50,9 @@ public class Test {
 		waren[N++] = new W20("Cinnamon Chips");// 3
 		waren[N++] = new W20("Teppich");// 4 - kein Lagerplatz -> gekühlt gelagert.
 		waren[N++] = new W5("Glas");// 5 - kein Lagerplatz mehr für 5 Grad
-		System.out.println("Einlagern aller Gegenstände in Lager x."
+		System.out.println("Einlagern aller Gegenstaende in Lager x."
 						+ "\n Wenn Ware in richtigem Lager return == 1,"
-						+ "\n wenn Waren in möglichem aber nicht optimalem Lager return == 0,"
+						+ "\n wenn Waren in moeglichem aber nicht optimalem Lager return == 0,"
 						+ "\n wenn kein Lager frei return == 0");
 
 		for (int i = 0; i < N; i++) {
@@ -73,9 +73,9 @@ public class Test {
 		waren[N++] = new W18("Haus"); // 2
 		waren[N++] = new W18("Cola");// 3 - kein Lagerplatz -> bei -30 eingelagert.
 		waren[N++] = new W30("Fahrrad");// 4 -> kein Lagerplatz für 30
-		System.out.println("Einlagern aller Gegenstände in Lager x."
+		System.out.println("Einlagern aller Gegenstaende in Lager x."
 						+ "\n Wenn Ware in richtigem Lager return == 1,"
-						+ "\n wenn Waren in möglichem aber nicht optimalem Lager return == 0,"
+						+ "\n wenn Waren in moeglichem aber nicht optimalem Lager return == 0,"
 						+ "\n wenn kein Lager frei return == 0");
 
 		for (int i = 0; i < N; i++) {

@@ -13,6 +13,7 @@ public abstract class Ware {
 
 	protected abstract void setT(int T);
 
+	// Visitor pattern
 	protected abstract int storeIn(Lager l);
 
 	public String toString() {

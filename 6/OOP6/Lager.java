@@ -5,7 +5,7 @@ public class Lager {
 
 	/**
 	 * Erzeugt neues Lager Objekt. Parameter ( alle >= 0) geben Anzahl der
-	 * jeweiligen Lagerpl�tze an.
+	 * jeweiligen Lagerplätze an.
 	 * 
 	 * @param L_30
 	 * @param L_18
@@ -17,20 +17,20 @@ public class Lager {
 		assert L_18 >= 0;
 		assert L5 >= 0;
 		assert L20 >= 0;
-		this.lp[0] = new Lagerplatz(L_30, "-30�C", -30);
-		this.lp[1] = new Lagerplatz(L_18, "-18�C", -18);
-		this.lp[2] = new Lagerplatz(L5, "5�C", 5);
-		this.lp[3] = new Lagerplatz(L20, "20�C", 20);
+		this.lp[0] = new Lagerplatz(L_30, "-30°C", -30);
+		this.lp[1] = new Lagerplatz(L_18, "-18°C", -18);
+		this.lp[2] = new Lagerplatz(L5, "5°C", 5);
+		this.lp[3] = new Lagerplatz(L20, "20°C", 20);
 	}
 
 	/**
-	 * Lagert ware ein wenn m�glich.
+	 * Lagert ware ein wenn möglich.
 	 * 
 	 * @param ware
 	 *            Einzulagerndes ware- objekt. Darf nicht null sein.
-	 * @return gibt 1 bei Erfolg zur�ck (ware im richtigen Lager), 0 bei
+	 * @return gibt 1 bei Erfolg zurück (ware im richtigen Lager), 0 bei
 	 *         Semierfolg (ware in einem nicht optimalen Lager) und -1 bei
-	 *         Misserfolg (kein Platz f�r Ware)
+	 *         Misserfolg (kein Platz für Ware)
 	 */
 	public int store(Ware ware) {
 		assert ware != null;
@@ -38,7 +38,7 @@ public class Lager {
 	}
 
 	/**
-	 * Entfernt Ware mit Nummer nr aus Lager und gibt Referenz zur�ck. null wenn
+	 * Entfernt Ware mit Nummer nr aus Lager und gibt Referenz zurück. null wenn
 	 * nr nicht vorhanden.
 	 * 
 	 * @param nr
@@ -88,7 +88,7 @@ public class Lager {
 	}
 
 	protected int store(Ware w, int L) {
-		assert(L<4&& L=>0)
+		assert L<4&&L>=4;
 		if (lp[L].store(w)) {
 			return 1;
 		} else if (L % 2 == 1 && lp[L - 1].store(w)) {

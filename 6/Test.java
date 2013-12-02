@@ -12,13 +12,13 @@ public class Test {
 		waren[N++] = new W20("Glas");// 4
 		waren[N++] = new W20("Cinnamon Chips");// 5 -- muss ins falsche Lager
 		waren[N++] = new W20("Nagelzwicker");// 6 -- passt nicht mehr rein. :(
-		waren[N++] = new W18("Eiswürfel"); // 7
-		waren[N++] = new W18("Schnee"); // 8 -- muss ins -30°C Lager
+		waren[N++] = new W18("EiswÃ¼rfel"); // 7
+		waren[N++] = new W18("Schnee"); // 8 -- muss ins -30Â°C Lager
 		waren[N++] = new W18("Burger");// 9 -- passt nicht mehr rein.
 		System.out
-				.println("Einlagern aller Gegenstände in Lager x."
+				.println("Einlagern aller GegenstÃ¤nde in Lager x."
 						+ "\n Wenn Ware in richtigem Lager return == 1,"
-						+ "\n wenn Waren in möglichem aber nicht optimalem Lager return == 0,"
+						+ "\n wenn Waren in mÃ¶glichem aber nicht optimalem Lager return == 0,"
 						+ "\n wenn kein Lager frei return == 0");
 
 		for (int i = 0; i < N; i++) {

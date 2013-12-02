@@ -8,7 +8,7 @@ public abstract class Ware {
 
 	/**
 	 * Erzeugt neues Ware Objekt. t sollte nicht null sein (obwohl es zu keinen
-	 * Fehlern führen sollte).
+	 * Fehlern fuhren sollte).
 	 * 
 	 * @param t
 	 *            Name
@@ -22,7 +22,7 @@ public abstract class Ware {
 	/**
 	 * Temperatur T wird Objekt nach einlagern zugewiesen. Wenn Temperatur im
 	 * Laufe des Produktlebens einmal nicht zu Objekt passt, wird bei der
-	 * toString Methode automatisch ein "vergammelt" ergänzt. -- für
+	 * toString Methode automatisch ein "vergammelt" ergÃ¤nzt. -- fur
 	 * Debugzwecke. Im Optimalfall macht es sich niemals bemerkbar.
 	 * 
 	 * @param T
@@ -31,7 +31,7 @@ public abstract class Ware {
 	protected abstract void setT(int T);
 
 	/**
-	 * Visitor pattern. Lager wird übergeben und anschließend in allen
+	 * Visitor pattern. Lager wird Ã¼bergeben und anschlieÃŸend in allen
 	 * Untertypen mit der richtigen Funktion aufgerufen.
 	 * 
 	 * @param l

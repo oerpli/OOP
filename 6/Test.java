@@ -12,30 +12,33 @@ public class Test {
 		waren[N++] = new W20("Glas");// 4
 		waren[N++] = new W20("Cinnamon Chips");// 5 -- muss ins falsche Lager
 		waren[N++] = new W20("Nagelzwicker");// 6 -- passt nicht mehr rein. :(
-		waren[N++] = new W18("EiswÃ¼rfel"); // 7
-		waren[N++] = new W18("Schnee"); // 8 -- muss ins -30Â°C Lager
+		waren[N++] = new W18("Eiswürfel"); // 7
+		waren[N++] = new W18("Schnee"); // 8 -- muss ins -30°C Lager
 		waren[N++] = new W18("Burger");// 9 -- passt nicht mehr rein.
 		System.out
-				.println("Einlagern aller GegenstÃ¤nde in Lager x."
+				.println("Einlagern aller Gegenstände in Lager x."
 						+ "\n Wenn Ware in richtigem Lager return == 1,"
-						+ "\n wenn Waren in mÃ¶glichem aber nicht optimalem Lager return == 0,"
+						+ "\n wenn Waren in möglichem aber nicht optimalem Lager return == 0,"
 						+ "\n wenn kein Lager frei return == 0");
 
 		for (int i = 0; i < N; i++) {
 			System.out.println(i + ": " + x.store(waren[i]));
 		}
 		System.out.println("Einlagern fertig.\n");
-		System.out.println("Inventar:\n" + x.inventar());
-		System.out.println(x.utilization());
+		System.out.println("Inventar:\n");
+		x.inventar();
+		x.utilization();
 		System.out.println("Entfernt: " + x.remove(2));
 
 		// null (weil noch nicht eingelagert)
 		System.out.println("Entfernt: " + x.remove(6));
-		System.out.println(x.utilization());
+		x.utilization();
 
 		// jetzt wieder Platz im (nicht optimalem Lager):
 		System.out.println(x.store(waren[6]));
-		System.out.println("Inventar:\n" + x.inventar());
+		System.out.println("Inventar:\n");
+		x.inventar();
+		x.utilization();
 
 	}
 }

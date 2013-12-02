@@ -15,6 +15,6 @@ public class W5 extends Ware {
 	@Override
 	public int storeIn(Lager l) {
 		assert l != null;
-		return l.store(this, 2);
+		return l.store5(this);
 	}
 }

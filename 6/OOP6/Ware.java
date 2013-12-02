@@ -31,7 +31,7 @@ public abstract class Ware {
 	protected abstract void setT(int T);
 
 	/**
-	 * Visitor pattern. Lager wird übergeben und anschließend in allen
+	 * Visitor pattern. Lager wird �bergeben und anschliessend in allen
 	 * Untertypen mit der richtigen Funktion aufgerufen.
 	 * 
 	 * @param l

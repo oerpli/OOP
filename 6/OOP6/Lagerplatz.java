@@ -42,7 +42,7 @@ class Lagerplatz {
 				x[0] += 1;
 			}
 		}
-		assert x[0] <= x[1]; // maximal N von N PlÃ¤tzen belegt.
+		assert x[0] <= x[1]; // maximal N von N Plätzen belegt.
 		return x;
 	}
 

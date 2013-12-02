@@ -5,7 +5,7 @@ public class Lager {
 
 	/**
 	 * Erzeugt neues Lager Objekt. Parameter ( alle >= 0) geben Anzahl der
-	 * jeweiligen LagerplÃ¤tze an.
+	 * jeweiligen Lagerplaetze an.
 	 * 
 	 * @param L_30
 	 * @param L_18
@@ -24,7 +24,7 @@ public class Lager {
 	}
 
 	/**
-	 * Lagert ware ein wenn möglich. Ruft die storeIn Funktion der ware auf -
+	 * Lagert ware ein wenn moeglich. Ruft die storeIn Funktion der ware auf -
 	 * die Ware sagt dann, in welches Lager sie bevorzugt will (über aufrufen
 	 * der entsprechenden storeXX(Ware) Funktion.
 	 * 
@@ -40,7 +40,7 @@ public class Lager {
 	}
 
 	/**
-	 * Entfernt Ware mit Nummer nr aus Lager und gibt Referenz zurÃ¼ck. null
+	 * Entfernt Ware mit Nummer nr aus Lager und gibt Referenz zurueck. null
 	 * wenn nr nicht vorhanden.
 	 * 
 	 * @param nr
@@ -67,7 +67,7 @@ public class Lager {
 			out += "Im " + lp[i].getType() + "-Lager:\n";
 			out += lp[i].inv();
 		}
-		// Man könnte auch jede Zeile einzeln ausgeben anstatt den String
+		// Man koennte auch jede Zeile einzeln ausgeben anstatt den String
 		// aufzubauen und auf einmal ausgeben. (ebenso bei utilization();)
 		System.out.println(out);
 	}

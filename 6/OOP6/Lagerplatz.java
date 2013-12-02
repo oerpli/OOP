@@ -12,6 +12,7 @@ class Lagerplatz {
 	}
 
 	protected boolean store(Ware w) {
+		assert w != null;
 		for (int i = 0; i < waren.length; i++) {
 			if (waren[i] == null) {
 				waren[i] = w;
@@ -23,6 +24,7 @@ class Lagerplatz {
 	}
 
 	protected Ware remove(int nr) {
+		assert nr >= 0;
 		for (int i = 0; i < waren.length; i++) {
 			if (waren[i] != null && waren[i].number == nr) {
 				Ware x = waren[i];
@@ -40,6 +42,7 @@ class Lagerplatz {
 				x[0] += 1;
 			}
 		}
+		assert x[0] <= x[1]; // maximal N von N Plätzen belegt.
 		return x;
 	}
 

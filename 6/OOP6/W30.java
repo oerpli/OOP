@@ -1,4 +1,5 @@
 package OOP6;
+
 public class W30 extends Ware {
 	public W30(String t) {
 		super(t);
@@ -13,6 +14,7 @@ public class W30 extends Ware {
 
 	@Override
 	public int storeIn(Lager l) {
-		return l.store(this,0);
+		assert l != null;
+		return l.store(this, 0);
 	}
 }

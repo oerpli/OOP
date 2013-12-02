@@ -1,13 +1,13 @@
-package OOP6;
+package lager;
 
-public class W20 extends Ware {
-	public W20(String t) {
+public class W18 extends Ware {
+	public W18(String t) {
 		super(t);
 	}
 
 	@Override
 	protected void setT(int T) {
-		if (T < 0) {
+		if (T > -18) {
 			this.verdorbenerfroren = true;
 		}
 	}
@@ -15,6 +15,6 @@ public class W20 extends Ware {
 	@Override
 	public int storeIn(Lager l) {
 		assert l != null;
-		return l.store20(this);
+		return l.store18(this);
 	}
 }

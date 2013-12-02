@@ -1,14 +1,26 @@
-package OOP6;
+package lager;
 
+/**
+ * Verschiedene Temperaturen könnte man als Unterklassen Umsetzen. Diese Lösung
+ * hätte aber keinerlei Vorteile gegenüber dieser Implementierung. (corr.: Wurde
+ * inzw so implementiert. Vorteile: nicht vorhanden.)
+ * 
+ * Eine korrektere Umsetzung des realen Sachverhaltes wäre damit auch nicht
+ * gegeben, da ein Lager im Grunde genauso ist wie jedes andere Lager. Dass man
+ * keine Waren die tiefgefroren gehören in ein Lager mit 20 Grad (Celsius)
+ * stellt ist Aufgabe der Lagerverwaltung (implementiert in Lager.java) und ist
+ * daher auch dort implementiert.
+ * 
+ * @author oerpli
+ * 
+ */
 class Lagerplatz {
 	private Ware[] waren;
-	private final String type;
 	private final int temp;
 
-	Lagerplatz(int size, String type, int temp) {
+	Lagerplatz(int size, int temp) {
 		this.temp = temp;
 		waren = new Ware[size];
-		this.type = type;
 	}
 
 	protected boolean store(Ware w) {
@@ -56,6 +68,6 @@ class Lagerplatz {
 	}
 
 	protected String getType() {
-		return type;
+		return temp + "°C";
 	}
 }

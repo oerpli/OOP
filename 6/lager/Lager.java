@@ -1,4 +1,4 @@
-package OOP6;
+package lager;
 
 public class Lager {
 	private Lagerplatz[] lp = new Lagerplatz[4];
@@ -17,10 +17,10 @@ public class Lager {
 		assert L_18 >= 0;
 		assert L5 >= 0;
 		assert L20 >= 0;
-		this.lp[0] = new Lagerplatz(L_30, "-30°C", -30);
-		this.lp[1] = new Lagerplatz(L_18, "-18°C", -18);
-		this.lp[2] = new Lagerplatz(L5, "5°C", 5);
-		this.lp[3] = new Lagerplatz(L20, "20°C", 20);
+		this.lp[0] = new LP30(L_30);
+		this.lp[1] = new LP18(L_18);
+		this.lp[2] = new LP5(L5);
+		this.lp[3] = new LP20(L20);
 	}
 
 	/**
@@ -37,6 +37,58 @@ public class Lager {
 	public int store(Ware ware) {
 		assert ware != null;
 		return ware.storeIn(this);
+	}
+
+	/**
+	 * Entfernt Ware mit Nummer nr aus Lager und gibt Referenz zurÃ¼ck. null
+	 * wenn nr nicht vorhanden.
+	 * 
+	 * @param nr
+	 * @return ware oder null
+	 */
+	public Ware remove(int nr) {
+		assert nr > 0; // sollte >0 sein - sonst sicher nicht vorhanden.
+		for (Lagerplatz LP : lp) {
+			Ware w = LP.remove(nr);
+			if (w != null)
+				return w;
+		}
+		return null;
+	}
+
+	/**
+	 * Listet Lagerinhalt auf.
+	 * 
+	 * @return Formatierter String
+	 */
+	public void inventar() {
+		String out = "";
+		for (int i = 0; i < lp.length; i++) {
+			out += "Im " + lp[i].getType() + "-Lager:\n";
+			out += lp[i].inv();
+		}
+		// Man könnte auch jede Zeile einzeln ausgeben anstatt den String
+		// aufzubauen und auf einmal ausgeben. (ebenso bei utilization();)
+		System.out.println(out);
+	}
+
+	/**
+	 * Listet Lagerbelegung auf
+	 * 
+	 * @return Formatierter String
+	 */
+	public void utilization() {
+		String out = "";
+		int[][] res = new int[2][2];
+		for (int i = 0; i < lp.length; i++) {
+			res[0] = lp[i].util();
+			out += "Belegt (" + lp[i].getType() + "):\t" + res[0][0] + '/'
+					+ res[0][1] + '\n';
+			res[1][0] += res[0][0];
+			res[1][1] += res[0][1];
+		}
+		out += "Belegt (sum): \t" + res[1][0] + '/' + res[1][1];
+		System.out.println(out);
 	}
 
 	/**
@@ -94,57 +146,5 @@ public class Lager {
 
 	protected int store20(Ware ware) {
 		return store(ware, 3);
-	}
-
-	/**
-	 * Entfernt Ware mit Nummer nr aus Lager und gibt Referenz zurÃ¼ck. null
-	 * wenn nr nicht vorhanden.
-	 * 
-	 * @param nr
-	 * @return ware oder null
-	 */
-	public Ware remove(int nr) {
-		assert nr > 0; // sollte >0 sein - sonst sicher nicht vorhanden.
-		for (Lagerplatz LP : lp) {
-			Ware w = LP.remove(nr);
-			if (w != null)
-				return w;
-		}
-		return null;
-	}
-
-	/**
-	 * Listet Lagerinhalt auf.
-	 * 
-	 * @return Formatierter String
-	 */
-	public void inventar() {
-		String out = "";
-		for (int i = 0; i < lp.length; i++) {
-			out += "Im " + lp[i].getType() + "-Lager:\n";
-			out += lp[i].inv();
-		}
-		// Man könnte auch jede Zeile einzeln ausgeben anstatt den String
-		// aufzubauen und auf einmal ausgeben. (ebenso bei utilization();)
-		System.out.println(out);
-	}
-
-	/**
-	 * Listet Lagerbelegung auf
-	 * 
-	 * @return Formatierter String
-	 */
-	public void utilization() {
-		String out = "";
-		int[][] res = new int[2][2];
-		for (int i = 0; i < lp.length; i++) {
-			res[0] = lp[i].util();
-			out += "Belegt (" + lp[i].getType() + "):\t" + res[0][0] + '/'
-					+ res[0][1] + '\n';
-			res[1][0] += res[0][0];
-			res[1][1] += res[0][1];
-		}
-		out += "Belegt (sum): \t" + res[1][0] + '/' + res[1][1];
-		System.out.println(out);
 	}
 }

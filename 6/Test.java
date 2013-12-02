@@ -1,11 +1,11 @@
-import OOP6.*;
+import lager.*;
 
 public class Test {
 	public static void main(String[] args) {
 		Lager x = new Lager(2, 2, 2, 2);
 		Ware[] waren = new Ware[10];
 		int N = 0;
-		waren[N++] = new W30("Fisch"); // 0
+		waren[N++] = new W30("Yeti"); // 0
 		waren[N++] = new W18("Eis"); // 1
 		waren[N++] = new W5("Cola");// 2
 		waren[N++] = new W20("Teppich");// 3
@@ -14,7 +14,7 @@ public class Test {
 		waren[N++] = new W20("Nagelzwicker");// 6 -- passt nicht mehr rein. :(
 		waren[N++] = new W18("Eiswürfel"); // 7
 		waren[N++] = new W18("Schnee"); // 8 -- muss ins -30°C Lager
-		waren[N++] = new W18("Burger");// 9 -- passt nicht mehr rein.
+		waren[N++] = new W18("Fisch");// 9 -- passt nicht mehr rein.
 		System.out
 				.println("Einlagern aller Gegenstände in Lager x."
 						+ "\n Wenn Ware in richtigem Lager return == 1,"

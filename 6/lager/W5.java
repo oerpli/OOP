@@ -1,4 +1,4 @@
-package OOP6;
+package lager;
 
 public class W5 extends Ware {
 	public W5(String t) {

@@ -1,4 +1,4 @@
-package OOP6;
+package lager;
 
 public abstract class Ware {
 	public final int number;

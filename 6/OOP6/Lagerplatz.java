@@ -1,3 +1,5 @@
+package OOP6;
+
 class Lagerplatz {
 	private Ware[] waren;
 	private final String type;
@@ -22,7 +24,7 @@ class Lagerplatz {
 
 	protected Ware remove(int nr) {
 		for (int i = 0; i < waren.length; i++) {
-			if (waren[i].number == nr) {
+			if (waren[i] != null && waren[i].number == nr) {
 				Ware x = waren[i];
 				waren[i] = null;
 				return x;
@@ -45,7 +47,7 @@ class Lagerplatz {
 		String out = "";
 		for (Ware w : waren) {
 			if (w != null)
-				out += w.number + '\t' + w.name + '\n';
+				out += w.number + " \t" + w.name + '\n';
 		}
 		return out;
 	}

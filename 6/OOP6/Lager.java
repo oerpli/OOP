@@ -1,3 +1,5 @@
+package OOP6;
+
 class Lager {
 	Lagerplatz[] lp = new Lagerplatz[4];
 
@@ -8,29 +10,13 @@ class Lager {
 		this.lp[3] = new Lagerplatz(L20, "20°C", 20);
 	}
 
-	private int store(Ware w, int L) {
+	protected int store(Ware w, int L) {
 		if (lp[L].store(w)) {
 			return 1;
 		} else if (L % 2 == 1 && lp[L - 1].store(w)) {
 			return 0;
 		} else
 			return -1;
-	}
-
-	protected int store(W5 w) {
-		return store(w, 2);
-	}
-
-	protected int store(W20 w) {
-		return store(w, 3);
-	}
-
-	protected int store(W18 w) {
-		return store(w, 1);
-	}
-
-	protected int store(W30 w) {
-		return store(w, 0);
 	}
 
 	protected Ware remove(int nr) {
@@ -43,16 +29,16 @@ class Lager {
 	}
 
 	protected String util() {
-		String out = null;
+		String out = "";
 		int[][] res = new int[2][2];
 		for (int i = 0; i < lp.length; i++) {
 			res[0] = lp[i].util();
-			out += "Plätze (" + lp[i].getType() + "): \t" + res[0][0] + '/'
-					+ res[0][1];
+			out += "Belegt (" + lp[i].getType() + "):\t" + res[0][0] + '/'
+					+ res[0][1] + '\n';
 			res[1][0] += res[0][0];
 			res[1][1] += res[0][1];
 		}
-		out += "Gesamt: \t" + res[1][0] + '/' + res[1][1];
+		out += "Belegt (sum): \t" + res[1][0] + '/' + res[1][1];
 		return out;
 	}
 

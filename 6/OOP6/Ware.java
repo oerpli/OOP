@@ -1,4 +1,6 @@
-abstract class Ware {
+package OOP6;
+
+public abstract class Ware {
 	public final int number;
 	public final String name;
 	private static int N = 0;
@@ -10,4 +12,11 @@ abstract class Ware {
 	}
 
 	protected abstract void setT(int T);
+
+	protected abstract int storeIn(Lager l);
+
+	public String toString() {
+		return number + ":\t" + name
+				+ (verdorbenerfroren ? " (vergammelt)" : "");
+	}
 }

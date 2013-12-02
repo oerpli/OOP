@@ -1,5 +1,7 @@
+package OOP6;
+
 public class W18 extends Ware {
-	W18(String t) {
+	public W18(String t) {
 		super(t);
 	}
 
@@ -8,5 +10,10 @@ public class W18 extends Ware {
 		if (T > -18) {
 			this.verdorbenerfroren = true;
 		}
+	}
+
+	@Override
+	public int storeIn(Lager l) {
+		return l.store(this, 1);
 	}
 }

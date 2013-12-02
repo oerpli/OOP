@@ -1,3 +1,4 @@
+package OOP6;
 public class W5 extends Ware {
 	public W5(String t) {
 		super(t);
@@ -8,5 +9,10 @@ public class W5 extends Ware {
 		if (T > 5 || T < 0) {
 			this.verdorbenerfroren = true;
 		}
+	}
+
+	@Override
+	public int storeIn(Lager l) {
+		return l.store(this,2);
 	}
 }

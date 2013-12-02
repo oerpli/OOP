@@ -92,6 +92,4 @@ public class Test {
 		x.inventar();
 		x.utilization();
 	}
-
-	}
 }

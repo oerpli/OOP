@@ -1,5 +1,5 @@
 class Box {
-	int nutrient;
-	Bacterium bac;
-	Fungus myk;
+	private int nutrient; /** Zwischen 0 und 100 */
+	private Bacterium bac;
+	private Fungus myk; /** Eines von beiden immer Null */
 }

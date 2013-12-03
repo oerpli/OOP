@@ -2,8 +2,7 @@ package lager;
 
 /**
  * Verschiedene Temperaturen könnte man als Unterklassen Umsetzen. Diese Lösung
- * hätte aber keinerlei Vorteile gegenüber dieser Implementierung. (corr.: Wurde
- * inzw so implementiert. Vorteile: nicht vorhanden.)
+ * hätte aber keinerlei Vorteile gegenüber dieser Implementierung.
  * 
  * Eine korrektere Umsetzung des realen Sachverhaltes wäre damit auch nicht
  * gegeben, da ein Lager im Grunde genauso ist wie jedes andere Lager. Dass man
@@ -28,7 +27,7 @@ class Lagerplatz {
 		for (int i = 0; i < waren.length; i++) {
 			if (waren[i] == null) {
 				waren[i] = w;
-				waren[i].setT(temp);
+				waren[i].setT(temp); // bringt Ware auf entsprechende Temperatur
 				return true;
 			}
 		}
@@ -62,7 +61,7 @@ class Lagerplatz {
 		String out = "";
 		for (Ware w : waren) {
 			if (w != null)
-				out += w.number + " \t" + w.name + '\n';
+				out += w.toString() + '\n';
 		}
 		return out;
 	}

@@ -41,7 +41,7 @@ public abstract class Ware {
 	protected abstract int storeIn(Lager l);
 
 	public String toString() {
-		return number + ":\t" + name
+		return "Nr: " + number + "\tBez: " + name
 				+ (verdorbenerfroren ? " (vergammelt)" : "");
 	}
 }

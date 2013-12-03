@@ -17,10 +17,10 @@ public class Lager {
 		assert L_18 >= 0;
 		assert L5 >= 0;
 		assert L20 >= 0;
-		this.lp[0] = new LP30(L_30);
-		this.lp[1] = new LP18(L_18);
-		this.lp[2] = new LP5(L5);
-		this.lp[3] = new LP20(L20);
+		this.lp[0] = new Lagerplatz(L_30, -30);
+		this.lp[1] = new Lagerplatz(L_18, -18);
+		this.lp[2] = new Lagerplatz(L5, 5);
+		this.lp[3] = new Lagerplatz(L20, 20);
 	}
 
 	/**

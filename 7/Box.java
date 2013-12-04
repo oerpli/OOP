@@ -6,4 +6,8 @@ class Box {
 	public int getNutrient() {
 		return nutrient;
 	}
+	
+	public void consumNutrient() {
+		nutrient = nutrient * 0.03; // TODO: richtigen Consum nach Voreinstellung
+	}
 }

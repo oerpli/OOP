@@ -19,7 +19,12 @@ class Playground {
 	/**
 	 * Paramter: Wo werden Bakterien und Pilze platziert? Wo wie viel Nährstoff?
 	 */
-	public void run() {
+	public void start() {
+		
+	}
+	
+	public Box[] getNeighbors(int x, int y) {
+		return null;
 	}
 	
 	@Override

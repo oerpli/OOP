@@ -10,4 +10,10 @@ class Box {
 	public void consumNutrient() {
 		nutrient = nutrient * 0.03; // TODO: richtigen Consum nach Voreinstellung
 	}
+	
+	public void kill() {
+		bac = null;
+		myk = null;
+		// TODO: Prozess beenden.
+	}
 }

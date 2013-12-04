@@ -27,6 +27,10 @@ class Playground {
 		return null;
 	}
 	
+	public int getNutrient(int x, int y) {
+		
+	}
+	
 	@Override
 	public String toString() {
 		return "";

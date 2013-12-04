@@ -1,4 +1,5 @@
 class Box {
+	private Playground playground; // Oder statisch und Boxen organisieren sich selbst?
 	private int nutrient; /** Zwischen 0 und 100 */
 	private Bacterium bac;
 	private Fungus myk; /** Eines von beiden immer Null */
@@ -8,7 +9,7 @@ class Box {
 	}
 	
 	public void consumNutrient() {
-		nutrient = nutrient * 0.03; // TODO: richtigen Consum nach Voreinstellung
+		nutrient = (int)(nutrient - (nutrient * (playground.getConsum() / 100.0)));
 	}
 	
 	public void kill() {

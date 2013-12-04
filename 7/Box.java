@@ -1,5 +1,5 @@
 class Box {
-	private Playground playground; // Oder statisch und Boxen organisieren sich selbst?
+	private Playground playground; // Beste Weg für Zugriff auf Variablen?
 	private int nutrient; /** Zwischen 0 und 100 */
 	private Bacterium bacterium;
 	private Fungus fungus; /** Eines von beiden immer Null */
@@ -21,6 +21,14 @@ class Box {
 	public boolean isTaken() {
 		if (bacterium == null && fungus == null) return false;
 		return true;
+	}
+	
+	public boolean nearFungus() {
+		return false;
+	}
+	
+	public Box[] getNeighbors() {
+		
 	}
 	
 	public void setResident(Bacterium resident) {

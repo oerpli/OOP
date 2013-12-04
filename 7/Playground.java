@@ -16,6 +16,14 @@ class Playground {
 		time = prolifTime;
 	}
 	
+	public int getConsum() {
+		return consum;
+	}
+	
+	public int[] getTime() {
+		return time;
+	}
+	
 	/**
 	 * Paramter: Wo werden Bakterien und Pilze platziert? Wo wie viel Nährstoff?
 	 */

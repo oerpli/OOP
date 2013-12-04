@@ -37,6 +37,7 @@ class Bacterium implements Runnable {
 				Bacterium child = Bacterium(b, prolifNum);
 				container.consumNutrient();
 				// TODO: Bacterium in Box eintragen, Box Methoden schreiben
+				return;
 			}
 		}
 	}

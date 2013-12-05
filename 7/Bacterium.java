@@ -11,7 +11,10 @@ class Bacterium implements Runnable {
 	public void run() {
 		boolean goOn = true;
 		while (goOn) {
-			if (container.getNutrient() < 25) {
+			if (prolifNum == 32) {
+				container.playground.killAll();
+				goOn = false;
+			} else if (container.getNutrient() < 25) {
 				container.kill();
 				goOn = false; // Ist der Prozess beendet?
 			} else if (container.getNutrient() >= 75) {

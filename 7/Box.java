@@ -18,8 +18,8 @@ class Box {
 	}
 	
 	public void kill() {
-		bac = null;
-		myk = null;
+		bacterium = null;
+		fungus = null;
 		// TODO: Prozess beenden.
 	}
 	

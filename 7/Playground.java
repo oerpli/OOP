@@ -2,6 +2,7 @@ class Playground {
 	private Box[][] boxes;
 	private int consum;
 	private int[] time;
+	private int cellCounter;
 	private boolean end;
 	
 	/**
@@ -51,7 +52,17 @@ class Playground {
 	}
 	
 	public boolean shouldEnd() {
+		if (cellCounter < 1)
+			end = true;
 		return end;
+	}
+	
+	public void increaseCellCounter() {
+		cellCounter++;
+	}
+	
+	public void decreaseCellCounter() {
+		cellCounter--;
 	}
 	
 	@Override

@@ -1,15 +1,20 @@
 class Box {
-	private Playground playground; // Beste Weg für Zugriff auf Variablen?
 	private int nutrient; /** Zwischen 0 und 100 */
 	private Bacterium bacterium;
 	private Fungus fungus; /** Eines von beiden immer Null */
+	
+	public Box(int nutrient) {
+		this.nutrient = nutrient;
+		bacterium = null;
+		fungus = null;
+	}
 	
 	public int getNutrient() {
 		return nutrient;
 	}
 	
-	public void consumNutrient() {
-		nutrient = (int)(nutrient - (nutrient * (playground.getConsum() / 100.0)));
+	public void consumNutrient(int consumption) {
+		nutrient = (int)(nutrient - (nutrient * (consumption / 100.0)));
 	}
 	
 	public void kill() {

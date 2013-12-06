@@ -7,6 +7,7 @@ class Bacterium implements Runnable {
 		this.playground = playground;
 		this.container = container;
 		this.prolifNum = prolifNum;
+		this.playground.increaseCellCounter();
 	}
 	
 	@Override
@@ -47,5 +48,10 @@ class Bacterium implements Runnable {
 				return;
 			}
 		}
+	}
+	
+	@Override
+	public String toString() {
+		
 	}
 }

@@ -2,6 +2,7 @@ class Playground {
 	private Box[][] boxes;
 	private int consum;
 	private int[] time;
+	private boolean end;
 	
 	/**
 	 * @param width: Breite des Feldes. Zwischen 1 und 80
@@ -14,6 +15,7 @@ class Playground {
 		time = new int[3];
 		consum = consumption;
 		time = prolifTime;
+		end = false;
 	}
 	
 	public int getConsum() {
@@ -42,6 +44,14 @@ class Playground {
 		bT.start();
 		Thread fT = new Thread(myk);
 		fT.start();
+	}
+	
+	public void endAllThreads() {
+		end = true;
+	}
+	
+	public boolean shouldEnd() {
+		return end;
 	}
 	
 	@Override

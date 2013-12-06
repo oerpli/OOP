@@ -14,8 +14,7 @@ class Bacterium implements Runnable {
 		boolean goOn = true;
 		while (goOn) {
 			if (prolifNum == 32) {
-				container.playground.killAll();
-				goOn = false;
+				playground.endAllThreads();
 			} else if (container.getNutrient() < 25) {
 				container.kill();
 				goOn = false; // Ist der Prozess beendet?
@@ -29,6 +28,9 @@ class Bacterium implements Runnable {
 				Thread.sleep(playground.getTime(0));
 				proliferate();
 			}
+			
+			if (playground.shouldEnd())
+				goOn = false;
 		}
 	}
 	

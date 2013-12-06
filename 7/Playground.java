@@ -34,8 +34,12 @@ class Playground {
 			}
 		}
 		
-		boxes[0][0] = setResident(new Bacterium(boxes[0][0], 1));
-		boxes[boxes.length][boxes[0].length] = setResident(new Fungus(boxes[boxes.length][boxes[0].length], 1));
+		Bacterium bac = new Bacterium(boxes[0][0], 1);
+		boxes[0][0] = setResident(bac);
+		Fungus myk = new Fungus(boxes[boxes.length][boxes[0].length], 1);
+		boxes[boxes.length][boxes[0].length] = setResident(myk);
+		bac.run();
+		myk.run();
 	}
 	
 	@Override

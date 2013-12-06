@@ -56,6 +56,18 @@ class Playground {
 	
 	@Override
 	public String toString() {
-		return "";
+		String result = "";
+		for (int x = 0; x < boxes.length; x++) {
+			for (int y = 0; y < boxes[0].length; y++) {
+				if (!boxes[x][y].isTaken()) {
+					result += (boxes[x][y].getNutrient() / 10);
+					result += " ";
+				} else {
+					result += "x ";
+					// TODO: Bakterium oder Pilz?
+				}
+			}
+			result += System.getProperty("line.separator");
+		}
 	}
 }

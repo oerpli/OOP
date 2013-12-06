@@ -28,15 +28,14 @@ class Playground {
 	 * Paramter: Wo werden Bakterien und Pilze platziert? Wo wie viel Nährstoff?
 	 */
 	public void start() {
+		for (int x = 0; x < boxes.length; x++) {
+			for (int y = 0; y < boxes[0].length; y++) {
+				boxes[x][y] = new Box(75);
+			}
+		}
 		
-	}
-	
-	public Box[] getNeighbors(int x, int y) {
-		return null;
-	}
-	
-	public int getNutrient(int x, int y) {
-		
+		boxes[0][0] = setResident(new Bacterium(boxes[0][0], 1));
+		boxes[boxes.length][boxes[0].length] = setResident(new Fungus(boxes[boxes.length][boxes[0].length], 1));
 	}
 	
 	@Override

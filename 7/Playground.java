@@ -34,9 +34,9 @@ class Playground {
 			}
 		}
 		
-		Bacterium bac = new Bacterium(boxes[0][0], 1);
+		Bacterium bac = new Bacterium(this, boxes[0][0], 1);
 		boxes[0][0] = setResident(bac);
-		Fungus myk = new Fungus(boxes[boxes.length][boxes[0].length], 1);
+		Fungus myk = new Fungus(this, boxes[boxes.length][boxes[0].length], 1);
 		boxes[boxes.length][boxes[0].length] = setResident(myk);
 		Thread bT = new Thread(bac);
 		bT.start();

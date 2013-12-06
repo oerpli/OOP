@@ -20,8 +20,8 @@ class Playground {
 		return consum;
 	}
 	
-	public int[] getTime() {
-		return time;
+	public int getTime(int index) {
+		return time[index];
 	}
 	
 	/**

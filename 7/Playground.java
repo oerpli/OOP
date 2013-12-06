@@ -38,8 +38,10 @@ class Playground {
 		boxes[0][0] = setResident(bac);
 		Fungus myk = new Fungus(boxes[boxes.length][boxes[0].length], 1);
 		boxes[boxes.length][boxes[0].length] = setResident(myk);
-		bac.run();
-		myk.run();
+		Thread bT = new Thread(bac);
+		bT.start();
+		Thread fT = new Thread(myk);
+		fT.start();
 	}
 	
 	@Override

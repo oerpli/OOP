@@ -57,7 +57,24 @@ class Playground {
 	}
 	
 	/*
+	 * Die übergebene Zelle wird über ihren Tod benachrichtigt.
+	 * Die übergebene Zelle wird aus ihrem Container gelöscht.
+	 */
+	public void killCell(Bacterium cell, Thread thread) {
+		thread.interrupt();
+	}
+	
+	/*
+	 * Die übergebene Zelle wird über ihren Tod benachrichtigt.
+	 * Die übergebene Zelle wird aus ihrem Container gelöscht.
+	 */
+	public void killCell(Fungus cell, Thread thread) {
+		thread.interrupt();
+	}
+	
+	/*
 	 * Die übergebene Zelle wird in einem neuen Thread belebt.
+	 * Die übergebene Zelle wird in ihren Container platziert.
 	 */
 	public void createCell(Bacterium cell) {
 		cell.getContainer().setResident(cell); // Bakterium wird in Box eingetragen
@@ -68,6 +85,7 @@ class Playground {
 	
 	/*
 	 * Die übergebene Zelle wird in einem neuen Thread belebt.
+	 * Die übergebene Zelle wird in ihren Container platziert.
 	 */
 	public void createCell(Fungus cell) {
 		cell.getContainer().setResident(cell); // Pilz wird in Box eingetragen

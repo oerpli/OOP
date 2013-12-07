@@ -20,14 +20,20 @@ class Bacterium implements Runnable {
 				container.kill();
 				goOn = false; // Ist der Prozess beendet?
 			} else if (container.getNutrient() >= 75) {
-				Thread.sleep(playground.getTime(2));
-				proliferate();
+				try {
+					Thread.sleep(playground.getTime(2));
+					proliferate();
+				} catch (InterruptedException e) { }
 			} else if (container.getNutrient() >= 50) {
-				Thread.sleep(playground.getTime(1));
-				proliferate();
+				try {
+					Thread.sleep(playground.getTime(1));
+					proliferate();
+				} catch (InterruptedException e) { }
 			} else { // zwischen 25 und 50
-				Thread.sleep(playground.getTime(0));
-				proliferate();
+				try {
+					Thread.sleep(playground.getTime(0));
+					proliferate();
+				} catch (InterruptedException e) { }
 			}
 			
 			if (playground.shouldEnd())

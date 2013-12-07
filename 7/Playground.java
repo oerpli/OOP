@@ -51,8 +51,13 @@ class Playground {
 		threadList.add(fT);
 	}
 	
-	public void endAllThreads() {
-		end = true;
+	/**
+	 * Alle Zellen werden über ihren Tod benachrichtigt.
+	 */
+	public void killAllCells() {
+		for (Thread t: threadList) {
+			t.interrupt();
+		}
 	}
 	
 	public boolean shouldEnd() {

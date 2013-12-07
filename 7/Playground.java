@@ -71,6 +71,7 @@ class Playground {
 	 */
 	public void killCell(Fungus cell, Thread thread) {
 		thread.interrupt();
+		cell.getContainer().setResident(null);
 	}
 	
 	/*

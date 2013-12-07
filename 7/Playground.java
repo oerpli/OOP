@@ -62,6 +62,7 @@ class Playground {
 	 */
 	public void killCell(Bacterium cell, Thread thread) {
 		thread.interrupt();
+		cell.getContainer().setResident(null);
 	}
 	
 	/*

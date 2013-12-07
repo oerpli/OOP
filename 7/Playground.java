@@ -1,10 +1,8 @@
 class Playground {
 	private Box[][] boxes;
+	private ArrayList<Thread> threadList;
 	private int consum;
 	private int[] time;
-	private int cellCounter;
-	private boolean end;
-	private ArrayList<Thread> threadList;
 	
 	/**
 	 * @param width: Breite des Feldes. Zwischen 1 und 80
@@ -14,11 +12,9 @@ class Playground {
 	 */
 	public Playground(int width, int height, int consumption, int[] prolifTime) {
 		boxes = new Box[width][height];
-		time = new int[3];
-		consum = consumption;
-		time = prolifTime;
-		end = false;
 		threadList = new ArrayList<Thread>();
+		time = prolifTime;
+		consum = consumption;
 	}
 	
 	public int getConsum() {
@@ -60,20 +56,9 @@ class Playground {
 		}
 	}
 	
-	public boolean shouldEnd() {
-		if (cellCounter < 1)
-			end = true;
-		return end;
-	}
-	
-	public void increaseCellCounter() {
-		cellCounter++;
-	}
-	
-	public void decreaseCellCounter() {
-		cellCounter--;
-	}
-	
+	/*
+	 * Die übergebene Zelle wird in einem neuen Thread belebt.
+	 */
 	public void createCell(Bacterium cell) {
 		cell.getContainer().setResident(cell); // Bakterium wird in Box eingetragen
 		Thread t = new Thread(cell); // Bakterium wird belebt
@@ -81,6 +66,9 @@ class Playground {
 		threadList.add(t);
 	}
 	
+	/*
+	 * Die übergebene Zelle wird in einem neuen Thread belebt.
+	 */
 	public void createCell(Fungus cell) {
 		cell.getContainer().setResident(cell); // Pilz wird in Box eingetragen
 		Thread t = new Thread(cell); // Pilz wird belebt

@@ -55,6 +55,9 @@ class Bacterium implements Runnable {
 		}
 	}
 	
+	/**
+         * Gibt die Box zurück, in der sich die Zelle befindet.
+         */
 	public Box getContainer() {
 		return container;
 	}

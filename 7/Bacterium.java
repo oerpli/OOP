@@ -1,43 +1,43 @@
 class Bacterium implements Runnable {
-	private Playground playground;
-	private int prolifNum; /** Zwischen 1 und 32 */
+	private Playground playground; /** Die Petrischale in der sich die Zelle befindet */
 	private Box container; /** Die Box in der sich das Bakterium befindet */
+	private int prolifNum; /** Zwischen 1 und 32 */
 	
 	public Bacterium(Playground playground, Box container, int prolifNum) {
 		this.playground = playground;
 		this.container = container;
 		this.prolifNum = prolifNum;
-		this.playground.increaseCellCounter();
 	}
 	
 	@Override
 	public void run() {
-		boolean goOn = true;
-		while (goOn) {
+		while (!Thread.currentThread().isInterrupted()) {
 			if (prolifNum == 32) {
-				playground.endAllThreads();
+				playground.killAllCells();
 			} else if (container.getNutrient() < 25) {
-				container.kill();
-				goOn = false; // Ist der Prozess beendet?
+				playground.killCell(this, Thread.currentThread());
 			} else if (container.getNutrient() >= 75) {
 				try {
 					Thread.sleep(playground.getTime(2));
 					proliferate();
-				} catch (InterruptedException e) { }
+				} catch (InterruptedException e) {
+					Thread.currentThread().interrupt();
+				}
 			} else if (container.getNutrient() >= 50) {
 				try {
 					Thread.sleep(playground.getTime(1));
 					proliferate();
-				} catch (InterruptedException e) { }
+				} catch (InterruptedException e) {
+					Thread.currentThread().interrupt();
+				}
 			} else { // zwischen 25 und 50
 				try {
 					Thread.sleep(playground.getTime(0));
 					proliferate();
-				} catch (InterruptedException e) { }
+				} catch (InterruptedException e) {
+					Thread.currentThread().interrupt();
+				}
 			}
-			
-			if (playground.shouldEnd())
-				goOn = false;
 		}
 	}
 	
@@ -47,13 +47,16 @@ class Bacterium implements Runnable {
 		for (Box b: neighbors) { // passendes Feld für Teilung finden:
 			if (b.getNutrient() >= 25 && !b.nearFungus() // Nachbar darf kein Pilz sein
 				&& !b.isTaken() { // Feld darf nicht besetzt sein
+				playground.createCell(new Bacterium(b, prolifNum));
 				prolifNum++;
-				Bacterium child = Bacterium(b, prolifNum);
-				container.consumNutrient();
-				// TODO: Bacterium in Box eintragen, Box Methoden schreiben
-				return;
+				container.consumNutrient(); // Die Teilung verbraucht Nährstoff
+				return; // Nur eine Teilung ist erlaubt
 			}
 		}
+	}
+	
+	public Box getContainer() {
+		return container;
 	}
 	
 	@Override

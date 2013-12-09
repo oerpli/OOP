@@ -17,11 +17,9 @@ class Box {
 		nutrient = (int)(nutrient - (nutrient * (consumption / 100.0)));
 	}
 	
-	public boolean isTaken() {
-		if (bacterium == null && fungus == null) return false;
-		return true;
-	}
-	
+	/**
+	 * true wenn in den Nachbarfeldern ein Pilz ist.
+	 */
 	public boolean nearFungus() {
 		return false;
 	}
@@ -31,6 +29,22 @@ class Box {
 	 */
 	public Box[] getNeighbors() {
 		
+	}
+	
+	/**
+	 * Übergibt das enthaltene Bakterium.
+	 * Ist kein Bakterium enthalten, ist der Rückgabewert null.
+	 */
+	public Bacterium getBacterium() { // get Resident Methode?
+		return bacterium;
+	}
+	
+	/**
+	 * Übergibt den enthaltenen Pilz.
+	 * Ist kein Pilz enthalten, ist der Rückgabewert null.
+	 */
+	public Fungus getFungus() { // get Resident Methode?
+		return fungus;
 	}
 	
 	/**

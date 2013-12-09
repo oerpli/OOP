@@ -64,4 +64,10 @@ class Box {
 		fungus = resident;
 		bacterium = null;
 	}
+
+	public int isTakenBy() {
+		if(this.bacterium!=null && this.fungus==null) return 2;
+		if(this.fungus!=null && this.bacterium==null) return 1;
+		return 0;
+	}
 }

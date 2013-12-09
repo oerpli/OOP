@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 class Bacterium implements Runnable {
 	private Playground playground; /** Die Petrischale in der sich die Zelle befindet */
 	private Box container; /** Die Box in der sich das Bakterium befindet */

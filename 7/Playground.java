@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 class Playground {
 	private Box[][] boxes;
 	private ArrayList<Thread> threadList;
@@ -36,9 +38,9 @@ class Playground {
 		}
 		
 		Bacterium bac = new Bacterium(this, boxes[0][0], 1);
-		boxes[0][0] = setResident(bac);
+		boxes[0][0].setResident(bac);
 		Fungus myk = new Fungus(this, boxes[boxes.length][boxes[0].length], 1);
-		boxes[boxes.length][boxes[0].length] = setResident(myk);
+		boxes[boxes.length][boxes[0].length].setResident(myk);
 		Thread bT = new Thread(bac);
 		bT.start();
 		threadList.add(bT);
@@ -62,7 +64,7 @@ class Playground {
 	 */
 	public void killCell(Bacterium cell) {
 		cell.getThread().interrupt(); // null testen?
-		cell.getContainer().setResident(null);
+		cell.getContainer().setResident((Bacterium)null);
 	}
 	
 	/*
@@ -71,7 +73,7 @@ class Playground {
 	 */
 	public void killCell(Fungus cell) {
 		cell.getThread().interrupt();
-		cell.getContainer().setResident(null);
+		cell.getContainer().setResident((Fungus)null);
 	}
 	
 	/*
@@ -101,15 +103,18 @@ class Playground {
 		String result = "";
 		for (int x = 0; x < boxes.length; x++) {
 			for (int y = 0; y < boxes[0].length; y++) {
-				if (!boxes[x][y].isTaken()) {
+				if (boxes[x][y].isTakenBy()==0) {
 					result += (boxes[x][y].getNutrient() / 10);
 					result += " ";
 				} else {
-					result += "x ";
-					// TODO: Bakterium oder Pilz?
+					if(boxes[x][y].isTakenBy()==1){
+						result += "x ";}
+					if(boxes[x][y].isTakenBy()==2){
+						result += "o ";}
 				}
 			}
 			result += System.getProperty("line.separator");
 		}
+		return result;
 	}
 }

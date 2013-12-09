@@ -2,40 +2,43 @@ class Bacterium implements Runnable {
 	private Playground playground; /** Die Petrischale in der sich die Zelle befindet */
 	private Box container; /** Die Box in der sich das Bakterium befindet */
 	private int prolifNum; /** Zwischen 1 und 32 */
+	private Thread thread;
 	
 	public Bacterium(Playground playground, Box container, int prolifNum) {
 		this.playground = playground;
 		this.container = container;
 		this.prolifNum = prolifNum;
+		thread = null;
 	}
 	
 	@Override
 	public void run() {
-		while (!Thread.currentThread().isInterrupted()) {
+		thread = Thread.currentThread();
+		while (!thread.isInterrupted()) {
 			if (prolifNum == 32) {
 				playground.killAllCells();
 			} else if (container.getNutrient() < 25) {
-				playground.killCell(this, Thread.currentThread());
+				playground.killCell(this);
 			} else if (container.getNutrient() >= 75) {
 				try {
 					Thread.sleep(playground.getTime(2));
 					proliferate();
 				} catch (InterruptedException e) {
-					Thread.currentThread().interrupt();
+					thread.interrupt();
 				}
 			} else if (container.getNutrient() >= 50) {
 				try {
 					Thread.sleep(playground.getTime(1));
 					proliferate();
 				} catch (InterruptedException e) {
-					Thread.currentThread().interrupt();
+					thread.interrupt();
 				}
 			} else { // zwischen 25 und 50
 				try {
 					Thread.sleep(playground.getTime(0));
 					proliferate();
 				} catch (InterruptedException e) {
-					Thread.currentThread().interrupt();
+					thread.interrupt();
 				}
 			}
 		}
@@ -60,6 +63,14 @@ class Bacterium implements Runnable {
          */
 	public Box getContainer() {
 		return container;
+	}
+	
+	/**
+         * Gibt den Thread zurück, in dem die Zelle lebt.
+         * Wenn die Zelle noch nicht lebt, ist der Rückgabewert null.
+         */
+	public Thread getThread() {
+		return thread;
 	}
 	
 	@Override

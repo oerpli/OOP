@@ -43,7 +43,7 @@ class Bacterium implements Runnable {
 	
 	private void proliferate() {
 		Box[] neighbors = container.getNeighbors();
-		neighbors.sort(); // nach Nährstoff absteigend sortieren
+		Arrays.sort(neighbors); // nach Nährstoff absteigend sortieren
 		for (Box b: neighbors) { // passendes Feld für Teilung finden:
 			if (b.getNutrient() >= 25 && !b.nearFungus() // Nachbar darf kein Pilz sein
 				&& b.getBacterium() == null && b.getFungus() == null) { // Feld darf nicht besetzt sein

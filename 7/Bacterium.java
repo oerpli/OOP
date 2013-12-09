@@ -46,7 +46,7 @@ class Bacterium implements Runnable {
 		neighbors.sort(); // nach Nährstoff absteigend sortieren
 		for (Box b: neighbors) { // passendes Feld für Teilung finden:
 			if (b.getNutrient() >= 25 && !b.nearFungus() // Nachbar darf kein Pilz sein
-				&& !b.isTaken() { // Feld darf nicht besetzt sein
+				&& b.getBacterium() == null && b.getFungus() == null) { // Feld darf nicht besetzt sein
 				playground.createCell(new Bacterium(b, prolifNum));
 				prolifNum++;
 				container.consumNutrient(); // Die Teilung verbraucht Nährstoff

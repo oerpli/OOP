@@ -52,6 +52,14 @@ class Fungus implements Runnable {
 	}
 	
 	/**
+	 * Gibt den Thread zurück, in dem die Zelle lebt.
+	 * Wenn die Zelle noch nicht lebt, ist der Rückgabewert null.
+	 */
+	public Thread getThread() {
+		return thread;
+	}
+	
+	/**
 	 * Gibt die Box zurück, in der sich die Zelle befindet.
 	 */
 	public Box getContainer() {

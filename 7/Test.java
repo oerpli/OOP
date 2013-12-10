@@ -3,5 +3,6 @@ public class Test {
 		int[] time = {30, 20, 10};
 		Playground pg = new Playground(10, 20, 5, time);
 		pg.start();
+		while(true)System.out.println(pg.toString());
 	}
 }

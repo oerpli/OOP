@@ -39,14 +39,79 @@ class Playground {
 		
 		Bacterium bac = new Bacterium(this, boxes[0][0], 1);
 		boxes[0][0].setResident(bac);
-		Fungus myk = new Fungus(this, boxes[boxes.length][boxes[0].length], 1);
-		boxes[boxes.length][boxes[0].length].setResident(myk);
+		Fungus myk = new Fungus(this, boxes[boxes.length-1][boxes[0].length-1], 1); //Arrayoutofbounds error fix, array.length ist 1 zu groß
+		boxes[boxes.length-1][boxes[0].length-1].setResident(myk);  //Arrayoutofbounds error fix, array.length ist 1 zu groß
 		Thread bT = new Thread(bac);
 		bT.start();
 		threadList.add(bT);
 		Thread fT = new Thread(myk);
 		fT.start();
 		threadList.add(fT);
+	}
+	/*Parameter:Innere Box
+	 * Rückgabewert: Box Array mit allen Nachbarn
+	 * 
+	 */
+	public Box[] getNeighbors(Box box) {
+		int x=0;
+		int y=0;
+		//finde übergebene Box
+		for (int i = 0; i < boxes.length; i++) {
+			for (int j = 0; j < boxes[0].length; j++) {
+				if(boxes[i][j]==box){
+					x=i;
+					y=j;
+				}
+			}
+		}
+		Box[] result=new Box[8];
+	    int neighbours = 0;
+	    int maxX=boxes.length-1;//Array beginnt bei 0 ->length ist 1 zu groß
+	    int maxY=boxes[0].length-1;
+	    for (int dx = -1; dx <= 1; dx++) {
+	      for (int dy = -1; dy <= 1; dy++) {
+	        if (((x+dx)<=maxX)&&((x+dx)>=0)&&((y+dy)<=maxY)&&((y+dy)>=0)&&((dy!=0)||(dx!=0))){
+	        		result[neighbours]=boxes[x+dx][y+dy];
+	        		neighbours++;}
+	      }
+	    }
+	    Box[] result1=new Box[neighbours];
+	    for(int i=0;i<neighbours;i++){
+	    	result1[i]=result[i];
+	    }
+	    return result1;
+	  }
+	
+	/*Findet heraus ob ein Nachbar ein Fungus ist
+	 * Parameter: Box in der Mitte
+	 * Rückgabe:true falls ein Fungus in der Nachbarschaft sonst false
+	 */
+	public boolean nearFungus(Box box) {
+		Box[] neighbors= getNeighbors(box);
+		for(Box b: neighbors){
+			if(b.getFungus()!=null) return true;
+		}
+		return false;
+	}
+	
+	
+	//Einfacher Sortieralgorythmus 
+	//Sortiert absteigend
+	public Box[] sort(Box[] toSort) {
+		boolean unsortiert = true;
+		Box temp;
+		while (unsortiert) {
+			unsortiert = false;
+			for (int i = 0; i < toSort.length - 1; i++){
+				if (toSort[i].getNutrient() < toSort[i + 1].getNutrient()) {
+					temp = toSort[i];
+					toSort[i] = toSort[i + 1];
+					toSort[i + 1] = temp;
+					unsortiert = true;
+				}
+			}
+		}
+		return toSort;
 	}
 	
 	/**
@@ -106,15 +171,16 @@ class Playground {
 				if (boxes[x][y].isTakenBy()==0) {
 					result += (boxes[x][y].getNutrient() / 10);
 					result += " ";
-				} else {
-					if(boxes[x][y].isTakenBy()==1){
+				} 
+				else if(boxes[x][y].isTakenBy()==1){
 						result += "x ";}
-					if(boxes[x][y].isTakenBy()==2){
+				else if(boxes[x][y].isTakenBy()==2){
 						result += "o ";}
-				}
+				
 			}
 			result += System.getProperty("line.separator");
 		}
 		return result;
 	}
+
 }

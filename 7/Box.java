@@ -25,13 +25,6 @@ class Box {
 	}
 	
 	/**
-	 * Gibt die umliegenden 3 - 8 Boxen als Array aus.
-	 */
-	public Box[] getNeighbors() {
-		
-	}
-	
-	/**
 	 * Übergibt das enthaltene Bakterium.
 	 * Ist kein Bakterium enthalten, ist der Rückgabewert null.
 	 */
@@ -64,10 +57,11 @@ class Box {
 		fungus = resident;
 		bacterium = null;
 	}
-
+	
 	public int isTakenBy() {
 		if(this.bacterium!=null && this.fungus==null) return 2;
-		if(this.fungus!=null && this.bacterium==null) return 1;
-		return 0;
+		else if(this.fungus!=null && this.bacterium==null) return 1;
+		else return 0;
 	}
+
 }

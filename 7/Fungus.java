@@ -33,8 +33,8 @@ class Fungus implements Runnable {
 	}
 	
 	private void proliferate() {
-		Box[] neighbors = container.getNeighbors();
-		Arrays.sort(neighbors); // nach Nährstoff absteigend sortieren
+		Box[] neighbors = playground.getNeighbors(container);
+		playground.sort(neighbors); // nach Nährstoff absteigend sortieren
 		Box aim = null;
 		for (Box b: neighbors) { // passendes Feld für Teilung finden:
 			if (b.getFungus() == null && b.getNutrient() >= 25) {
@@ -46,10 +46,11 @@ class Fungus implements Runnable {
 			}
 		}
 		if (aim != null) {
-			playground.killCell(aim.getBacterium()); // null Testen???
-			playground.createCell(new Fungus(aim, prolifNum));
+			if(aim.getBacterium()!=null)
+					playground.killCell(aim.getBacterium()); // null Testen???
+			playground.createCell(new Fungus(playground,aim, prolifNum));
 			prolifNum++;
-			container.consumNutrient(); // Die Teilung verbraucht Nährstoff
+			container.consumNutrient(5); // Die Teilung verbraucht Nährstoff //5 Testwert um Programm ausf�hren zu k�nnen
 		}
 	}
 	
@@ -70,6 +71,6 @@ class Fungus implements Runnable {
 	
 	@Override
 	public String toString() {
-		
+		return null;
 	}
 }

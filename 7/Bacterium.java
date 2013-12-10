@@ -47,14 +47,14 @@ class Bacterium implements Runnable {
 	}
 	
 	private void proliferate() {
-		Box[] neighbors = container.getNeighbors();
-		Arrays.sort(neighbors); // nach Nährstoff absteigend sortieren
+		Box[] neighbors = playground.getNeighbors(container);
+		playground.sort(neighbors); // nach Nährstoff absteigend sortieren
 		for (Box b: neighbors) { // passendes Feld für Teilung finden:
-			if (b.getNutrient() >= 25 && !b.nearFungus() // Nachbar darf kein Pilz sein
+			if (b.getNutrient() >= 25 && !playground.nearFungus(b) // Nachbar darf kein Pilz sein
 				&& b.getBacterium() == null && b.getFungus() == null) { // Feld darf nicht besetzt sein
-				playground.createCell(new Bacterium(b, prolifNum));
+				playground.createCell(new Bacterium(playground,b, prolifNum));
 				prolifNum++;
-				container.consumNutrient(); // Die Teilung verbraucht Nährstoff
+				container.consumNutrient(5); // Die Teilung verbraucht Nährstoff //5 Testwert um Programm ausf�hren zu k�nnen
 				return; // Nur eine Teilung ist erlaubt
 			}
 		}
@@ -77,6 +77,6 @@ class Bacterium implements Runnable {
 	
 	@Override
 	public String toString() {
-		
+		return null;
 	}
 }

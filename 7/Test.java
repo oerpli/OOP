@@ -2,16 +2,13 @@ public class Test {
 	public static void main(String[] args) {
 			int[] time = { 30, 20, 10 };
 			Playground pg = new Playground(50, 50, 5, time);
-			Box bbox = pg.getBox(0, 0);
-			Bacterium bac = new Bacterium(pg, bbox, 1);
-			Bacterium[] bacArr = { bac };
-			Box fbox = pg.getBox(25, 20);
-			Fungus bmyk = new Fungus(pg, fbox, 1);
-			Fungus[] mykArr = { myk };
-			pg.start(bacArr, mykArr);
-			pg.makeRandomCell();
-			pg.makeRandomCell();
-			pg.makeRandomCell();
-			pg.makeRandomCell();
+			pg.createCell("Bacterium", 0, 0);
+			pg.createCell("Bacterium", 1, 8);
+			pg.createCell("Bacterium", 2, 7);
+			pg.createCell("Bacterium", 3, 6);
+			pg.createCell("Bacterium", 4, 5);
+			
+			pg.createCell("Bacterium", 50, 50);
+
 	}
 }

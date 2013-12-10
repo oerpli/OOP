@@ -54,7 +54,7 @@ class Playground {
 	 * Gibt ein Array zurück, das alle umliegenden Boxen enthält.
 	 * @param box: die mittlere Box
 	 */
-	synchronized public Box[] getNeighbors(Box box) {
+	public Box[] getNeighbors(Box box) {
 		int x = 0;
 		int y = 0;
 		for (int i = 0; i < boxes.length; i++) { // finde übergebene Box

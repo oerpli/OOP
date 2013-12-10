@@ -189,7 +189,7 @@ class Playground {
 		}
 	}
 	
-	public void getCellInfo() {
+	public void printCellInfo() {
 		for (int x = 0; x < boxes.length; x++) {
 			for (int y = 0; y < boxes[0].length; y++) {
 				if (boxes[x][y].isTakenBy() == 2) {

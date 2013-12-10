@@ -53,7 +53,7 @@ class Bacterium implements Runnable {
 				&& b.getBacterium() == null && b.getFungus() == null) { // Feld darf nicht besetzt sein
 				playground.createCell(new Bacterium(playground, b, prolifNum));
 				prolifNum++;
-				container.consumNutrient(playground.getConsum()); // Die Teilung verbraucht NÃ¤hrstoff //5 Testwert um Programm ausführen zu können
+				container.consumNutrient(playground.getConsum()); // Die Teilung verbraucht NÃ¤hrstoff //5 Testwert um Programm ausfï¿½hren zu kï¿½nnen
 				//System.out.println(playground.toString());
 				return; // Nur eine Teilung ist erlaubt
 			}
@@ -77,7 +77,7 @@ class Bacterium implements Runnable {
 	
 	@Override
 	public String toString() {
-		int[] Pos=playground.getPos(container);
-		return "X: "+Pos[0]+"Y: "+Pos[1]+"Teilungsanzahl: "+prolifNum;
+		int[] Pos = playground.getPos(container);
+		return "X: " + Pos[0] + "Y: " + Pos[1] + "Teilungsanzahl: " + prolifNum;
 	}
 }

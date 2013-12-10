@@ -92,15 +92,63 @@ class Playground {
 		Box[] neighbors = getNeighbors(box);
 		for (Box b: neighbors) {
 			if (b.getFungus() != null) return true;
+=======
+		int x=0;
+		int y=0;
+		//finde ¸bergebene Box
+		int[] pos=getPos(box);
+		x=pos[0];
+		y=pos[1];
+		Box[] result=new Box[8];
+	    int neighbours = 0;
+	    int maxX=boxes.length-1;//Array beginnt bei 0 ->length ist 1 zu groﬂ
+	    int maxY=boxes[0].length-1;
+	    for (int dx = -1; dx <= 1; dx++) {
+	      for (int dy = -1; dy <= 1; dy++) {
+	        if (((x+dx)<=maxX)&&((x+dx)>=0)&&((y+dy)<=maxY)&&((y+dy)>=0)&&((dy!=0)||(dx!=0))){
+	        		result[neighbours]=boxes[x+dx][y+dy];
+	        		neighbours++;}
+	      }
+	    }
+	    Box[] result1=new Box[neighbours];
+	    for(int i=0;i<neighbours;i++){
+	    	result1[i]=result[i];
+	    }
+	    return result1;
+	  }
+	
+	public int[] getPos(Box box){
+		int[] pos=new int[2];
+		for (int i = 0; i < boxes.length; i++) {
+			for (int j = 0; j < boxes[0].length; j++) {
+				if(boxes[i][j]==box){
+					//x=i;
+					//y=j;
+					pos[0]=i;
+					pos[1]=j;
+				}
+			}
+		}
+		return pos;
+	}
+	/*Findet heraus ob ein Nachbar ein Fungus ist
+	 * Parameter: Box in der Mitte
+	 * R¸ckgabe:true falls ein Fungus in der Nachbarschaft sonst false
+	 */
+	public boolean nearFungus(Box box) {
+		Box[] neighbors= getNeighbors(box);
+		for(Box b: neighbors){
+			if(b.getFungus()!=null) return true;
 		}
 		return false;
 	}
-	
-	
+
 	/**
 	 * Sortiert das √ºbergebene Array absteigend nach dem Nutrient Wert.
 	 */
 	synchronized public Box[] sort(Box[] toSort) {
+	public Box[] sort(Box[] toSort) {
+		boolean unsortiert = true;
 		Box temp;
 		boolean unsortiert = true;
 		while (unsortiert) {
@@ -120,7 +168,7 @@ class Playground {
 	/**
 	 * Alle Zellen werden √ºber ihren Tod benachrichtigt.
 	 */
-	synchronized public void killAllCells() {
+	public void killAllCells() {
 		for (Thread t: threadList) {
 			t.interrupt();
 		}
@@ -198,6 +246,20 @@ class Playground {
 			result += System.getProperty("line.separator");
 		}
 		return result;
+	}
+
+	public void getCellinfo() {
+		for (int x = 0; x < boxes.length; x++) {
+			for (int y = 0; y < boxes[0].length; y++) {
+				if(boxes[x][y].isTakenBy()==2){
+					System.out.println(boxes[x][y].getBacterium().toString());
+				}
+				else if(boxes[x][y].isTakenBy()==1){
+					System.out.println(boxes[x][y].getFungus().toString());
+				}
+			}
+		}
+		
 	}
 
 }

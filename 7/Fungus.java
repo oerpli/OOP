@@ -71,6 +71,7 @@ class Fungus implements Runnable {
 	
 	@Override
 	public String toString() {
-		return null;
+		int[] Pos=playground.getPos(container);
+		return "X: "+Pos[0]+"Y: "+Pos[1]+"Vervielfältigungsanzahl: "+prolifNum;
 	}
 }

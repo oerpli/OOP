@@ -1,5 +1,3 @@
-import java.util.Arrays;
-
 class Bacterium implements Runnable {
 	private Playground playground; /** Die Petrischale in der sich die Zelle befindet */
 	private Box container; /** Die Box in der sich das Bakterium befindet */
@@ -18,6 +16,7 @@ class Bacterium implements Runnable {
 		thread = Thread.currentThread();
 		while (!thread.isInterrupted()) {
 			if (prolifNum == 32) {
+				playground.getCellinfo();
 				playground.killAllCells();
 			} else if (container.getNutrient() < 25) {
 				playground.killCell(this);
@@ -54,7 +53,8 @@ class Bacterium implements Runnable {
 				&& b.getBacterium() == null && b.getFungus() == null) { // Feld darf nicht besetzt sein
 				playground.createCell(new Bacterium(playground, b, prolifNum));
 				prolifNum++;
-				container.consumNutrient(playground.getConsum()); // Die Teilung verbraucht NÃ¤hrstoff
+				container.consumNutrient(playground.getConsum()); // Die Teilung verbraucht NÃ¤hrstoff //5 Testwert um Programm ausführen zu können
+				//System.out.println(playground.toString());
 				return; // Nur eine Teilung ist erlaubt
 			}
 		}
@@ -77,6 +77,7 @@ class Bacterium implements Runnable {
 	
 	@Override
 	public String toString() {
-		return null;
+		int[] Pos=playground.getPos(container);
+		return "X: "+Pos[0]+"Y: "+Pos[1]+"Teilungsanzahl: "+prolifNum;
 	}
 }

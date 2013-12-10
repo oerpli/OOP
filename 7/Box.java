@@ -16,14 +16,7 @@ class Box {
 	public void consumNutrient(int consumption) {
 		nutrient = (int)(nutrient - (nutrient * (consumption / 100.0)));
 	}
-	
-	/**
-	 * true wenn in den Nachbarfeldern ein Pilz ist.
-	 */
-	public boolean nearFungus() {
-		return false;
-	}
-	
+		
 	/**
 	 * Übergibt das enthaltene Bakterium.
 	 * Ist kein Bakterium enthalten, ist der Rückgabewert null.
@@ -58,6 +51,12 @@ class Box {
 		bacterium = null;
 	}
 	
+	/**
+	 * Gibt zur�ck welcher Typ in der Box ist
+	 * 2=bacterium
+	 * 1=fungus
+	 * 0=keines
+	 */
 	public int isTakenBy() {
 		if(this.bacterium!=null && this.fungus==null) return 2;
 		else if(this.fungus!=null && this.bacterium==null) return 1;

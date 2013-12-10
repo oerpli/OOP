@@ -1,8 +1,9 @@
-import java.util.ArrayList;
+import java.util.concurrent.*;
+import java.util.Random;
 
 class Playground {
 	private Box[][] boxes;
-	private ArrayList<Thread> threadList;
+	private CopyOnWriteArrayList<Thread> threadList;
 	private int consum;
 	private int[] time;
 	
@@ -14,7 +15,8 @@ class Playground {
 	 */
 	public Playground(int width, int height, int consumption, int[] prolifTime) {
 		boxes = new Box[width][height];
-		threadList = new ArrayList<Thread>();
+		threadList=new CopyOnWriteArrayList<>();
+		
 		time = prolifTime;
 		consum = consumption;
 	}
@@ -52,7 +54,7 @@ class Playground {
 	 * Rückgabewert: Box Array mit allen Nachbarn
 	 * 
 	 */
-	public Box[] getNeighbors(Box box) {
+	synchronized public Box[] getNeighbors(Box box) {
 		int x=0;
 		int y=0;
 		//finde übergebene Box
@@ -86,7 +88,7 @@ class Playground {
 	 * Parameter: Box in der Mitte
 	 * Rückgabe:true falls ein Fungus in der Nachbarschaft sonst false
 	 */
-	public boolean nearFungus(Box box) {
+	synchronized public boolean nearFungus(Box box) {
 		Box[] neighbors= getNeighbors(box);
 		for(Box b: neighbors){
 			if(b.getFungus()!=null) return true;
@@ -97,7 +99,7 @@ class Playground {
 	
 	//Einfacher Sortieralgorythmus 
 	//Sortiert absteigend
-	public Box[] sort(Box[] toSort) {
+	synchronized public Box[] sort(Box[] toSort) {
 		boolean unsortiert = true;
 		Box temp;
 		while (unsortiert) {
@@ -117,7 +119,7 @@ class Playground {
 	/**
 	 * Alle Zellen werden Ã¼ber ihren Tod benachrichtigt.
 	 */
-	public void killAllCells() {
+	synchronized public void killAllCells() {
 		for (Thread t: threadList) {
 			t.interrupt();
 		}
@@ -128,7 +130,8 @@ class Playground {
 	 * Die Ã¼bergebene Zelle wird aus ihrem Container gelÃ¶scht.
 	 */
 	public void killCell(Bacterium cell) {
-		cell.getThread().interrupt(); // null testen?
+		if(cell.getThread()!=null)
+			cell.getThread().interrupt(); // null testen?
 		cell.getContainer().setResident((Bacterium)null);
 	}
 	
@@ -161,6 +164,19 @@ class Playground {
 		Thread t = new Thread(cell); // Pilz wird belebt
 		t.start();
 		threadList.add(t);
+	}
+	
+	public void makeRandomCell(){
+		Random random=new Random();
+		int type=random.nextInt(2);
+		if(type==0)
+		{	
+			createCell(new Fungus(this,boxes[random.nextInt(boxes.length)][random.nextInt(boxes[0].length)],1));
+		}
+		else if(type==1)
+		{	
+			createCell(new Bacterium(this,boxes[random.nextInt(boxes.length)][random.nextInt(boxes[0].length)],1));
+		}
 	}
 	
 	@Override

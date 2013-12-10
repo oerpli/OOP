@@ -39,7 +39,9 @@ class Playground {
 	}
 	
 	/**
-	 * Paramter: Wo werden Bakterien und Pilze platziert? Wo wie viel Nährstoff?
+	 * Startet die Simulation.
+	 * @param bacteria: Ein Array mit den Bakterien, die es zum Start geben soll.
+	 * @param fungi: Ein Array mit den Pilzen, die es zum Start geben soll.
 	 */
 	public void start(Bacterium[] bacteria, Fungus fungi) {
 		for (Bacterium b: bacteria) {
@@ -222,7 +224,7 @@ class Playground {
 		System.out.println("Stats: \n Bacterium: "+ bac +"\n Fungus: "+fung);
 	}
 	/**
-	 * Z�hlt die Bakterien
+	 * Zählt die Bakterien
 	 * @return aktuelle Anzahl Bakterien
 	 */
 	public int countBacterium(){

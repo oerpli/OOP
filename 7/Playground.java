@@ -28,6 +28,10 @@ class Playground {
 		return time[index];
 	}
 	
+	public Box getBox(int x, int y) {
+		return boxes[x][y];
+	}
+	
 	/**
 	 * Paramter: Wo werden Bakterien und Pilze platziert? Wo wie viel Nährstoff?
 	 */

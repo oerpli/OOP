@@ -39,20 +39,6 @@ class Playground {
 	}
 	
 	/**
-	 * Startet die Simulation.
-	 * @param bacteria: Ein Array mit den Bakterien, die es zum Start geben soll.
-	 * @param fungi: Ein Array mit den Pilzen, die es zum Start geben soll.
-	 */
-	public void start(Bacterium[] bacteria, Fungus fungi) {
-		for (Bacterium b: bacteria) {
-			createCell(b);
-		}
-		for (Fungus f: fungi) {
-			createCell(f);
-		}
-	}
-	
-	/**
 	 * Gibt ein Array zurück, das alle umliegenden Boxen enthält.
 	 * @param box: die mittlere Box
 	 * @return Array mit allen Nachbarn
@@ -197,6 +183,16 @@ class Playground {
 		{	
 			createCell(new Bacterium(this,boxes[random.nextInt(boxes.length)][random.nextInt(boxes[0].length)],1));
 		}
+	}
+	
+	public void createCell(String type,int X,int Y){
+		if(type=="Fungus"){
+			createCell(new Fungus(this,boxes[X][Y],1));
+		}
+		else if(type=="Bacterium"){
+			createCell(new Bacterium(this,boxes[X][Y],1));
+		}
+		
 	}
 	/**
 	 * Gibt Zell Information aus

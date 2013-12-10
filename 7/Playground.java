@@ -18,6 +18,12 @@ class Playground {
 		threadList = new CopyOnWriteArrayList<>();
 		time = prolifTime;
 		consum = consumption;
+		
+		for (int x = 0; x < boxes.length; x++) {
+			for (int y = 0; y < boxes[0].length; y++) {
+				boxes[x][y] = new Box(75);
+			}
+		}
 	}
 	
 	public int getConsum() {
@@ -35,12 +41,7 @@ class Playground {
 	/**
 	 * Paramter: Wo werden Bakterien und Pilze platziert? Wo wie viel Nährstoff?
 	 */
-	public void start(Bacterium[] bacteria, Fungus[] fungi, int nutrient) {
-		for (int x = 0; x < boxes.length; x++) {
-			for (int y = 0; y < boxes[0].length; y++) {
-				boxes[x][y] = new Box(nutrient);
-			}
-		}
+	public void start(Bacterium[] bacteria, Fungus fungi) {
 		for (Bacterium b: bacteria) {
 			createCell(b);
 		}

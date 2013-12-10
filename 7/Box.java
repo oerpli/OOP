@@ -1,7 +1,7 @@
 class Box {
 	private int nutrient; /** Zwischen 0 und 100 */
 	private Bacterium bacterium;
-	private Fungus fungus; /** Eines von beiden immer Null */
+	private Fungus fungus; /** Eines von beiden immer null */
 	
 	public Box(int nutrient) {
 		this.nutrient = nutrient;
@@ -52,14 +52,12 @@ class Box {
 	}
 	
 	/**
-	 * Gibt zurück welcher Typ in der Box ist
-	 * 2=bacterium
-	 * 1=fungus
-	 * 0=keines
+	 * Gibt an, ob und womit die Box besetzt ist.
+	 * @return 0: leer, 1: Fungus, 2: Bacterium
 	 */
 	public int isTakenBy() {
-		if(this.bacterium!=null && this.fungus==null) return 2;
-		else if(this.fungus!=null && this.bacterium==null) return 1;
+		if (this.bacterium != null && this.fungus == null) return 2;
+		else if (this.fungus != null && this.bacterium == null) return 1;
 		else return 0;
 	}
 

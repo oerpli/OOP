@@ -57,14 +57,10 @@ class Playground {
 	public Box[] getNeighbors(Box box) {
 		int x = 0;
 		int y = 0;
-		for (int i = 0; i < boxes.length; i++) { // finde übergebene Box
-			for (int j = 0; j < boxes[0].length; j++) {
-				if (boxes[i][j] == box){
-					x = i;
-					y = j;
-				}
-			}
-		}
+		
+		int[] Pos=getPos(box);
+		x=Pos[0];
+		y=Pos[1];
 		Box[] result = new Box[8];
 		int neighbours = 0;
 		int maxX = boxes.length - 1; //Array beginnt bei 0 ->length ist 1 zu groß

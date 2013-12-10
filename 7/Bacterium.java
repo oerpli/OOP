@@ -16,7 +16,7 @@ class Bacterium implements Runnable {
 		thread = Thread.currentThread();
 		while (!thread.isInterrupted()) {
 			if (prolifNum == 32) {
-				playground.getCellinfo();
+				playground.getCellInfo();
 				playground.killAllCells();
 			} else if (container.getNutrient() < 25) {
 				playground.killCell(this);

@@ -53,6 +53,7 @@ class Playground {
 	/**
 	 * Gibt ein Array zurück, das alle umliegenden Boxen enthält.
 	 * @param box: die mittlere Box
+	 * @return Array mit allen Nachbarn
 	 */
 	public Box[] getNeighbors(Box box) {
 		int x = 0;
@@ -79,7 +80,11 @@ class Playground {
 		}
 		return result1;
 	  }
-	
+	/**
+	 * Sucht Box im array und gibt x y werte als array zur�ck
+	 * @param Box
+	 * @return Array mit X und Y Wert
+	 */
 	public int[] getPos(Box box){
 		int[] pos=new int[2];
 		for (int i = 0; i < boxes.length; i++) {
@@ -108,6 +113,8 @@ class Playground {
 
 	/**
 	 * Sortiert das übergebene Array absteigend nach dem Nutrient Wert.
+	 * @param zu sortierendes Array
+	 * @return absteigend sortiertes array
 	 */
 	public Box[] sort(Box[] toSort) {
 		boolean unsortiert = true;
@@ -129,7 +136,7 @@ class Playground {
 	/**
 	 * Alle Zellen werden über ihren Tod benachrichtigt.
 	 */
-	public void killAllCells() {
+	synchronized public void killAllCells() {
 		for (Thread t: threadList) {
 			t.interrupt();
 		}
@@ -158,7 +165,7 @@ class Playground {
 	 * Die übergebene Zelle wird in einem neuen Thread belebt.
 	 * Die übergebene Zelle wird in ihren Container platziert.
 	 */
-	public void createCell(Bacterium cell) {
+	synchronized public void createCell(Bacterium cell) {
 		cell.getContainer().setResident(cell); // Bakterium wird in Box eingetragen
 		Thread t = new Thread(cell); // Bakterium wird belebt
 		t.start();
@@ -169,13 +176,15 @@ class Playground {
 	 * Die übergebene Zelle wird in einem neuen Thread belebt.
 	 * Die übergebene Zelle wird in ihren Container platziert.
 	 */
-	public void createCell(Fungus cell) {
+	synchronized public void createCell(Fungus cell) {
 		cell.getContainer().setResident(cell); // Pilz wird in Box eingetragen
 		Thread t = new Thread(cell); // Pilz wird belebt
 		t.start();
 		threadList.add(t);
 	}
-	
+	/**
+	 * Erstellt zuf�llige Zelle an zuf�lligem Ort
+	 */
 	public void makeRandomCell(){
 		Random random=new Random();
 		int type=random.nextInt(2);
@@ -188,7 +197,10 @@ class Playground {
 			createCell(new Bacterium(this,boxes[random.nextInt(boxes.length)][random.nextInt(boxes[0].length)],1));
 		}
 	}
-	
+	/**
+	 * Gibt Zell Information aus
+	 * 
+	 */
 	public void printCellInfo() {
 		int bac=0;
 		int fung=0;
@@ -208,7 +220,10 @@ class Playground {
 		System.out.println(result);
 		System.out.println("Stats: \n Bacterium: "+ bac +"\n Fungus: "+fung);
 	}
-	
+	/**
+	 * Z�hlt die Bakterien
+	 * @return aktuelle Anzahl Bakterien
+	 */
 	public int countBacterium(){
 		int count=0;
 		for (int x = 0; x < boxes.length; x++) {

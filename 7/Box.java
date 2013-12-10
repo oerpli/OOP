@@ -13,7 +13,7 @@ class Box {
 		return nutrient;
 	}
 	
-	public void consumNutrient(int consumption) {
+	synchronized public void consumNutrient(int consumption) {
 		nutrient = (int)(nutrient - (nutrient * (consumption / 100.0)));
 	}
 		

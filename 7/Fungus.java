@@ -15,6 +15,11 @@ class Fungus implements Runnable {
 	public void run() {
 		thread = Thread.currentThread();
 		while (!thread.isInterrupted()) {
+			if(playground.countBacterium()==0)
+			{
+				playground.getCellInfo();
+				playground.killAllCells();
+			}
 			if (container.getNutrient() < 25) {
 				return; // TODO: Da Nährlösung nicht steigen kann, kann der Thread beendet werden,
 					// während die Zelle noch als lebendig gilt. Da Playground auf alle Threads
@@ -70,6 +75,6 @@ class Fungus implements Runnable {
 	@Override
 	public String toString() {
 		int[] Pos = playground.getPos(container);
-		return "X: " + Pos[0] + "Y: " + Pos[1] + "Vervielfältigungsanzahl: " + prolifNum;
+		return "X: " + Pos[0] + " Y: " + Pos[1] + " Vervielfältigungsanzahl: " + prolifNum;
 	}
 }

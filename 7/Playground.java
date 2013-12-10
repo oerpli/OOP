@@ -202,6 +202,17 @@ class Playground {
 		}
 	}
 	
+	public int countBacterium(){
+		int count=0;
+		for (int x = 0; x < boxes.length; x++) {
+			for (int y = 0; y < boxes[0].length; y++) {
+				if(boxes[x][y].isTakenBy()==2) 
+					count++;
+			}
+		}
+		return count;
+	}
+	
 	@Override
 	public String toString() {
 		String result = "";

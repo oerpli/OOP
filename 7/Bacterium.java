@@ -15,6 +15,11 @@ class Bacterium implements Runnable {
 	public void run() {
 		thread = Thread.currentThread();
 		while (!thread.isInterrupted()) {
+			if(playground.countBacterium()==0)
+			{
+				playground.getCellInfo();
+				playground.killAllCells();
+			}
 			if (prolifNum == 32) {
 				playground.getCellInfo();
 				playground.killAllCells();
@@ -78,6 +83,6 @@ class Bacterium implements Runnable {
 	@Override
 	public String toString() {
 		int[] Pos = playground.getPos(container);
-		return "X: " + Pos[0] + "Y: " + Pos[1] + "Teilungsanzahl: " + prolifNum;
+		return "X: " + Pos[0] + " Y: " + Pos[1] + " Teilungsanzahl: " + prolifNum;
 	}
 }

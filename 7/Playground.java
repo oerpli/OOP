@@ -84,39 +84,6 @@ class Playground {
 		return result1;
 	  }
 	
-	/**
-	 * Findet heraus, ob ein Nachbar ein Fungus ist. Sonst false.
-	 * @param box: die mittlere Box
-	 */
-	synchronized public boolean nearFungus(Box box) {
-		Box[] neighbors = getNeighbors(box);
-		for (Box b: neighbors) {
-			if (b.getFungus() != null) return true;
-=======
-		int x=0;
-		int y=0;
-		//finde ¸bergebene Box
-		int[] pos=getPos(box);
-		x=pos[0];
-		y=pos[1];
-		Box[] result=new Box[8];
-	    int neighbours = 0;
-	    int maxX=boxes.length-1;//Array beginnt bei 0 ->length ist 1 zu groﬂ
-	    int maxY=boxes[0].length-1;
-	    for (int dx = -1; dx <= 1; dx++) {
-	      for (int dy = -1; dy <= 1; dy++) {
-	        if (((x+dx)<=maxX)&&((x+dx)>=0)&&((y+dy)<=maxY)&&((y+dy)>=0)&&((dy!=0)||(dx!=0))){
-	        		result[neighbours]=boxes[x+dx][y+dy];
-	        		neighbours++;}
-	      }
-	    }
-	    Box[] result1=new Box[neighbours];
-	    for(int i=0;i<neighbours;i++){
-	    	result1[i]=result[i];
-	    }
-	    return result1;
-	  }
-	
 	public int[] getPos(Box box){
 		int[] pos=new int[2];
 		for (int i = 0; i < boxes.length; i++) {
@@ -131,10 +98,10 @@ class Playground {
 		}
 		return pos;
 	}
-	/*Findet heraus ob ein Nachbar ein Fungus ist
-	 * Parameter: Box in der Mitte
-	 * R¸ckgabe:true falls ein Fungus in der Nachbarschaft sonst false
-	 */
+	/**
+	 * Findet heraus, ob ein Nachbar ein Fungus ist. Sonst false.
+	 * @param box: die mittlere Box
+	 */	
 	public boolean nearFungus(Box box) {
 		Box[] neighbors= getNeighbors(box);
 		for(Box b: neighbors){
@@ -146,11 +113,9 @@ class Playground {
 	/**
 	 * Sortiert das √ºbergebene Array absteigend nach dem Nutrient Wert.
 	 */
-	synchronized public Box[] sort(Box[] toSort) {
 	public Box[] sort(Box[] toSort) {
 		boolean unsortiert = true;
 		Box temp;
-		boolean unsortiert = true;
 		while (unsortiert) {
 			unsortiert = false;
 			for (int i = 0; i < toSort.length - 1; i++) {

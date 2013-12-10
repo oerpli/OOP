@@ -59,7 +59,7 @@ class Bacterium implements Runnable {
 				playground.createCell(new Bacterium(playground, b, prolifNum));
 				prolifNum++;
 				container.consumNutrient(playground.getConsum()); // Die Teilung verbraucht Nährstoff //5 Testwert um Programm ausf�hren zu k�nnen
-				//System.out.println(playground.toString());
+				System.out.println(playground.toString());
 				return; // Nur eine Teilung ist erlaubt
 			}
 		}

@@ -190,16 +190,23 @@ class Playground {
 	}
 	
 	public void printCellInfo() {
+		int bac=0;
+		int fung=0;
+		String result = null;
 		for (int x = 0; x < boxes.length; x++) {
 			for (int y = 0; y < boxes[0].length; y++) {
 				if (boxes[x][y].isTakenBy() == 2) {
-					System.out.println(boxes[x][y].getBacterium().toString());
+					bac++;
+					result+=boxes[x][y].getBacterium().toString()+"\n";
 				}
 				else if (boxes[x][y].isTakenBy() == 1) {
-					System.out.println(boxes[x][y].getFungus().toString());
+					fung++;
+					result+=boxes[x][y].getFungus().toString()+"\n";
 				}
 			}
 		}
+		System.out.println(result);
+		System.out.println("Stats: \n Bacterium: "+ bac +"\n Fungus: "+fung);
 	}
 	
 	public int countBacterium(){

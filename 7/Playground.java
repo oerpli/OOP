@@ -31,23 +31,18 @@ class Playground {
 	/**
 	 * Paramter: Wo werden Bakterien und Pilze platziert? Wo wie viel Nährstoff?
 	 */
-	public void start() {
+	public void start(Bacterium[] bacteria, Fungus[] fungi, int nutrient) {
 		for (int x = 0; x < boxes.length; x++) {
 			for (int y = 0; y < boxes[0].length; y++) {
-				boxes[x][y] = new Box(75);
+				boxes[x][y] = new Box(nutrient);
 			}
 		}
-		
-		Bacterium bac = new Bacterium(this, boxes[0][0], 1);
-		boxes[0][0].setResident(bac);
-		Fungus myk = new Fungus(this, boxes[boxes.length-1][boxes[0].length-1], 1);
-		boxes[boxes.length-1][boxes[0].length-1].setResident(myk);
-		Thread bT = new Thread(bac);
-		bT.start();
-		threadList.add(bT);
-		Thread fT = new Thread(myk);
-		fT.start();
-		threadList.add(fT);
+		for (Bacterium b: bacteria) {
+			createCell(b);
+		}
+		for (Fungus f: fungi) {
+			createCell(f);
+		}
 	}
 	
 	/**
@@ -184,7 +179,7 @@ class Playground {
 		threadList.add(t);
 	}
 	/**
-	 * Erstellt zuf�llige Zelle an zuf�lligem Ort
+	 * Erstellt zufällige Zelle an zufälligem Ort
 	 */
 	public void makeRandomCell(){
 		Random random=new Random();

@@ -81,7 +81,7 @@ class Playground {
 		return result1;
 	  }
 	/**
-	 * Sucht Box im array und gibt x y werte als array zurück
+	 * Sucht Box im array und gibt x y werte als array zurï¿½ck
 	 * @param Box
 	 * @return Array mit X und Y Wert
 	 */
@@ -147,8 +147,8 @@ class Playground {
 	 * Die Ã¼bergebene Zelle wird aus ihrem Container gelÃ¶scht.
 	 */
 	public void killCell(Bacterium cell) {
-		if(cell.getThread()!=null)
-			cell.getThread().interrupt(); // null testen?
+		if (cell.getThread() != null)
+			cell.getThread().interrupt();
 		cell.getContainer().setResident((Bacterium)null);
 	}
 	
@@ -157,7 +157,8 @@ class Playground {
 	 * Die Ã¼bergebene Zelle wird aus ihrem Container gelÃ¶scht.
 	 */
 	public void killCell(Fungus cell) {
-		cell.getThread().interrupt();
+		if (cell.getThread() != null)
+			cell.getThread().interrupt();
 		cell.getContainer().setResident((Fungus)null);
 	}
 	
@@ -183,7 +184,7 @@ class Playground {
 		threadList.add(t);
 	}
 	/**
-	 * Erstellt zufällige Zelle an zufälligem Ort
+	 * Erstellt zufï¿½llige Zelle an zufï¿½lligem Ort
 	 */
 	public void makeRandomCell(){
 		Random random=new Random();
@@ -221,7 +222,7 @@ class Playground {
 		System.out.println("Stats: \n Bacterium: "+ bac +"\n Fungus: "+fung);
 	}
 	/**
-	 * Zählt die Bakterien
+	 * Zï¿½hlt die Bakterien
 	 * @return aktuelle Anzahl Bakterien
 	 */
 	public int countBacterium(){

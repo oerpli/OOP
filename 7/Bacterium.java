@@ -52,9 +52,9 @@ class Bacterium implements Runnable {
 		for (Box b: neighbors) { // passendes Feld fÃ¼r Teilung finden:
 			if (b.getNutrient() >= 25 && !playground.nearFungus(b) // Nachbar darf kein Pilz sein
 				&& b.getBacterium() == null && b.getFungus() == null) { // Feld darf nicht besetzt sein
-				playground.createCell(new Bacterium(playground,b, prolifNum));
+				playground.createCell(new Bacterium(playground, b, prolifNum));
 				prolifNum++;
-				container.consumNutrient(5); // Die Teilung verbraucht NÃ¤hrstoff //5 Testwert um Programm ausführen zu können
+				container.consumNutrient(5); // Die Teilung verbraucht NÃ¤hrstoff //5 Testwert um Programm ausfï¿½hren zu kï¿½nnen
 				return; // Nur eine Teilung ist erlaubt
 			}
 		}

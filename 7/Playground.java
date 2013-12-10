@@ -83,9 +83,7 @@ class Playground {
 		return result1;
 	  }
 	/**
-	 * Sucht Box im array und gibt x y werte als array zur�ck
-	 * @param Box
-	 * @return Array mit X und Y Wert
+	 * Gibt die Position der übergebenen Box als x und y Koordinate zurück.
 	 */
 	public int[] getPos(Box box){
 		int[] pos=new int[2];

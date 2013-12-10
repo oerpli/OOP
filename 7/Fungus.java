@@ -50,7 +50,7 @@ class Fungus implements Runnable {
 					playground.killCell(aim.getBacterium()); // null Testen???
 			playground.createCell(new Fungus(playground,aim, prolifNum));
 			prolifNum++;
-			container.consumNutrient(20); // Die Teilung verbraucht NÃ¤hrstoff //5 Testwert um Programm ausführen zu können
+			container.consumNutrient(playground.getConsum() * 3); // Die Teilung verbraucht NÃ¤hrstoff
 		}
 	}
 	

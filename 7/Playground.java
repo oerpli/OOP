@@ -40,8 +40,8 @@ class Playground {
 		
 		Bacterium bac = new Bacterium(this, boxes[0][0], 1);
 		boxes[0][0].setResident(bac);
-		Fungus myk = new Fungus(this, boxes[boxes.length-1][boxes[0].length-1], 1); //Arrayoutofbounds error fix, array.length ist 1 zu gro�
-		boxes[boxes.length-1][boxes[0].length-1].setResident(myk);  //Arrayoutofbounds error fix, array.length ist 1 zu gro�
+		Fungus myk = new Fungus(this, boxes[boxes.length-1][boxes[0].length-1], 1);
+		boxes[boxes.length-1][boxes[0].length-1].setResident(myk);
 		Thread bT = new Thread(bac);
 		bT.start();
 		threadList.add(bT);

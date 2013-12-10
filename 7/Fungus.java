@@ -17,7 +17,7 @@ class Fungus implements Runnable {
 		while (!thread.isInterrupted()) {
 			if(playground.countBacterium()==0)
 			{
-				playground.getCellInfo();
+				playground.printCellInfo();
 				playground.killAllCells();
 			}
 			if (container.getNutrient() < 25) {

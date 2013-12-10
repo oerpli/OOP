@@ -17,11 +17,11 @@ class Bacterium implements Runnable {
 		while (!thread.isInterrupted()) {
 			if(playground.countBacterium()==0)
 			{
-				playground.getCellInfo();
+				playground.printCellInfo();
 				playground.killAllCells();
 			}
 			if (prolifNum == 32) {
-				playground.getCellInfo();
+				playground.printCellInfo();
 				playground.killAllCells();
 			} else if (container.getNutrient() < 25) {
 				playground.killCell(this);

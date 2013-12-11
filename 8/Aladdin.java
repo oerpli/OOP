@@ -1,0 +1,3 @@
+class Aladdin extends Pumpkin {
+	
+}

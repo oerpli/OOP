@@ -1,0 +1,3 @@
+class Hokkaido extends Pumpkin {
+	
+}

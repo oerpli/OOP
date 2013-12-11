@@ -13,7 +13,7 @@ class Playground {
 	 * @param consumption: Nährlösungsverbrauch pro Teilung. Zwischen 0 und 100.
 	 * @param prolifTime: Millisekunden pro Teilung für 25-50, 50-75 und 75-100 Prozent Nährlösung. Absteigend.
 	 */
-	public Playground(int width, int height, int consumption, int[] prolifTime) {
+	public Playground(int width, int height, int consumption, int[] prolifTime, int nutrient) {
 		boxes = new Box[width][height];
 		threadList = new CopyOnWriteArrayList<>();
 		time = prolifTime;
@@ -21,7 +21,7 @@ class Playground {
 		
 		for (int x = 0; x < boxes.length; x++) {
 			for (int y = 0; y < boxes[0].length; y++) {
-				boxes[x][y] = new Box(75);
+				boxes[x][y] = new Box(nutrient);
 			}
 		}
 	}
@@ -32,10 +32,6 @@ class Playground {
 	
 	public int getTime(int index) {
 		return time[index];
-	}
-	
-	public Box getBox(int x, int y) {
-		return boxes[x][y];
 	}
 	
 	/**
@@ -122,7 +118,7 @@ class Playground {
 	/**
 	 * Alle Zellen werden über ihren Tod benachrichtigt.
 	 */
-	synchronized public void killAllCells() {
+	public void killAllCells() {
 		for (Thread t: threadList) {
 			t.interrupt();
 		}
@@ -149,6 +145,21 @@ class Playground {
 	}
 	
 	/*
+	 * Es wird eine neue Zelle entsprechend der Parameter erzeugt.
+	 */
+	synchronized public void createCell(String type, int x, int y) {
+		if (type == "Fungus") {
+			if (x >= 0 && y >= 0 && x < boxes.length && y < boxes[0].length)
+				createCell(new Fungus(this, boxes[x][y], 1));
+		}
+		else if (type == "Bacterium") {
+			if (x >= 0 && y >= 0 && x < boxes.length && y < boxes[0].length)
+				createCell(new Bacterium(this, boxes[x][y], 1));
+		}
+		
+	}
+	
+	/*
 	 * Die übergebene Zelle wird in einem neuen Thread belebt.
 	 * Die übergebene Zelle wird in ihren Container platziert.
 	 */
@@ -169,50 +180,23 @@ class Playground {
 		t.start();
 		threadList.add(t);
 	}
-	/**
-	 * Erstellt zufällige Zelle an zufälligem Ort
-	 */
-	public void makeRandomCell(){
-		Random random=new Random();
-		int type=random.nextInt(2);
-		if(type==0)
-		{	
-			createCell(new Fungus(this,boxes[random.nextInt(boxes.length)][random.nextInt(boxes[0].length)],1));
-		}
-		else if(type==1)
-		{	
-			createCell(new Bacterium(this,boxes[random.nextInt(boxes.length)][random.nextInt(boxes[0].length)],1));
-		}
-	}
 	
-	public void createCell(String type, int x, int y) {
-		if (type == "Fungus") {
-			if (x >= 0 && y >= 0 && x < boxes.length && y < boxes[0].length)
-				createCell(new Fungus(this, boxes[x][y], 1));
-		}
-		else if (type == "Bacterium") {
-			if (x >= 0 && y >= 0 && x < boxes.length && y < boxes[0].length)
-				createCell(new Bacterium(this, boxes[x][y], 1));
-		}
-		
-	}
 	/**
-	 * Gibt Zell Information aus
-	 * 
+	 * Schreibt Informationen über die Zellen in die Ausgabe.
 	 */
 	public void printCellInfo() {
-		int bac=0;
-		int fung=0;
+		int bac = 0;
+		int fung = 0;
 		String result = null;
 		for (int x = 0; x < boxes.length; x++) {
 			for (int y = 0; y < boxes[0].length; y++) {
 				if (boxes[x][y].isTakenBy() == 2) {
 					bac++;
-					result+=boxes[x][y].getBacterium().toString()+"\n";
+					result += boxes[x][y].getBacterium().toString() + "\n";
 				}
 				else if (boxes[x][y].isTakenBy() == 1) {
 					fung++;
-					result+=boxes[x][y].getFungus().toString()+"\n";
+					result += boxes[x][y].getFungus().toString() + "\n";
 				}
 			}
 		}
@@ -220,8 +204,7 @@ class Playground {
 		System.out.println("Stats: \n Bacterium: "+ bac +"\n Fungus: "+fung);
 	}
 	/**
-	 * Zählt die Bakterien
-	 * @return aktuelle Anzahl Bakterien
+	 * Gibt die Anzahl aller Bakterien zurück.
 	 */
 	public int countBacterium(){
 		int count=0;
@@ -253,4 +236,20 @@ class Playground {
 		}
 		return result;
 	}
+	
+	/**
+	 * Erstellt zufällige Zelle an zufälligem Ort
+	
+	public void makeRandomCell(){
+		Random random=new Random();
+		int type=random.nextInt(2);
+		if(type==0)
+		{	
+			createCell(new Fungus(this,boxes[random.nextInt(boxes.length)][random.nextInt(boxes[0].length)],1));
+		}
+		else if(type==1)
+		{	
+			createCell(new Bacterium(this,boxes[random.nextInt(boxes.length)][random.nextInt(boxes[0].length)],1));
+		}
+	}*/
 }

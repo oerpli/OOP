@@ -2,7 +2,7 @@ public class Test {
 	public static void main(String[] args) {
 			System.out.println("Test 1");
 			int[] time = { 30, 20, 10 };
-			Playground pg = new Playground(50, 50, 5, time);
+			Playground pg = new Playground(50, 50, 5, time, 75);
 			pg.createCell("Bacterium", 55, 55);
 			pg.createCell("Bacterium", 0, 0);
 			pg.createCell("Bacterium", 1, 8);
@@ -16,7 +16,7 @@ public class Test {
 			
 			System.out.println("Test 2");
 			time = { 50, 30, 4 };
-			pg = new Playground(70, 70, 15, time);
+			pg = new Playground(70, 70, 15, time, 50);
 			pg.createCell("Bacterium", 55, 55);
 			pg.createCell("Bacterium", 1, 0);
 			pg.createCell("Bacterium", 15, 32);
@@ -30,7 +30,7 @@ public class Test {
 			
 			System.out.println("Test 3");
 			time = { 50, 30, 4 };
-			pg = new Playground(80, 80, 7, time);
+			pg = new Playground(80, 80, 7, time, 100);
 			pg.createCell("Bacterium", 50, 50);
 			pg.createCell("Bacterium", 79, 79);
 			pg.createCell("Bacterium", 15, 32);

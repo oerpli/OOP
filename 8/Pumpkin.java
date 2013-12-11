@@ -1,3 +1,3 @@
-public abstract class Pumpkin {
+abstract class Pumpkin {
 	
 }

@@ -128,7 +128,7 @@ class Playground {
 	 * Die übergebene Zelle wird über ihren Tod benachrichtigt.
 	 * Die übergebene Zelle wird aus ihrem Container gelöscht.
 	 */
-	public void killCell(Bacterium cell) {
+	synchronized public void killCell(Bacterium cell) {
 		if (cell.getThread() != null)
 			cell.getThread().interrupt();
 		cell.getContainer().setResident((Bacterium)null);
@@ -138,7 +138,7 @@ class Playground {
 	 * Die übergebene Zelle wird über ihren Tod benachrichtigt.
 	 * Die übergebene Zelle wird aus ihrem Container gelöscht.
 	 */
-	public void killCell(Fungus cell) {
+	synchronized public void killCell(Fungus cell) {
 		if (cell.getThread() != null)
 			cell.getThread().interrupt();
 		cell.getContainer().setResident((Fungus)null);

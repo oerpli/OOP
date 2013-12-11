@@ -13,4 +13,14 @@ abstract class Pumpkin {
 	public void simuWind() {
 		
 	}
+	
+	@Override
+	public String toString() {
+		String result = "";
+		result += "Gewicht: ";
+		result += weight;
+		reuslt += "; Wassergehalt: "
+		result += waterLevel;
+		return result;
+	}
 }

@@ -186,11 +186,11 @@ class Playground {
 	}
 	
 	public void createCell(String type, int x, int y) {
-		if(type == "Fungus") {
+		if (type == "Fungus") {
 			if (x >= 0 && y >= 0 && x < boxes.length && y < boxes[0].length)
-			createCell(new Fungus(this, boxes[x][y], 1));
+				createCell(new Fungus(this, boxes[x][y], 1));
 		}
-		else if(type == "Bacterium") {
+		else if (type == "Bacterium") {
 			if (x >= 0 && y >= 0 && x < boxes.length && y < boxes[0].length)
 				createCell(new Bacterium(this, boxes[x][y], 1));
 		}

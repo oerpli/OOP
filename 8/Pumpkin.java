@@ -19,7 +19,7 @@ abstract class Pumpkin {
 		String result = "";
 		result += "Gewicht: ";
 		result += weight;
-		reuslt += "; Wassergehalt: "
+		result += "; Wassergehalt: ";
 		result += waterLevel;
 		return result;
 	}

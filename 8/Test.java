@@ -1,7 +1,4 @@
-import java.util.ArrayList;
-import java.util.Collection;
-import java.lang.reflect.Method;
-
+@WorkedOnAnnotation(worker1="Maisriemler", comment1 = "", comment2 = "", worker2 = "")
 class Test {
 	public static void main(String[] args) {
 		
@@ -9,10 +6,6 @@ class Test {
 		test.test();
 		
 	}
-
-	/*ArrayList<Pumpkin> arrList = new ArrayList<Pumpkin>();
-	Pumpkin[] arr = Pumpkin[6];
-	Hashtable<Integer, Pumpkin> hashTable = new Hashtable<Integer, Pumpkin>();*/
 
 }
 		

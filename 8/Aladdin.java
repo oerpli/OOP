@@ -1,4 +1,5 @@
 class Aladdin extends Pumpkin {
+	@WorkedOnAnnotation(worker1="Maisriemler", comment1 = "Funktionalität", worker2 = "Schöberl", comment2 = "Grundstruktur")
 	@Override
 	public void simuRain() {
 		waterLevel=waterLevel*2;

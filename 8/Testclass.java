@@ -1,9 +1,8 @@
-import java.lang.reflect.Method;
 import java.util.*;
 @Testcase({@SubTestcase(sammlung=ArrayList.class,PumpName={"Patisson","Aladdin","Hokkaido"},methodstocall={"simuWind","simuSun","simuRain"}),
 			@SubTestcase(sammlung=LinkedList.class,PumpName={"Patisson","Aladdin","Hokkaido"},methodstocall={"simuWind","simuSun","simuRain"}),
 			@SubTestcase(sammlung=Vector.class,PumpName={"Patisson","Aladdin","Hokkaido"},methodstocall={"simuWind","simuSun","simuRain"})})
-		
+@WorkedOnAnnotation(worker1="Maisriemler,Schöberl", comment1 = "", comment2 = "", worker2 = "")		
 public class Testclass {
 
 	public void test() {
@@ -12,7 +11,7 @@ public class Testclass {
 		try {
 			for (int i = 0; i < annotation.value().length; i++) {
 				SubTestcase test1 = annotation.value()[i];
-				Collection<Pumpkin> collection = (Collection) test1.sammlung().newInstance();
+				Collection<Pumpkin> collection = (Collection<Pumpkin>) test1.sammlung().newInstance();
 				for (int j = 0; j < test1.PumpName().length; j++) {
 					Pumpkin k = (Pumpkin) Class.forName(test1.PumpName()[j])
 							.newInstance();
@@ -40,7 +39,6 @@ public class Testclass {
 			
 			
 		} catch (InstantiationException | IllegalAccessException |ClassNotFoundException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

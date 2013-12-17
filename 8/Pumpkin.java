@@ -1,4 +1,5 @@
 abstract class Pumpkin {
+	@WorkedOnAnnotation(worker1="Schöberl", comment1 = "", worker2 = "", comment2 = "")
 	protected int weight;
 	protected int waterLevel;
 	

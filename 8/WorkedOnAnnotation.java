@@ -3,10 +3,11 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 @WorkedOnAnnotation(worker1="Maisriemler", comment1 = "", comment2 = "", worker2 = "")
-@Target(ElementType.TYPE)
-@Retention(value = RetentionPolicy.RUNTIME)
-public @interface Testcase {
+@Retention(value = RetentionPolicy.SOURCE)
+public @interface WorkedOnAnnotation {
 
-	public SubTestcase[] value() default {};
-	
+	String worker1();
+	String comment1();
+	String worker2();
+	String comment2();
 }

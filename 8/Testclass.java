@@ -14,10 +14,6 @@ import java.util.*;
 @WorkedOnAnnotation(worker1 = "Maisriemler,Schöberl", comment1 = "", comment2 = "", worker2 = "")
 public class Testclass {
 
-	private String[] Klassen = { "Aladdin", "Hokkaido", "Patisson", "Pumpkin",
-			"SubTestcase", "Test", "Testcase", "Testclass",
-			"WorkedOnAnnotation" };
-
 	public void test() {
 
 		Testcase annotation = Testclass.class.getAnnotation(Testcase.class);
@@ -52,10 +48,23 @@ public class Testclass {
 
 				}
 			}
-			String result = "Klasse:\t\t Name:\t\t Arbeit: \t\n";
-			for (int i = 0; i < Klassen.length; i++) {
-				Annotation[] annotations = Class.forName(Klassen[i])
-						.getAnnotations();
+		} catch (InstantiationException | IllegalAccessException
+				| ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+
+	}
+
+	public String getWork() {
+		String[] Klassen = { "Aladdin", "Hokkaido", "Patisson", "Pumpkin",
+				"SubTestcase", "Test", "Testcase", "Testclass",
+				"WorkedOnAnnotation" };
+		String result = "Klasse:\t\t Name:\t\t Arbeit: \t\n";
+		for (int i = 0; i < Klassen.length; i++) {
+			Annotation[] annotations;
+			try {
+				annotations = Class.forName(Klassen[i]).getAnnotations();
+
 				for (Annotation annotation1 : annotations) {
 					if (annotation1 instanceof WorkedOnAnnotation) {
 						WorkedOnAnnotation myAnnotation = (WorkedOnAnnotation) annotation1;
@@ -68,14 +77,12 @@ public class Testclass {
 
 					}
 				}
-			}
-			System.out.println(result);
 
-		} catch (InstantiationException | IllegalAccessException
-				| ClassNotFoundException e) {
-			e.printStackTrace();
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			}
 		}
+		return result;
 
 	}
-
 }

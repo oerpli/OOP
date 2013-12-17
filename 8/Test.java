@@ -4,7 +4,7 @@ class Test {
 
 		Testclass test = new Testclass();
 		test.test();
-
+		System.out.println(test.getWork());
 	}
 
 }

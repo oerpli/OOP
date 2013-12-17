@@ -9,9 +9,8 @@ import java.util.ArrayList;
 public @interface SubTestcase {
 
 	Class sammlung();
-	String PumpName1();
-	String PumpName2();
-	String PumpName3();
+	String[] PumpName();
+	String[] methodstocall();
 	
 	
 }

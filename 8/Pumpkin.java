@@ -7,15 +7,15 @@ abstract class Pumpkin {
 	}
 	
 	public void simuRain() {
-		
+		System.out.println("asd");
 	}
 	
 	public void simuSun() {
-		
+		System.out.println("asd");
 	}
 	
 	public void simuWind() {
-		
+		System.out.println("asd");
 	}
 	
 	@Override

@@ -1,8 +1,8 @@
 import java.lang.reflect.Method;
 import java.util.*;
-@Testcase({@SubTestcase(sammlung=ArrayList.class,PumpName1="Patisson",PumpName2="Aladdin",PumpName3="Hokkaido"),
-			@SubTestcase(sammlung=Arrays.class,PumpName1="Patisson",PumpName2="Aladdin",PumpName3="Hokkaido"),
-			@SubTestcase(sammlung=List.class,PumpName1="Patisson",PumpName2="Aladdin",PumpName3="Hokkaido")})
+@Testcase({@SubTestcase(sammlung=ArrayList.class,PumpName={"Patisson","Aladdin","Hokkaido"},methodstocall={"simuWind","simuSun","simuRain"}),
+			@SubTestcase(sammlung=LinkedList.class,PumpName={"Patisson","Aladdin","Hokkaido"},methodstocall={"simuWind","simuSun","simuRain"}),
+			@SubTestcase(sammlung=Vector.class,PumpName={"Patisson","Aladdin","Hokkaido"},methodstocall={"simuWind","simuSun","simuRain"})})
 		
 public class Testclass {
 
@@ -10,35 +10,33 @@ public class Testclass {
 
 		Testcase annotation = Testclass.class.getAnnotation(Testcase.class);
 		try {
-			
-			SubTestcase test1 = annotation.value()[0];
-			Collection collection = (Collection) test1.sammlung().newInstance();
-			String classname=test1.PumpName1();
-			Class class1 = Class.forName(classname);
-			Pumpkin k = (Patisson) class1.newInstance();
-			collection.add(k);
-			
-			classname=test1.PumpName2();
-			class1 = Class.forName(classname);
-			Pumpkin k1 = (Aladdin) class1.newInstance();
-			collection.add(k1);
-			classname=test1.PumpName3();
-			class1 = Class.forName(classname);
-			Pumpkin k2 = (Hokkaido) class1.newInstance();
-			collection.add(k2);
-			
-			for(Object o:collection){
-				Pumpkin test=(Pumpkin)o;
-				test.simuSun();
-				test.simuRain();
-				test.simuWind();
-				
-			}
-			
-			
-			
+			for (int i = 0; i < annotation.value().length; i++) {
+				SubTestcase test1 = annotation.value()[i];
+				Collection<Pumpkin> collection = (Collection) test1.sammlung().newInstance();
+				for (int j = 0; j < test1.PumpName().length; j++) {
+					Pumpkin k = (Pumpkin) Class.forName(test1.PumpName()[j])
+							.newInstance();
+					collection.add(k);
+				}
 
-			
+				String[] meth = test1.methodstocall();
+				for (int j = 0; j < meth.length; j++) {
+					if (meth[j].equals("simuWind")) {
+						for (Pumpkin k : collection) {
+							k.simuWind();
+						}
+					} if (meth[j].equals("simuRain")) {
+						for (Pumpkin k : collection) {
+							k.simuRain();
+						}
+					} if (meth[j].equals("simuSun")) {
+						for (Pumpkin k : collection) {
+							k.simuSun();
+						}
+					}
+
+				}
+			}			
 			
 			
 		} catch (InstantiationException | IllegalAccessException |ClassNotFoundException e) {

@@ -1,8 +1,16 @@
 import java.util.*;
-@Testcase({@SubTestcase(sammlung=ArrayList.class,PumpName={"Patisson","Aladdin","Hokkaido"},methodstocall={"simuWind","simuSun","simuRain"}),
-			@SubTestcase(sammlung=LinkedList.class,PumpName={"Patisson","Aladdin","Hokkaido"},methodstocall={"simuWind","simuSun","simuRain"}),
-			@SubTestcase(sammlung=Vector.class,PumpName={"Patisson","Aladdin","Hokkaido"},methodstocall={"simuWind","simuSun","simuRain"})})
-@WorkedOnAnnotation(worker1="Maisriemler,Schöberl", comment1 = "", comment2 = "", worker2 = "")		
+
+@Testcase({
+		@SubTestcase(sammlung = ArrayList.class, PumpName = { "Patisson",
+				"Aladdin", "Hokkaido" }, methodstocall = { "simuWind",
+				"simuSun", "simuRain" }),
+		@SubTestcase(sammlung = LinkedList.class, PumpName = { "Patisson",
+				"Aladdin", "Hokkaido" }, methodstocall = { "simuWind",
+				"simuSun", "simuRain" }),
+		@SubTestcase(sammlung = Vector.class, PumpName = { "Patisson",
+				"Aladdin", "Hokkaido" }, methodstocall = { "simuWind",
+				"simuSun", "simuRain" }) })
+@WorkedOnAnnotation(worker1 = "Maisriemler,Schöberl", comment1 = "", comment2 = "", worker2 = "")
 public class Testclass {
 
 	public void test() {
@@ -11,7 +19,8 @@ public class Testclass {
 		try {
 			for (int i = 0; i < annotation.value().length; i++) {
 				SubTestcase test1 = annotation.value()[i];
-				Collection<Pumpkin> collection = (Collection<Pumpkin>) test1.sammlung().newInstance();
+				Collection<Pumpkin> collection = (Collection<Pumpkin>) test1
+						.sammlung().newInstance();
 				for (int j = 0; j < test1.PumpName().length; j++) {
 					Pumpkin k = (Pumpkin) Class.forName(test1.PumpName()[j])
 							.newInstance();
@@ -24,27 +33,26 @@ public class Testclass {
 						for (Pumpkin k : collection) {
 							k.simuWind();
 						}
-					} if (meth[j].equals("simuRain")) {
+					}
+					if (meth[j].equals("simuRain")) {
 						for (Pumpkin k : collection) {
 							k.simuRain();
 						}
-					} if (meth[j].equals("simuSun")) {
+					}
+					if (meth[j].equals("simuSun")) {
 						for (Pumpkin k : collection) {
 							k.simuSun();
 						}
 					}
 
 				}
-			}			
-			
-			
-		} catch (InstantiationException | IllegalAccessException |ClassNotFoundException e) {
+			}
+
+		} catch (InstantiationException | IllegalAccessException
+				| ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 
 	}
 
-	
-	
 }
-

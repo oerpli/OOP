@@ -40,20 +40,21 @@ public class Testclass {
 
 				}
 			}			
-			
+			String result="Klasse:\t\t Name:\t\t Arbeit: \t\n";
 			for (int i = 0; i < Klassen.length; i++) {
 				Annotation[] annotations = Class.forName(Klassen[i]).getAnnotations();
 				for (Annotation annotation1 : annotations) {
 					if (annotation1 instanceof WorkedOnAnnotation) {
 						WorkedOnAnnotation myAnnotation = (WorkedOnAnnotation) annotation1;
-						System.out.println("Klasse:"
-								+ Class.forName(Klassen[i]) + "  Name: " + myAnnotation.worker1() + "  Arbeit: "
-								+ myAnnotation.comment1()+ "  " + myAnnotation.worker2() + "  "
-										+ myAnnotation.comment2());
+						
+								result+=""+Class.forName(Klassen[i]) + "\t" + myAnnotation.worker1() + " \t"
+								+ myAnnotation.comment1()+ " \t" + myAnnotation.worker2() + " \t"
+										+ myAnnotation.comment2()+"\n";
 
 					}
 				}
 			}
+			System.out.println(result);
 			
 		} catch (InstantiationException | IllegalAccessException
 				| ClassNotFoundException e) {

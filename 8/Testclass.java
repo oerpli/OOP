@@ -1,9 +1,13 @@
+import java.lang.annotation.Annotation;
+import java.lang.reflect.Method;
 import java.util.*;
 @Testcase({@SubTestcase(sammlung=ArrayList.class,PumpName={"Patisson","Aladdin","Hokkaido"},methodstocall={"simuWind","simuSun","simuRain"}),
 			@SubTestcase(sammlung=LinkedList.class,PumpName={"Patisson","Aladdin","Hokkaido"},methodstocall={"simuWind","simuSun","simuRain"}),
 			@SubTestcase(sammlung=Vector.class,PumpName={"Patisson","Aladdin","Hokkaido"},methodstocall={"simuWind","simuSun","simuRain"})})
 @WorkedOnAnnotation(worker1="Maisriemler,Schöberl", comment1 = "", comment2 = "", worker2 = "")		
 public class Testclass {
+	
+	private String[] Klassen={"Aladdin","Hokkaido","Patisson","Pumpkin","SubTestcase","Test","Testcase","Testclass","WorkedOnAnnotation"};
 
 	public void test() {
 
@@ -37,8 +41,22 @@ public class Testclass {
 				}
 			}			
 			
+			for (int i = 0; i < Klassen.length; i++) {
+				Annotation[] annotations = Class.forName(Klassen[i]).getAnnotations();
+				for (Annotation annotation1 : annotations) {
+					if (annotation1 instanceof WorkedOnAnnotation) {
+						WorkedOnAnnotation myAnnotation = (WorkedOnAnnotation) annotation1;
+						System.out.println("Klasse:"
+								+ Class.forName(Klassen[i]) + "  Name: " + myAnnotation.worker1() + "  Arbeit: "
+								+ myAnnotation.comment1()+ "  " + myAnnotation.worker2() + "  "
+										+ myAnnotation.comment2());
+
+					}
+				}
+			}
 			
-		} catch (InstantiationException | IllegalAccessException |ClassNotFoundException e) {
+		} catch (InstantiationException | IllegalAccessException
+				| ClassNotFoundException e) {
 			e.printStackTrace();
 		}
 

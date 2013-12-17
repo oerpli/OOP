@@ -1,6 +1,10 @@
 abstract class Pumpkin {
-	private int weight;
-	private int waterLevel;
+	protected int weight;
+	protected int waterLevel;
+	
+	public Pumpkin(){
+		
+	}
 	
 	public void simuRain() {
 		

@@ -1,7 +1,7 @@
 class Liquor {
 	private String name;
 	private float alcByVol;
-	private float volume;
+	private int volume; // Milliliter
 	
 	public String getName() {
 		return name;
@@ -11,7 +11,7 @@ class Liquor {
 		return alcByVol;
 	}
 	
-	public float getVolume() {
+	public int getVolume() {
 		return volume;
 	}
 }

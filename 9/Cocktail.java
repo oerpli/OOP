@@ -1,8 +1,8 @@
 class Cocktail {
-	private String name;
-	Liquor[] ingredients;
-	float ice;
-	int temperature;
+	protected String name;
+	protected Liquor[] ingredients;
+	protected float ice;
+	protected int temperature;
 	
 	/**
 	 * @param ingredients: Array of up to 3 Liquors

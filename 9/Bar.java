@@ -7,7 +7,10 @@ public class Bar {
 		mixers.put(m1.getName(), m1);
 	}
 	
-	public ArrayList<???> order(ArrayList<String>) {
+	/**
+	 * Returns a tray (Array) containing the ordered cocktails if they are available
+	 */
+	public Cocktail[] order(String[] cocktailList) {
 		
 	}
 

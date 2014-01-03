@@ -8,14 +8,14 @@ public class Bar {
 	}
 	
 	/**
-	 * Returns a tray (Array) containing the ordered cocktails if they are available
+	 * Returns a tray containing the ordered cocktails if they are available
 	 */
-	public Cocktail[] order(String[] cocktailList) {
+	public Tray getCocktails(Order order) {
 		
 	}
 
 	@Override
-	public String toString() {
+	public String toString() { // gibt die Getränkekarte zurück
 		String result = "";
 		for (String s: mixers.keySet()) {
 			Mixer m = mixers.get(s);

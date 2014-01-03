@@ -3,6 +3,10 @@ class Liquor {
 	private float alcByVol;
 	private int volume; // Milliliter
 	
+	public Liquor(String name, float AbV, int volume) {
+		
+	}
+	
 	public String getName() {
 		return name;
 	}
@@ -13,5 +17,9 @@ class Liquor {
 	
 	public int getVolume() {
 		return volume;
+	}
+	
+	public void consum(int volume) {
+		this.volume -= volume;
 	}
 }

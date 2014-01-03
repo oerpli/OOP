@@ -1,19 +1,19 @@
 class Order {
-  String[] cocktails;
+	String[] cocktails;
   
-  public Order(String[] cocktails) {
-    this.cocktails = cocktails;
-  }
+	public Order(String[] cocktails) {
+		this.cocktails = cocktails;
+	}
   
-  /**
+	/**
 	 *
 	 */
-  public void list() {
+	public void list() {
     // die nächste Methode die besser als toString funktionieren würde
-  }
+	}
   
-  @Override
-  public String toString() {
-    
-  }
+	@Override
+	public String toString() {
+		
+	}
 }

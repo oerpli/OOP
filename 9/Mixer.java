@@ -13,6 +13,10 @@ abstract class Mixer {
 		return true;
 	}
 	
+	public String getName() {
+		return name;
+	}
+	
 	public String toString() {
 		String result = "";
 		result += name;

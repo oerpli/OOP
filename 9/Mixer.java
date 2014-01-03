@@ -1,5 +1,6 @@
 abstract class Mixer {
 	protected String name;
+	protected Liquor[] resources;
 	
 	/**
 	 * Returns the typical Cocktail of this Mixer

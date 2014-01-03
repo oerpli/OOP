@@ -20,6 +20,7 @@ class MojitoMixer extends Mixer {
 	public Cocktail getCocktail() {
 		Liquor[] ingredients = Liquor[3];
 		// Zutaten ins Array schreiben und aufbrauchen
+		// Siehe Liquor.consum
 		ice -= 20.0;
 		return new Cocktail(name, ingredients, 20.0, 0);
 	}

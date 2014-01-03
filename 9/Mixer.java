@@ -1,4 +1,5 @@
 abstract class Mixer {
+	protected String name;
 	
 	/**
 	 * Returns the typical Cocktail of this Mixer

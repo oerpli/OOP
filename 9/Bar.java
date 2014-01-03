@@ -4,6 +4,7 @@ public class Bar {
 	public Bar() {
 		// Mixer initialisieren und hinzufügen
 		mixers = new HashMap<String, Mixer>();
+		MojitoMixer m1 = new MojitoMixer();
 		mixers.put(m1.getName(), m1);
 	}
 	

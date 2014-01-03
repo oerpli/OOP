@@ -1,9 +1,9 @@
-class Mixer {
-	private String name;
+abstract class Mixer {
 	
-	public Mixer() {
-		name = "Wunschpunsch";
-	}
+	/**
+	 * Returns the typical Cocktail of this Mixer
+	 */
+	public abstract Cocktail getCocktail();
 	
 	/**
 	 * Returns true if there are enough ressources for another cocktail

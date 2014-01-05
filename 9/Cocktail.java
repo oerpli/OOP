@@ -17,10 +17,6 @@ public abstract class Cocktail {
 		return name + "(" + ml + "ml)";
 	}
 
-	public static void bla() {
-		int a = 1;
-	}
-
 	// public static void menu() {
 	// System.out.println("Karte:");
 	// for (Entry<String, Cocktail> e : collection.entrySet()) {

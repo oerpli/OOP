@@ -1,10 +1,10 @@
 public class Bar {
 	private static Bar instance;
-	static {
-		Spirit.add("Rum", 0.3);
-		Spirit.add("Vodka", 0.4);
-		Spirit.add("Bier", 0.04);
-	}
+//	static {
+//		Spirit.add("Rum", 0.3);
+//		Spirit.add("Vodka", 0.4);
+//		Spirit.add("Bier", 0.04);
+//	}
 
 	private Bar() {
 	}

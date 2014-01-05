@@ -1,13 +1,17 @@
 public class MojitoRobot extends Robot {
-
 	public MojitoRobot() {
 		super("Mojito");
 	}
 
 	@Override
-	protected Tray mixCocktail(Tray T) {
-		// erzeuge den neuen Cocktail
-		// "stelle" ihn auf das Tablett
-		return T;
+	protected boolean checkResources() {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+	@Override
+	protected Cocktail mixCocktail() {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

@@ -1,31 +1,30 @@
-import java.util.HashMap;
-import java.util.Map.Entry;
-
-public class Cocktail {
+public abstract class Cocktail {
 	private final String name;
-	private final Ingredient[] ingredients;
 	private final int ml;
 
-	private static HashMap<String, Cocktail> collection = new HashMap<String, Cocktail>();
+	// private static HashMap<String, Cocktail> collection = new HashMap<String,
+	// Cocktail>();
 
-	// Zutaten (Strings) evtl durch
-	public Cocktail(String N, int ML, Spirit[] spirits) {
-		assert N != null && spirits[0] != null;// Z2,Z3 dürfen null sein
-		assert ML > 0;
-		this.ingredients = spirits;
+	public Cocktail(String N, int ML) {
+		assert N != null;// braucht einen Name
+		assert ML > 0;// ein leeres Glas freut den Kunden wohl kaum.
 		this.ml = ML;
 		this.name = N;
-		collection.put(N, this);
+		// collection.put(name, this);
 	}
 
 	public String toString() {
 		return name + "(" + ml + "ml)";
 	}
 
-	public static void menu() {
-		System.out.println("Karte:");
-		for (Entry<String, Cocktail> e : collection.entrySet()) {
-			System.out.println(" " + e.getValue().toString());
-		}
+	public static void bla() {
+		int a = 1;
 	}
+
+	// public static void menu() {
+	// System.out.println("Karte:");
+	// for (Entry<String, Cocktail> e : collection.entrySet()) {
+	// System.out.println(" " + e.getValue().toString());
+	// }
+	// }
 }

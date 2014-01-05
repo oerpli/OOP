@@ -1,6 +1,6 @@
 import java.util.HashMap;
 
-public class Ingredient {
+class Ingredient {
 	public final String name;
 	private int amount = 0;
 
@@ -38,22 +38,25 @@ public class Ingredient {
 		assert N != null;
 	}
 
-	public boolean use(int ml) {
-		if (amount >= ml) {
-			amount -= ml;
+	protected boolean checkStock(int qnt) {
+		return amount >= qnt;
+	}
+
+	protected boolean use(int qnt) {
+		if (amount >= qnt) {
+			amount -= qnt;
 			return true;
 		} else
 			return false;// evtl exception stattdessen
 	}
 
 	// Bestimmte Sorte nachfüllen und aktuellen Lagerbestand zurückgeben
-	public int refill(int ml) {
-		this.amount += ml;
+	protected int refill(int qnt) {
+		this.amount += qnt;
 		return amount;
 	}
 
 	public String toString() {
 		return name;
 	}
-
 }

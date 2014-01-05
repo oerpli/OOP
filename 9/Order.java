@@ -16,19 +16,16 @@ public class Order {
 		this.nr = tablenr;
 	}
 
-	public void add(String cocktail) {
+	public Order add(String cocktail) {
 		assert cocktail != null;
 		drinks.add(cocktail);
-	}
-
-	public Tray aufgeben() {
-		return Bar.order(this);
+		return this; // für Chaining
 	}
 
 	public void list() {
 		System.out.println("Bestellte Getränke (Tisch " + nr + "):");
 		for (String s : drinks) {
-			System.out.println(" " + s);
+			System.out.println("-" + s);
 		}
 	}
 }

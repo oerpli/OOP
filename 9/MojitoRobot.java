@@ -1,22 +1,19 @@
 import java.util.Map.Entry;
+import java.util.Set;
 
 public class MojitoRobot extends Robot {
 	public MojitoRobot() {
-		super("Mojitorobot");
+		super(Mojito.name);
 	}
 
 	@Override
-	protected Cocktail mixCocktail() {
-
-		return null;
+	protected Set<Entry<String, Integer>> getRecipe() {
+		return Mojito.reference.entrySet();
 	}
 
 	@Override
-	protected boolean checkResources() {
-		boolean stock = true;
-		for (Entry<String, Integer> e : Mojito.reference.entrySet()) {
-			stock &= Ingredient.get(e.getKey()).checkStock(e.getValue());
-		}
-		return stock;
+	protected Cocktail mix() {
+		return new Mojito();
 	}
+
 }

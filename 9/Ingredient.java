@@ -54,7 +54,7 @@ abstract class Ingredient {
 	}
 
 	/* um initialisieren einfacher zu machen */
-	protected void refillAll(int qnt) {
+	static protected void refillAll(int qnt) {
 		for (Ingredient i : shelf.values())
 			i.refill(qnt);
 	}
@@ -65,6 +65,13 @@ abstract class Ingredient {
 
 	public String invString() {
 		return name + "(" + amount + getUnit() + ")";
+	}
+
+	static protected void listStock() {
+		System.out.println("Inventar");
+		for (Ingredient i : shelf.values()) {
+			System.out.println("-" + i);
+		}
 	}
 
 	/* WIRD AKTUELL NICHT MEHR BENÖTIGT */

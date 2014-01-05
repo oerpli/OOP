@@ -13,9 +13,10 @@ public class Tray {
 	}
 
 	public void content() {
-		System.out.println("Tablett für Tisch" + nr + " enthaelt:");
-		for (Cocktail c : drinks)
-			System.out.println(" " + c);
-	}
+		System.out.println("Tablett für Tisch " + nr + " enthaelt:");
+		for (Cocktail c : drinks) {
+			System.out.println("-" + c);
+		}
 
+	}
 }

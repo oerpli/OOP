@@ -6,6 +6,7 @@ public class Bar {
 
 	private Bar() {
 		new Ice();
+		new MojitoRobot();
 		new Liquid("Rum", 0.3);
 		new Liquid("Vodka", 0.4);
 		new Liquid("Bier", 0.04);
@@ -14,8 +15,9 @@ public class Bar {
 		new Liquid("Gin", 0.1);
 		new Liquid("Cider", 0.6);
 		new Liquid("Water", 0);
-		robots.put("Mojito", new MojitoRobot());
-
+		new Liquid("Soda", 0);
+		Ingredient.refillAll(10000);
+		Ingredient.listStock();
 	}
 
 	/**
@@ -30,8 +32,9 @@ public class Bar {
 		return instance;
 	}
 
-	public static Tray order(Order bestellung) {
-		Tray T = new Tray(bestellung.nr);
-		return T;
+	public Tray order(Order order) {
+		Tray t = new Tray(order.nr);
+		Robot.processOrder(t, order);
+		return t;
 	}
 }

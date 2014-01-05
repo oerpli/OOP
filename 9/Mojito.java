@@ -1,7 +1,8 @@
 import java.util.HashMap;
 
+
 public class Mojito extends CocktailCold {
-	private static final String name = "Mojito";
+	public static final String name = "Mojito";
 	protected static final HashMap<String, Integer> reference = new HashMap<>();
 	static {
 		reference.put("Rum", 10);

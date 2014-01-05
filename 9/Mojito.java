@@ -1,4 +1,6 @@
 import java.util.HashMap;
+import java.util.Map.Entry;
+import java.util.Set;
 
 public class Mojito extends CocktailCold {
 	private static final String name = "Mojito";
@@ -11,6 +13,9 @@ public class Mojito extends CocktailCold {
 
 	public Mojito() {
 		super(name, 125);
+		// Set<Entry<String, Integer>> a = reference.entrySet();//TODO
+		// Statt Hashmap wäre irgendwie dieses entry set besser.
+		// sollte man bei gelegenheit überarbeiten.
 	}
 
 }

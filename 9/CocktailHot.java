@@ -1,5 +1,8 @@
 public class CocktailHot extends Cocktail {
-	public CocktailHot(String N, int ML, Spirit[] spirits) {
+	public final int temperature;
+
+	public CocktailHot(String N, int ML, int T) {
 		super(N, ML);
+		this.temperature = T;
 	}
 }

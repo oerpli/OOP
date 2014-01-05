@@ -13,4 +13,9 @@ class Spirit extends Ingredient {
 		assert V >= 0 && V < 1;
 		this.vol = V;
 	}
+
+	@Override
+	protected String getUnit() {
+		return "ml";
+	}
 }

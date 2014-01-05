@@ -1,5 +1,9 @@
 public class CocktailCold extends Cocktail {
-	public CocktailCold(String N, int ML) {
+	private final int ice;
+
+	public CocktailCold(String N, int ML, int ice) {
 		super(N, ML);
+		assert ice > 0;
+		this.ice = ice;
 	}
 }

@@ -17,8 +17,8 @@ public abstract class Robot {
 		} else {
 			// TODO irgendwie einfügen was genau nicht gemacht werden kann
 			// System.out.println("Not enough resources to mix XYZ");
-			System.out.println("+" + name
-					+ "-Roboter kann " + name + " nicht zubereiten.");// so
+			System.out.println("+" + name + "-Roboter kann " + name
+					+ " nicht zubereiten.");// so
 			// vllt?
 		}
 		return T;
@@ -46,8 +46,6 @@ public abstract class Robot {
 		for (Entry<String, Integer> e : this.getRecipe()) {
 			if (!Ingredient.checkStock(e.getKey(), e.getValue())) {
 				stock = false;
-				System.out.println("+Nicht genug " + e.getKey() + " vorhanden.");
-
 			}
 		}
 		return stock;

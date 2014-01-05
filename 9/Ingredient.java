@@ -37,7 +37,13 @@ abstract class Ingredient {
 
 	static protected boolean checkStock(String n, int qnt) {
 		if (shelf.containsKey(n)) {
-			return shelf.get(n).amount >= qnt;
+			if (shelf.get(n).amount < qnt) {
+				System.out.println("+Nicht genug " + n + " vorhanden.");
+			} else {
+				return true;
+			}
+		} else {
+			System.out.println("+Zutat " + n + " nicht vorhanden!");
 		}
 		return false;
 

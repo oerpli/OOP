@@ -1,41 +1,31 @@
-class Cocktail {
-	protected String name;
-	protected Liquor[] ingredients;
-	protected float ice;
-	protected int temperature;
-	
-	/**
-	 * @param ingredients: Array of up to 3 Liquors
-	 * @param ice: non negative amount of crushed ice
-	 */
-	public Cocktail(String name, Liquor[] ingredients, float ice, int temperature) {
-		this.name = name;
-		this.ingredients = ingredients;
-		this.ice = ice;
-		this.temperature = temperature;
+import java.util.HashMap;
+import java.util.Map.Entry;
+
+public class Cocktail {
+	private final String name;
+	private final Ingredient[] ingredients;
+	private final int ml;
+
+	private static HashMap<String, Cocktail> collection = new HashMap<String, Cocktail>();
+
+	// Zutaten (Strings) evtl durch
+	public Cocktail(String N, int ML, Spirit[] spirits) {
+		assert N != null && spirits[0] != null;// Z2,Z3 dürfen null sein
+		assert ML > 0;
+		this.ingredients = spirits;
+		this.ml = ML;
+		this.name = N;
+		collection.put(N, this);
 	}
-	
-	/**
-	 * Returns total volume of this Cocktail (millilitres)
-	 * This calculation does not consider ice
-	 */
-	public int getVolume() {
-		int result = 0;
-		for (Liquor l: ingredients) {
-			result += l.getVolume();
-		}
-		return result;
+
+	public String toString() {
+		return name + "(" + ml + "ml)";
 	}
-	
-	/**
-	 * Returns alcohol concentration
-	 * This calculation does not consider ice
-	 */
-	public float getAbV() {
-		float result = 0.0f;
-		for (Liquor l: ingredients) {
-			result += l.getVolume() * (l.getAbV() / 100);
+
+	public static void menu() {
+		System.out.println("Karte:");
+		for (Entry<String, Cocktail> e : collection.entrySet()) {
+			System.out.println(" " + e.getValue().toString());
 		}
-		result = result / getVolume();
 	}
 }

@@ -24,7 +24,7 @@ abstract class Ingredient {
 		if (shelf.containsKey(n))
 			return shelf.get(n);
 		else {
-			System.err.println("Zutat " + n + " nicht vorhanden!");
+			System.out.println("+Zutat " + n + " nicht vorhanden!");
 			return null;
 		}
 	}
@@ -35,8 +35,12 @@ abstract class Ingredient {
 		shelf.put(N, this);
 	}
 
-	protected boolean checkStock(int qnt) {
-		return amount >= qnt;
+	static protected boolean checkStock(String n, int qnt) {
+		if (shelf.containsKey(n)) {
+			return shelf.get(n).amount >= qnt;
+		}
+		return false;
+
 	}
 
 	protected boolean use(int qnt) {

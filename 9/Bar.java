@@ -1,12 +1,10 @@
-import java.util.HashMap;
-
 public class Bar {
 	private static Bar instance;
-	private HashMap<String, Robot> robots = new HashMap<String, Robot>();
 
 	private Bar() {
 		new Ice();
 		new MojitoRobot();
+		new CubaLibreRobot();
 		new Liquid("Rum", 0.3);
 		new Liquid("Vodka", 0.4);
 		new Liquid("Bier", 0.04);

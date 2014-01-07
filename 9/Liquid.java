@@ -20,7 +20,7 @@ class Liquid extends Ingredient {
 	}
 
 	@Override
-	protected void fillInto(Cocktail c, int qnt) {
-		c.addIngredient(this.vol, qnt);
+	protected void fillCocktail(Cocktail c, int qnt) {
+		c.addIngredient(this.name, this.vol, qnt);
 	}
 }

@@ -1,11 +1,11 @@
 import java.util.HashMap;
 
-public class CubaLibre extends CocktailCold {
+class CubaLibre extends CocktailCold {
 	public static final String name = "Cuba Libre";
 	protected static final HashMap<String, Integer> reference = new HashMap<>();
 	static {
 		reference.put("Rum", 80);
-		reference.put("Cola", 100);
+		reference.put("Cola", 40);
 	}
 
 	protected CubaLibre() {

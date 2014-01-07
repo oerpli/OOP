@@ -5,7 +5,7 @@ public class BeerCoffee extends CocktailHot {
 	protected static final HashMap<String, Integer> reference = new HashMap<>();
 	static {
 		reference.put("Bier", 750);
-		reference.put("Cola", 10);
+		reference.put("Cola", 50);
 	}
 
 	protected BeerCoffee() {

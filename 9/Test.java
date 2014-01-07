@@ -28,13 +28,23 @@ public class Test {
 		 * einen Mojito zu kreiieren fehlt dieser bei diesem Test.
 		 */
 		test();
+		Ingredient.refill("Soda", 500);
+		test2();
 	}
 
 	public static void test() {
 		Order o = new Order(table++);
-		o.add("Cuba Libre").add("Bier").add("Beer Coffee").add("Mojito");
+		o.add("Cuba Libre").add("Bier").add("Beer Coffee").add("Mojito")
+				.add("LukeWarmToddy").add("HotToddy");
 		Tray t = o.order();
 		o.list();
+		t.content();
+	}
+
+	public static void test2() {
+		Order o = new Order(table++);
+		o.add("Cuba Mojito");
+		Tray t = o.order();
 		t.content();
 	}
 
@@ -46,7 +56,8 @@ public class Test {
 		new CubaLibreRobot();
 		new BeerCoffeeRobot();
 		new HotToddyRobot();
-		new SodaRobot();
+		new LukeWarmToddyRobot();
+		new CubaMojitoRobot();
 		new Liquid("Soda", 0);
 		new Liquid("Rum", 0.3);
 		new Liquid("Vodka", 0.4);

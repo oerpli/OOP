@@ -1,7 +1,7 @@
 import java.util.Map.Entry;
 import java.util.Set;
 
-public class CubaLibreRobot extends Robot {
+class CubaLibreRobot extends Robot {
 	public CubaLibreRobot() {
 		super(CubaLibre.name);
 	}

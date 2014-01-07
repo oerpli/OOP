@@ -1,6 +1,6 @@
 import java.util.HashMap;
 
-public class Mojito extends CocktailCold {
+class Mojito extends CocktailCold {
 	public static final String name = "Mojito";
 	protected static final HashMap<String, Integer> reference = new HashMap<>();
 	static {
@@ -8,7 +8,7 @@ public class Mojito extends CocktailCold {
 		reference.put("Soda", 400);
 	}
 
-	public Mojito() {
+	protected Mojito() {
 		super(name); // 210
 		// Set<Entry<String, Integer>> a = reference.entrySet();//TODO
 		// Statt Hashmap wäre irgendwie dieses entry set besser.

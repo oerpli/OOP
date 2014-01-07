@@ -1,8 +1,8 @@
 import java.util.Map.Entry;
 import java.util.Set;
 
-public class HotToddyRobot extends Robot {
-	public HotToddyRobot() {
+class HotToddyRobot extends Robot {
+	protected HotToddyRobot() {
 		super(HotToddy.name);
 	}
 
@@ -13,9 +13,9 @@ public class HotToddyRobot extends Robot {
 
 	@Override
 	protected Cocktail mix() {
-		HotToddy td = new HotToddy();
-		HeatRobot.get().heatUp(td, td.getTemp());
-		return td;
+		HotToddy bc = new HotToddy();
+		HeatRobot.get().heatUp(bc, bc.getTemp());
+		return bc;
 	}
 
 }

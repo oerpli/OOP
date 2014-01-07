@@ -17,6 +17,5 @@ public class Tray {
 		for (Cocktail c : drinks) {
 			System.out.println("-" + c);
 		}
-
 	}
 }

@@ -23,7 +23,7 @@ public abstract class Robot {
 		}
 	}
 
-	public Robot(String N) {
+	protected Robot(String N) {
 		this.name = N;
 		list.put(name, this);
 		menu.add(N);
@@ -42,7 +42,6 @@ public abstract class Robot {
 	private Cocktail mixCocktail() {
 		Cocktail c = this.mix();
 		for (Entry<String, Integer> e : this.getRecipe()) {
-			Ingredient.get(e.getKey()).use(e.getValue());
 			Ingredient.get(e.getKey()).fillInto(c, e.getValue());
 		}
 		return c;

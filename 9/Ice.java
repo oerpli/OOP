@@ -1,4 +1,4 @@
-public class Ice extends Ingredient {
+class Ice extends Ingredient {
 	protected Ice() {
 		super("Ice");
 	}
@@ -9,7 +9,7 @@ public class Ice extends Ingredient {
 	}
 
 	@Override
-	protected void fillInto(Cocktail c, int qnt) {
-		c.addIngredient(0, qnt);
+	protected void fillCocktail(Cocktail c, int qnt) {
+		c.addIngredient(this.name, 0, qnt);
 	}
 }

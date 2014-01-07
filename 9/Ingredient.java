@@ -20,7 +20,7 @@ abstract class Ingredient {
 	 * @param n
 	 * @return
 	 */
-	static Ingredient get(String n) {
+	static protected Ingredient get(String n) {
 		if (shelf.containsKey(n))
 			return shelf.get(n);
 		else {
@@ -49,14 +49,6 @@ abstract class Ingredient {
 
 	}
 
-	protected boolean use(int qnt) {
-		if (amount >= qnt) {
-			amount -= qnt;
-			return true;
-		} else
-			return false;// evtl exception stattdessen
-	}
-
 	// Bestimmte Sorte nachfüllen und aktuellen Lagerbestand zurückgeben
 	protected int refill(int qnt) {
 		this.amount += qnt;
@@ -77,33 +69,48 @@ abstract class Ingredient {
 		return name;
 	}
 
-	public String invString() {
+	private String invString() {
 		return name + "(" + amount + getUnit() + ")";
 	}
 
+	/**
+	 * Listet Inventar auf.
+	 */
 	static protected void listStock() {
 		System.out.println("Inventar:");
 		for (Ingredient i : shelf.values()) {
-			System.out.println("-" + i);
+			System.out.println("-" + i.invString());
 		}
 	}
 
-	/* WIRD AKTUELL NICHT MEHR BENÖTIGT */
-	// /**
-	// * Primitive Form von Singleton Pattern. Erzeugen mehrerer Instanzen
-	// möglich
-	// * - jedoch ist nur die aktuellste zugänglich.
-	// *
-	// * @param n
-	// * @param vol
-	// * @return true wenn diese Sorte vorher nicht vorhanden war. Sonst false.
-	// */
-	// static boolean add(Ingredient z) {
-	// assert z != null;
-	// return shelf.put(z.name, z) == null;
-	// }
-
+	/**
+	 * Gramm oder Milliliter
+	 * 
+	 * @return
+	 */
 	abstract protected String getUnit();
 
-	abstract protected void fillInto(Cocktail c, int qnt);
+	/**
+	 * Konkrete Umsetzung des einschenkens der jeweiligen Zutat.
+	 * 
+	 * @param c
+	 * @param qnt
+	 */
+	protected abstract void fillCocktail(Cocktail c, int qnt);
+
+	/**
+	 * Vorrat der Zutat "this" wird reduziert und in Cocktail geleert.
+	 * 
+	 * @param c
+	 * @param qnt
+	 * @return
+	 */
+	protected boolean fillInto(Cocktail c, int qnt) {
+		if (amount >= qnt) {
+			amount -= qnt;
+			fillCocktail(c, qnt);
+			return true;
+		} else
+			return false;// evtl exception stattdessen
+	}
 }

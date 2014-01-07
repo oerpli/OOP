@@ -1,4 +1,4 @@
-public abstract class CocktailHot extends Cocktail {
+abstract class CocktailHot extends Cocktail {
 	public int temperature;
 
 	protected CocktailHot(String N) {

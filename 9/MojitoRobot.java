@@ -1,8 +1,8 @@
 import java.util.Map.Entry;
 import java.util.Set;
 
-public class MojitoRobot extends Robot {
-	public MojitoRobot() {
+class MojitoRobot extends Robot {
+	protected MojitoRobot() {
 		super(Mojito.name);
 	}
 

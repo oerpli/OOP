@@ -1,5 +1,5 @@
-public class HeatRobot {
-	/*singleton*/
+class HeatRobot {
+	/* singleton */
 	private static HeatRobot instance = null;
 
 	private HeatRobot() {
@@ -12,7 +12,7 @@ public class HeatRobot {
 		return instance;
 	}
 
-	public void heatUp(CocktailHot cocktail, int temp) {
+	protected void heatUp(CocktailHot cocktail, int temp) {
 		// Grenzen waeren logisch sinnvoll - sind aber irgendwie arbitraer.
 		// deshalb auskommentiert.
 		// assert temp >= 0 && temp < 100;

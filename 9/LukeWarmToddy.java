@@ -1,20 +1,15 @@
 import java.util.HashMap;
 
-public class HotToddy extends CocktailHot {
-	public static final String name = "HotToddy";
+class LukeWarmToddy extends Cocktail {
+	public static final String name = "LukeWarmToddy";
 	protected static final HashMap<String, Integer> reference = new HashMap<>();
 	static {
 		reference.put("Gin", 10);
 		reference.put("Zitronensaft", 10);
 	}
 
-	protected HotToddy() {
+	protected LukeWarmToddy() {
 		super(name);
-	}
-
-	@Override
-	protected int getTemp() {
-		return 50;
 	}
 
 }

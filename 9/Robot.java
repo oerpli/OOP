@@ -35,10 +35,12 @@ public abstract class Robot {
 	}
 
 	private Cocktail mixCocktail() {
+		Cocktail c = this.mix();
 		for (Entry<String, Integer> e : this.getRecipe()) {
 			Ingredient.get(e.getKey()).use(e.getValue());
+			c.addLiquid((Liquid) Ingredient.get(e.getKey()), e.getValue());
 		}
-		return this.mix();
+		return c;
 	}
 
 	private boolean checkResources() {

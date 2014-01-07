@@ -16,6 +16,12 @@ public class Order {
 		this.nr = tablenr;
 	}
 
+	public Tray order() {
+		Tray t = new Tray(this.nr);
+		Robot.processOrder(t, this);
+		return t;
+	}
+
 	public Order add(String cocktail) {
 		assert cocktail != null;
 		drinks.add(cocktail);

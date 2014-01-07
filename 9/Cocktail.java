@@ -1,16 +1,20 @@
 public abstract class Cocktail {
 	private final String name;
-	private final int ml;
+	private int ml;
+	private double vol;
 
-	public Cocktail(String N, int ML) {
+	public Cocktail(String N) {
 		assert N != null;// braucht einen Name
-		assert ML > 0;// ein leeres Glas freut den Kunden wohl kaum.
-		this.ml = ML;
 		this.name = N;
-
 	}
 
 	public String toString() {
-		return name + "(" + ml + "ml)";
+		return name + "(" + ml + "ml, alc. " + vol + "% vol)";
+	}
+
+	protected void addLiquid(Liquid i, int qnt) {
+		vol = vol * ml + i.vol * qnt;
+		ml += qnt;
+		vol /= ml;
 	}
 }

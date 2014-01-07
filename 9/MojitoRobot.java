@@ -13,8 +13,8 @@ public class MojitoRobot extends Robot {
 
 	@Override
 	protected Cocktail mix() {
-		Mojito mojito=new Mojito();
-		ColdRobot.useIce(Mojito.IceAmount, mojito);
+		Mojito mojito = new Mojito();
+		IceRobot.useIce(mojito, mojito.getIceAmount());
 		return mojito;
 	}
 

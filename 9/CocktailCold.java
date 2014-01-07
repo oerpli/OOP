@@ -1,7 +1,9 @@
-public class CocktailCold extends Cocktail {
+public abstract class CocktailCold extends Cocktail {
 	public int ice;
 
-	public CocktailCold(String N, int ML) {
-		super(N, ML);
+	protected CocktailCold(String N) {
+		super(N);
 	}
+
+	protected abstract int getIceAmount();
 }

@@ -12,10 +12,10 @@ public class CubaLibreRobot extends Robot {
 	}
 
 	@Override
-	protected Cocktail mix() {		
-		CubaLibre cubaLibre=new CubaLibre();
-		ColdRobot.useIce(CubaLibre.IceAmount,cubaLibre);
-		return cubaLibre;
+	protected Cocktail mix() {
+		CubaLibre cubal = new CubaLibre();
+		IceRobot.useIce(cubal, cubal.getIceAmount());
+		return cubal;
 	}
 
 }

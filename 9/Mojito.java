@@ -5,7 +5,7 @@ public class Mojito extends CocktailCold {
 	protected static final HashMap<String, Integer> reference = new HashMap<>();
 	static {
 		reference.put("Rum", 200);
-		reference.put("Soda", 100);
+		reference.put("Soda", 400);
 	}
 
 	public Mojito() {

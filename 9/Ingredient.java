@@ -82,7 +82,7 @@ abstract class Ingredient {
 	}
 
 	static protected void listStock() {
-		System.out.println("Inventar");
+		System.out.println("Inventar:");
 		for (Ingredient i : shelf.values()) {
 			System.out.println("-" + i);
 		}

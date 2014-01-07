@@ -6,4 +6,8 @@ public abstract class CocktailCold extends Cocktail {
 	}
 
 	protected abstract int getIceAmount();
+
+	public String toString() {
+		return super.toString() + " mit " + getIceAmount() + "g Eis";
+	}
 }

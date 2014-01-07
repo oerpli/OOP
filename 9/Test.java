@@ -39,6 +39,7 @@ public class Test {
 		new Liquid("Cider", 0.6);
 		new Liquid("Water", 0);
 		new Liquid("Coffee", 0);
+		new Liquid("Zitronensaft", 0);
 		Ingredient.refillAll(1000);
 		Ingredient.listStock();
 	}

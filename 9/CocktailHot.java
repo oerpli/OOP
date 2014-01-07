@@ -1,4 +1,4 @@
-public class CocktailHot extends Cocktail {
+abstract public class CocktailHot extends Cocktail {
 	public final int temperature;
 
 	public CocktailHot(String N, int ML, int T) {

@@ -2,9 +2,7 @@ public class Test {
 
 	public static void main(String[] args) {
 		Bar b = Bar.getInstance();
-		end();
 		test(b);
-		end();
 	}
 
 	public static void test(Bar b) {
@@ -14,8 +12,4 @@ public class Test {
 		o.list();
 		t.content();
 	}
-
-	public static void end() {
-	}
-
 }

@@ -45,6 +45,8 @@ public class Test {
 		new MojitoRobot();
 		new CubaLibreRobot();
 		new BeerCoffeeRobot();
+		new HotToddyRobot();
+		new SodaRobot();
 		new Liquid("Soda", 0);
 		new Liquid("Rum", 0.3);
 		new Liquid("Vodka", 0.4);

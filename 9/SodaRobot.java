@@ -13,8 +13,8 @@ public class SodaRobot extends Robot {
 
 	@Override
 	protected Cocktail mix() {
-		Soda zs = new Soda();
-		return zs;
+		Soda sd = new Soda();
+		return sd;
 	}
 
 }

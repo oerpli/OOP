@@ -1,6 +1,6 @@
 import java.util.HashMap;
 
-class LukeWarmToddy extends CocktailNormal {
+class LukeWarmToddy extends Cocktail {
 	public static final String name = "LukeWarmToddy";
 	protected static final HashMap<String, Integer> reference = new HashMap<>();
 	static {

@@ -1,6 +1,18 @@
 public class IceRobot {
+	/* singleton */
+	private static IceRobot instance = null;
 
-	public static boolean useIce(CocktailCold cocktail, int amount) {
+	private IceRobot() {
+	};
+
+	protected static IceRobot get() {
+		if (instance == null) {
+			instance = new IceRobot();
+		}
+		return instance;
+	}
+
+	public boolean useIce(CocktailCold cocktail, int amount) {
 		if (Ingredient.checkStock("Ice", amount)) {
 			assert amount >= 0 && amount < 200;
 			Ingredient.get("Ice").use(amount);

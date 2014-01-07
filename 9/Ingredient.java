@@ -63,6 +63,10 @@ abstract class Ingredient {
 		return amount;
 	}
 
+	static protected void refill(String i, int qnt) {
+		Ingredient.get(i).refill(qnt);
+	}
+
 	/* um initialisieren einfacher zu machen */
 	static protected void refillAll(int qnt) {
 		for (Ingredient i : shelf.values())

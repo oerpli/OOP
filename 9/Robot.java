@@ -2,6 +2,14 @@ import java.util.HashMap;
 import java.util.Set;
 import java.util.Map.Entry;
 
+/**
+ * Repraesentiert den ganzen Roboter der aus unterschiedlichen Teilrobotern
+ * besteht. Die "KI" des Roboters ist im Grossen und Ganzen hier implementiert -
+ * der "Hauptroboter" kann mit "Nebenrobotern" erweitert werden wobei jeder
+ * dieser fuer einen Cocktail zustaendig ist. Wie genau dieser die Zutaten
+ * ermittelt und diese anschließend zusammenmischt bleibt ihm ueberlassen.
+ * Ressourcen
+ */
 public abstract class Robot {
 	public final String name;
 	private static HashMap<String, Robot> list = new HashMap<>();
@@ -9,19 +17,6 @@ public abstract class Robot {
 	public Robot(String N) {
 		this.name = N;
 		list.put(name, this);
-	}
-
-	protected Tray addCocktail(Tray T) {
-		if (checkResources()) {
-			T.add(mixCocktail());
-		} else {
-			// TODO irgendwie einfügen was genau nicht gemacht werden kann
-			// System.out.println("Not enough resources to mix XYZ");
-			System.out.println("+" + name + "-Roboter kann " + name
-					+ " nicht zubereiten.");// so
-			// vllt?
-		}
-		return T;
 	}
 
 	protected static void processOrder(Tray t, Order order) {
@@ -41,6 +36,19 @@ public abstract class Robot {
 			c.addLiquid((Liquid) Ingredient.get(e.getKey()), e.getValue());
 		}
 		return c;
+	}
+
+	protected Tray addCocktail(Tray T) {
+		if (checkResources()) {
+			T.add(mixCocktail());
+		} else {
+			// TODO irgendwie einfügen was genau nicht gemacht werden kann
+			// System.out.println("Not enough resources to mix XYZ");
+			System.out.println("+" + name + "-Roboter kann " + name
+					+ " nicht zubereiten.");// so
+			// vllt?
+		}
+		return T;
 	}
 
 	private boolean checkResources() {

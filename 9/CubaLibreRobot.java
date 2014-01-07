@@ -14,7 +14,7 @@ public class CubaLibreRobot extends Robot {
 	@Override
 	protected Cocktail mix() {
 		CubaLibre cubal = new CubaLibre();
-		IceRobot.useIce(cubal, cubal.getIceAmount());
+		IceRobot.get().useIce(cubal, cubal.getIceAmount());
 		return cubal;
 	}
 

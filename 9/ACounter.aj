@@ -1,5 +1,3 @@
-import java.util.Hashtable;
-
 public aspect ACounter {
 	private int objects = 0;
 
@@ -19,16 +17,17 @@ public aspect ACounter {
 	// }
 
 	after() : initialization(*.new(..)) && !within(ACounter){
-		System.out.println(thisJoinPointStaticPart.toString());
+		if (Test.debug)
+			System.out.println(thisJoinPointStaticPart.toString());
 		objects++;
 	}
 
-	before() : call(void Test.test(Bar)) && !within(ACounter){
+	before() : call(void Test.test()) && !within(ACounter){
 		System.out.println("+++Counting starts here!+++");
 		objects = 0;
 	}
 
-	after() : call(void Test.test(Bar)) && !within(ACounter){
+	after() : call(void Test.test()) && !within(ACounter){
 		System.out.println("In diesem Aufruf von test() wurden " + objects
 				+ " Objekte erstellt");
 	}

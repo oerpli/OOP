@@ -10,7 +10,7 @@ class Liquid extends Ingredient {
 
 	protected Liquid(String N, double V) {
 		super(N);
-		assert V >= 0 && V < 1;
+		assert V >= 0 && V < 100;
 		this.vol = V;
 	}
 
@@ -22,5 +22,10 @@ class Liquid extends Ingredient {
 	@Override
 	protected void fillCocktail(Cocktail c, int qnt) {
 		c.addIngredient(this.name, this.vol, qnt);
+	}
+
+	@Override
+	public String toString() {
+		return super.toString() + " (alc " + vol + "%.vol)";
 	}
 }

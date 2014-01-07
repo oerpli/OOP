@@ -59,16 +59,19 @@ public class Test {
 		new LukeWarmToddyRobot();
 		new CubaMojitoRobot();
 		new Liquid("Soda", 0);
-		new Liquid("Rum", 0.3);
-		new Liquid("Vodka", 0.4);
-		new Liquid("Bier", 0.04);
-		new Liquid("MehrBier", 0.03);
-		new Liquid("NochmehrBier?", 0.05);
-		new Liquid("Gin", 0.1);
-		new Liquid("Cider", 0.6);
+		new Liquid("Rum", 30);
+		new Liquid("Vodka", 4);
+		new Liquid("Bier", 4);
+		new Liquid("MehrBier", 3);
+		new Liquid("NochmehrBier?", 5);
+		new Liquid("Gin", 40);
+		new Liquid("Cider", 06);
 		new Liquid("Water", 0);
 		new Liquid("Coffee", 0);
 		new Liquid("Zitronensaft", 0);
+		for (int i = 1; i < 15; i++) {// >20 zutaten
+			new Liquid("Filler" + i, 1 / i);
+		}
 		Ingredient.refillAll(1000);
 	}
 

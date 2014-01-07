@@ -70,7 +70,7 @@ abstract class Ingredient {
 	}
 
 	private String invString() {
-		return name + "(" + amount + getUnit() + ")";
+		return this.toString() + " - " + amount + getUnit();
 	}
 
 	/**

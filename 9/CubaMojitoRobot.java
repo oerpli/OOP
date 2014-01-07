@@ -7,11 +7,14 @@ public class CubaMojitoRobot extends Robot {
 		super(CubaMojito.name);
 	}
 
+	/**
+	 * Wie man hier sieht, ermöglicht diese Art der Implementierung leichte
+	 * Erweiterbarkeit.
+	 */
 	@Override
 	protected Set<Entry<String, Integer>> getRecipe() {
 		HashMap<String, Integer> x = CubaLibre.reference;
 		x.putAll(Mojito.reference);
-		// x.addAll(Mojito.reference.entrySet());
 		return x.entrySet();
 	}
 

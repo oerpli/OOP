@@ -18,4 +18,9 @@ class Liquid extends Ingredient {
 	protected String getUnit() {
 		return "ml";
 	}
+
+	@Override
+	protected void fillInto(Cocktail c, int qnt) {
+		c.addIngredient(this.vol, qnt);
+	}
 }

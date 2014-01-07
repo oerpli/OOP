@@ -104,4 +104,6 @@ abstract class Ingredient {
 	// }
 
 	abstract protected String getUnit();
+
+	abstract protected void fillInto(Cocktail c, int qnt);
 }

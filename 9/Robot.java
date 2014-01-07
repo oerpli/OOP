@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.Map.Entry;
@@ -13,10 +14,19 @@ import java.util.Map.Entry;
 public abstract class Robot {
 	public final String name;
 	private static HashMap<String, Robot> list = new HashMap<>();
+	private static ArrayList<String> menu = new ArrayList<>();
+
+	public static void menu() {
+		System.out.println("Karte:");
+		for (String s : menu) {
+			System.out.println("-" + s);
+		}
+	}
 
 	public Robot(String N) {
 		this.name = N;
 		list.put(name, this);
+		menu.add(N);
 	}
 
 	protected static void processOrder(Tray t, Order order) {
@@ -33,7 +43,7 @@ public abstract class Robot {
 		Cocktail c = this.mix();
 		for (Entry<String, Integer> e : this.getRecipe()) {
 			Ingredient.get(e.getKey()).use(e.getValue());
-			c.addLiquid((Liquid) Ingredient.get(e.getKey()), e.getValue());
+			Ingredient.get(e.getKey()).fillInto(c, e.getValue());
 		}
 		return c;
 	}

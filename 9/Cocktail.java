@@ -12,9 +12,10 @@ public abstract class Cocktail {
 		return name + "(" + ml + "ml, alc. " + vol + "% vol)";
 	}
 
-	protected void addLiquid(Liquid i, int qnt) {
-		vol = vol * ml + i.vol * qnt;
+	protected void addIngredient(double ivol, int qnt) {
+		vol = vol * ml + ivol * qnt;
 		ml += qnt;
 		vol /= ml;
 	}
+
 }

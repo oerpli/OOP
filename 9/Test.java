@@ -9,7 +9,9 @@ public class Test {
 		test();
 		Ingredient.refill("Cola", 1500);
 		test();
-
+		Ingredient.refillAll(1500);
+		test();
+		Robot.menu();
 	}
 
 	public static void test() {
@@ -26,6 +28,8 @@ public class Test {
 		new Ice();
 		new MojitoRobot();
 		new CubaLibreRobot();
+		new BeerCoffeeRobot();
+		new Liquid("Soda",0);
 		new Liquid("Rum", 0.3);
 		new Liquid("Vodka", 0.4);
 		new Liquid("Bier", 0.04);
@@ -38,4 +42,7 @@ public class Test {
 		Ingredient.refillAll(1000);
 		Ingredient.listStock();
 	}
+
+
+
 }

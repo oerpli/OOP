@@ -10,7 +10,7 @@ public class Mojito extends CocktailCold {
 	}
 
 	public Mojito() {
-		super(name, 210,100);
+		super(name, 210);
 		// Set<Entry<String, Integer>> a = reference.entrySet();//TODO
 		// Statt Hashmap wäre irgendwie dieses entry set besser.
 		// sollte man bei gelegenheit überarbeiten.

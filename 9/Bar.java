@@ -5,6 +5,7 @@ public class Bar {
 		new Ice();
 		new MojitoRobot();
 		new CubaLibreRobot();
+		new ColdRobot();
 		new Liquid("Rum", 0.3);
 		new Liquid("Vodka", 0.4);
 		new Liquid("Bier", 0.04);

@@ -7,8 +7,8 @@ public class HotToddy extends CocktailHot {
                 reference.put("Gin", 10);
                 reference.put("Zitronensaft", 100);
         }
-        public HotToddy(String N) {
-                super(N);
+        public HotToddy() {
+                super(name);
         }
 		@Override
 		protected int getTemp() {

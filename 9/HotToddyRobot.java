@@ -3,19 +3,19 @@ import java.util.Set;
 
 public class HotToddyRobot extends Robot {
 	public HotToddyRobot() {
-		super(BeerCoffee.name);
+		super(HotToddy.name);
 	}
 
 	@Override
 	protected Set<Entry<String, Integer>> getRecipe() {
-		return BeerCoffee.reference.entrySet();
+		return HotToddy.reference.entrySet();
 	}
 
 	@Override
 	protected Cocktail mix() {
-		BeerCoffee bc = new BeerCoffee();
-		HeatRobot.get().heatUp(bc, bc.getTemp());
-		return bc;
+		HotToddy td = new HotToddy();
+		HeatRobot.get().heatUp(td, td.getTemp());
+		return td;
 	}
 
 }

@@ -5,7 +5,7 @@ public abstract class Cocktail {
 	private final String name;
 	private int ml;
 	private double vol;
-	private HashMap<String, Integer> ingredients = new HashMap<>();
+	private HashMap<String, Integer> ingredients = new HashMap<String, Integer>();
 
 	protected Cocktail(String N) {
 		assert N != null;// braucht einen Name
@@ -33,5 +33,6 @@ public abstract class Cocktail {
 			System.out.print(e.getKey() + " - " + e.getValue() + ", ");
 		}
 	}
+
 	protected abstract int getAmount();
 }

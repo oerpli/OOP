@@ -2,7 +2,7 @@ import java.util.ArrayList;
 
 public class Tray {
 	private final int nr;
-	private ArrayList<Cocktail> drinks = new ArrayList<>();
+	private ArrayList<Cocktail> drinks = new ArrayList<Cocktail>();
 
 	public Tray(int tischnr) {
 		this.nr = tischnr;

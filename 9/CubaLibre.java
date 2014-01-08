@@ -2,7 +2,7 @@ import java.util.HashMap;
 
 class CubaLibre extends CocktailCold {
 	public static final String name = "Cuba Libre";
-	protected static final HashMap<String, Integer> reference = new HashMap<>();
+	protected static final HashMap<String, Integer> reference = new HashMap<String, Integer>();
 	static {
 		reference.put("Rum", 80);
 		reference.put("Cola", 40);
@@ -20,8 +20,8 @@ class CubaLibre extends CocktailCold {
 	protected int getIceAmount() {
 		return 30;
 	}
-	
-	protected int getAmount(){
+
+	protected int getAmount() {
 		return 150;
 	}
 }

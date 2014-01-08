@@ -13,8 +13,8 @@ import java.util.Map.Entry;
  */
 public abstract class Robot {
 	public final String name;
-	private static HashMap<String, Robot> list = new HashMap<>();
-	private static ArrayList<String> menu = new ArrayList<>();
+	private static HashMap<String, Robot> list = new HashMap<String, Robot>();
+	private static ArrayList<String> menu = new ArrayList<String>();
 
 	public static void menu() {
 		System.out.println("Karte:");

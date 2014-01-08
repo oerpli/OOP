@@ -2,7 +2,7 @@ import java.util.HashMap;
 
 public class BeerCoffee extends CocktailHot {
 	public static final String name = "Beer Coffee";
-	protected static final HashMap<String, Integer> reference = new HashMap<>();
+	protected static final HashMap<String, Integer> reference = new HashMap<String,Integer>();
 	static {
 		reference.put("Bier", 750);
 		reference.put("Cola", 50);

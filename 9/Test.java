@@ -13,6 +13,7 @@ public class Test {
 		 * Beer Coffee und Cuba Libre nicht produziert werden. Bier ist kein
 		 * Cocktail in der Getraenkekarte (siehe ganz am Anfang der Ausgabe).
 		 */
+		System.out.println("\n\n******TEST 1******\n\n ");
 		test();
 		/**
 		 * Beim naechsten Test gibt es zwar eine Zutat "Cola" - jedoch ist deren
@@ -20,6 +21,7 @@ public class Test {
 		 * wird dasselbe wie zuvor.
 		 */
 		new Liquid("Cola", 0);
+		System.out.println("\n\n******TEST 2******\n\n ");
 		test();
 		Ingredient.refill("Cola", 1500);
 		/**
@@ -27,8 +29,10 @@ public class Test {
 		 * zubereitet werden. Da jedoch nicht mehr genug Soda vorhanden ist um
 		 * einen Mojito zu kreiieren fehlt dieser bei diesem Test.
 		 */
+		System.out.println("\n\n******TEST 3******\n\n ");
 		test();
 		Ingredient.refill("Soda", 500);
+		System.out.println("\n\n******TEST 4******\n\n ");
 		test2();
 	}
 
@@ -45,6 +49,7 @@ public class Test {
 		Order o = new Order(table++);
 		o.add("Cuba Mojito");
 		Tray t = o.order();
+		o.list();
 		t.content();
 	}
 
@@ -70,7 +75,7 @@ public class Test {
 		new Liquid("Coffee", 0);
 		new Liquid("Zitronensaft", 0);
 		for (int i = 1; i < 15; i++) {// >20 zutaten
-			new Liquid("Filler" + i, 1 / i);
+			new Liquid("Filler" + i, 100 / i);
 		}
 		Ingredient.refillAll(1000);
 	}

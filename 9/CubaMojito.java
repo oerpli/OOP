@@ -13,4 +13,8 @@ class CubaMojito extends CocktailCold {
 	protected int getIceAmount() {
 		return 20;
 	}
+	
+	protected int getAmount(){
+		return 660;
+	}
 }

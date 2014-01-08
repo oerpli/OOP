@@ -5,7 +5,7 @@ public class HotToddy extends CocktailHot {
 	protected static final HashMap<String, Integer> reference = new HashMap<>();
 	static {
 		reference.put("Gin", 10);
-		reference.put("Zitronensaft", 10);
+		reference.put("Zitronensaft", 100);
 	}
 
 	protected HotToddy() {
@@ -15,6 +15,10 @@ public class HotToddy extends CocktailHot {
 	@Override
 	protected int getTemp() {
 		return 50;
+	}
+	
+	protected int getAmount(){
+		return 110;
 	}
 
 }

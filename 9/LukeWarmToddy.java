@@ -5,11 +5,15 @@ class LukeWarmToddy extends Cocktail {
 	protected static final HashMap<String, Integer> reference = new HashMap<>();
 	static {
 		reference.put("Gin", 10);
-		reference.put("Zitronensaft", 10);
+		reference.put("Zitronensaft", 110);
 	}
 
 	protected LukeWarmToddy() {
 		super(name);
+	}
+	
+	protected int getAmount(){
+		return 120;
 	}
 
 }

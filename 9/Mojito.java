@@ -20,4 +20,8 @@ class Mojito extends CocktailCold {
 		// TODO Auto-generated method stub
 		return 120;
 	}
+	
+	protected int getAmount(){
+		return 210;
+	}
 }

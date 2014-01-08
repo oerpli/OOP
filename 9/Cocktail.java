@@ -33,4 +33,5 @@ public abstract class Cocktail {
 			System.out.print(e.getKey() + " - " + e.getValue() + ", ");
 		}
 	}
+	protected abstract int getAmount();
 }

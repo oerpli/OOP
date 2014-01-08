@@ -22,4 +22,8 @@ public class BeerCoffee extends CocktailHot {
 		// TODO Auto-generated method stub
 		return 500;// wer sowas trinken will hats verdient sich zu verbrennen.
 	}
+	
+	protected int getAmount(){
+		return 760;
+	}
 }

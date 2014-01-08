@@ -23,4 +23,8 @@ class CubaLibre extends CocktailCold {
 	protected int getIceAmount() {
 		return 30;
 	}
+	
+	protected int getAmount(){
+		return 150;
+	}
 }

@@ -19,7 +19,6 @@ public class BeerCoffee extends CocktailHot {
 	 */
 	@Override
 	protected int getTemp() {
-		// TODO Auto-generated method stub
 		return 500;// wer sowas trinken will hats verdient sich zu verbrennen.
 	}
 	

@@ -10,9 +10,6 @@ class CubaLibre extends CocktailCold {
 
 	protected CubaLibre() {
 		super(name);// 150
-		// Set<Entry<String, Integer>> a = reference.entrySet();//TODO
-		// Statt Hashmap wäre irgendwie dieses entry set besser.
-		// sollte man bei gelegenheit überarbeiten.
 	}
 
 	/**

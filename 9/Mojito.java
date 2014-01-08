@@ -10,14 +10,10 @@ class Mojito extends CocktailCold {
 
 	protected Mojito() {
 		super(name); // 210
-		// Set<Entry<String, Integer>> a = reference.entrySet();//TODO
-		// Statt Hashmap wäre irgendwie dieses entry set besser.
-		// sollte man bei gelegenheit überarbeiten.
 	}
 
 	@Override
 	protected int getIceAmount() {
-		// TODO Auto-generated method stub
 		return 120;
 	}
 	

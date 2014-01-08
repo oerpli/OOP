@@ -51,11 +51,8 @@ public abstract class Robot {
 		if (checkResources()) {
 			T.add(mixCocktail());
 		} else {
-			// TODO irgendwie einfügen was genau nicht gemacht werden kann
-			// System.out.println("Not enough resources to mix XYZ");
 			System.out.println("+" + name + "-Roboter kann " + name
 					+ " nicht zubereiten.");// so
-			// vllt?
 		}
 		return T;
 	}

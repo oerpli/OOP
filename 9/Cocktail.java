@@ -13,7 +13,7 @@ public abstract class Cocktail {
 	}
 
 	public String toString() {
-		return name + "(" + ml + "ml, alc. " + vol + "% vol)";
+		return name + "(" + getAmount() + "ml, alc. " + vol + "% vol)";
 	}
 
 	protected void addIngredient(String name, double ivol, int qnt) {
